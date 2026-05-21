@@ -6,7 +6,7 @@ const { $frontmatter } = useSlideContext();
 <template>
   <div class="wwt-customer slidev-layout">
     <GradientRule />
-    <img src="/wwt-monogram.png" alt="WWT" width="32" height="32" class="wwt-customer__monogram" />
+    <div class="wwt-monogram-mark wwt-customer__monogram" role="img" aria-label="WWT" />
     <div class="wwt-customer__layout">
       <figure v-if="$frontmatter?.photo" class="wwt-customer__photo">
         <img :src="String($frontmatter.photo)" :alt="String($frontmatter?.name ?? '')" />

@@ -10,7 +10,7 @@ const right = ($frontmatter?.right ?? { title: "", points: [] }) as Side;
 <template>
   <div class="wwt-comparison slidev-layout">
     <GradientRule />
-    <img src="/wwt-monogram.png" alt="WWT" width="32" height="32" class="wwt-comparison__monogram" />
+    <div class="wwt-monogram-mark wwt-comparison__monogram" role="img" aria-label="WWT" />
     <h1 v-if="$frontmatter?.title">{{ $frontmatter.title }}</h1>
     <div class="wwt-comparison__grid">
       <section class="wwt-comparison__card">

@@ -9,7 +9,7 @@ const steps = ($frontmatter?.steps ?? []) as Step[];
 <template>
   <div class="wwt-process slidev-layout">
     <GradientRule />
-    <img src="/wwt-monogram.png" alt="WWT" width="32" height="32" class="wwt-process__monogram" />
+    <div class="wwt-monogram-mark wwt-process__monogram" role="img" aria-label="WWT" />
     <h1 v-if="$frontmatter?.title">{{ $frontmatter.title }}</h1>
     <ol class="wwt-process__steps">
       <li v-for="(step, i) in steps" :key="i" class="wwt-process__step">

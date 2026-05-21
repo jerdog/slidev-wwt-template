@@ -1,7 +1,7 @@
 <template>
   <div class="wwt-two-cols slidev-layout">
     <GradientRule />
-    <img src="/wwt-monogram.png" alt="WWT" width="32" height="32" class="wwt-two-cols__monogram" />
+    <div class="wwt-monogram-mark wwt-two-cols__monogram" role="img" aria-label="WWT" />
     <div class="wwt-two-cols__grid">
       <div class="wwt-two-cols__col">
         <slot name="left" />

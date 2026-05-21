@@ -10,7 +10,7 @@ const stats = computed<StatItem[]>(() => ($frontmatter?.stats ?? []) as StatItem
 <template>
   <div class="wwt-stats slidev-layout">
     <GradientRule />
-    <img src="/wwt-monogram.png" alt="WWT" width="32" height="32" class="wwt-stats__monogram" />
+    <div class="wwt-monogram-mark wwt-stats__monogram" role="img" aria-label="WWT" />
     <h1 v-if="$frontmatter?.title">{{ $frontmatter.title }}</h1>
     <div class="wwt-stats__grid" :data-count="stats.length">
       <Stat

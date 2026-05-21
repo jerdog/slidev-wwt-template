@@ -9,13 +9,11 @@ const isDark = computed(() => Boolean($frontmatter?.dark));
   <div :class="['wwt-quote slidev-layout', { 'wwt-quote--dark': isDark }]">
     <GraphicDevice v-if="isDark" variant="dark" />
     <GradientRule v-else />
-    <img
+    <div
       v-if="!isDark"
-      src="/wwt-monogram.png"
-      alt="WWT"
-      width="32"
-      height="32"
-      class="wwt-quote__monogram"
+      class="wwt-monogram-mark wwt-quote__monogram"
+      role="img"
+      aria-label="WWT"
     />
     <blockquote class="wwt-quote__body">
       <p class="wwt-quote__text">

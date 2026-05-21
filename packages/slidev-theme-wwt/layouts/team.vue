@@ -10,7 +10,7 @@ const members = computed<Member[]>(() => ($frontmatter?.members ?? []) as Member
 <template>
   <div class="wwt-team slidev-layout">
     <GradientRule />
-    <img src="/wwt-monogram.png" alt="WWT" width="32" height="32" class="wwt-team__monogram" />
+    <div class="wwt-monogram-mark wwt-team__monogram" role="img" aria-label="WWT" />
     <h1 v-if="$frontmatter?.title">{{ $frontmatter.title }}</h1>
     <div class="wwt-team__grid">
       <PersonCard

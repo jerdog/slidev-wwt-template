@@ -75,3 +75,10 @@ body,
 .slidev-layout * {
   text-align: left;
 }
+
+.wwt-monogram-mark {
+  width: 32px;
+  height: 32px;
+  background: var(--wwt-monogram-url) center / contain no-repeat;
+  display: block;
+}

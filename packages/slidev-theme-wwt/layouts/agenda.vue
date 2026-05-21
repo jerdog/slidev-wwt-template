@@ -7,7 +7,7 @@ const items = ($frontmatter?.items ?? []) as string[];
 <template>
   <div class="wwt-agenda slidev-layout">
     <GradientRule />
-    <img src="/wwt-monogram.png" alt="WWT" width="32" height="32" class="wwt-agenda__monogram" />
+    <div class="wwt-monogram-mark wwt-agenda__monogram" role="img" aria-label="WWT" />
     <div class="wwt-agenda__body">
       <h1>Agenda</h1>
       <ol class="wwt-agenda__list">

@@ -9,7 +9,7 @@ const events = ($frontmatter?.events ?? []) as Event[];
 <template>
   <div class="wwt-timeline slidev-layout">
     <GradientRule />
-    <img src="/wwt-monogram.png" alt="WWT" width="32" height="32" class="wwt-timeline__monogram" />
+    <div class="wwt-monogram-mark wwt-timeline__monogram" role="img" aria-label="WWT" />
     <h1 v-if="$frontmatter?.title">{{ $frontmatter.title }}</h1>
     <ol class="wwt-timeline__line">
       <li v-for="(e, i) in events" :key="i" class="wwt-timeline__event">
