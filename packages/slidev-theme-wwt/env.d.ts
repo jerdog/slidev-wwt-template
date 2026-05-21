@@ -12,6 +12,12 @@ declare module "@slidev/client" {
     [key: string]: unknown;
   };
 
+  export function useDarkMode(): {
+    isDark: import("vue").Ref<boolean>;
+    toggleDark: () => void;
+    isColorSchemaConfigured: import("vue").Ref<boolean>;
+  };
+
   export function useSlideContext(): {
     $frontmatter: Record<string, unknown>;
     [key: string]: unknown;

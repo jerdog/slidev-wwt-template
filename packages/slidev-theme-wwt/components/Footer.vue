@@ -7,8 +7,9 @@ const { $frontmatter } = useSlideContext();
 
 <template>
   <footer class="wwt-footer">
-    <img src="/wwt-monogram.png" alt="WWT" width="24" height="24" class="wwt-footer__monogram" />
+    <div class="wwt-monogram-mark wwt-footer__monogram" role="img" aria-label="WWT" />
     <span class="wwt-footer__title">{{ $frontmatter?.title ?? "World Wide Technology" }}</span>
+    <DarkToggle />
     <span class="wwt-footer__page">{{ currentSlideNo }} / {{ total }}</span>
   </footer>
 </template>
@@ -27,7 +28,8 @@ const { $frontmatter } = useSlideContext();
 }
 
 .wwt-footer__monogram {
-  display: block;
+  width: 24px;
+  height: 24px;
 }
 
 .wwt-footer__title {
