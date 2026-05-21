@@ -1,0 +1,77 @@
+/* Base typography and Slidev slide reset */
+
+html,
+body,
+#app {
+  font-family:
+    "Inter",
+    "Roobert",
+    "Arial",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: var(--wwt-ink-base);
+  font-weight: 400;
+  line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.slidev-layout {
+  font-size: var(--wwt-text-body);
+  color: var(--wwt-ink-base);
+  background: var(--wwt-bg-base);
+}
+
+.slidev-layout h1 {
+  font-size: var(--wwt-text-h1);
+  font-weight: 700;
+  color: var(--wwt-primary-base);
+  line-height: 1.1;
+  margin-bottom: var(--wwt-space-6);
+  letter-spacing: -0.01em;
+}
+
+.slidev-layout h2 {
+  font-size: var(--wwt-text-h2);
+  font-weight: 600;
+  color: var(--wwt-ink-base);
+  line-height: 1.3;
+  margin-bottom: var(--wwt-space-4);
+}
+
+.slidev-layout p,
+.slidev-layout li {
+  font-size: var(--wwt-text-body);
+  line-height: 1.35;
+  text-align: left;
+}
+
+.slidev-layout ul,
+.slidev-layout ol {
+  padding-left: var(--wwt-space-6);
+}
+
+.slidev-layout li {
+  margin-bottom: var(--wwt-space-2);
+}
+
+.slidev-layout a {
+  color: var(--wwt-primary-base);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.slidev-layout strong {
+  font-weight: 700;
+}
+
+.slidev-layout em {
+  font-style: italic;
+}
+
+/* All text left-aligned per brand */
+.slidev-layout,
+.slidev-layout * {
+  text-align: left;
+}
