@@ -9,14 +9,18 @@ const { $frontmatter } = useSlideContext();
     <WwtLogo variant="white" :height="56" class="wwt-cover__logo" />
 
     <div class="wwt-cover__body">
-      <h1 class="wwt-cover__title">{{ $frontmatter?.title ?? "Title goes here" }}</h1>
+      <h1 class="wwt-cover__title">
+        {{ $frontmatter?.title ?? "Title goes here" }}
+      </h1>
       <p v-if="$frontmatter?.subtitle" class="wwt-cover__subtitle">
         {{ $frontmatter.subtitle }}
       </p>
       <div v-if="$frontmatter?.presenter || $frontmatter?.date" class="wwt-cover__meta">
         <span v-if="$frontmatter?.presenter">
           {{ $frontmatter.presenter }}
-          <template v-if="$frontmatter?.presenterRole"> — {{ $frontmatter.presenterRole }}</template>
+          <template v-if="$frontmatter?.presenterRole">
+            — {{ $frontmatter.presenterRole }}</template
+          >
         </span>
         <span v-if="$frontmatter?.date">{{ $frontmatter.date }}</span>
       </div>
@@ -55,7 +59,7 @@ const { $frontmatter } = useSlideContext();
   font-size: var(--wwt-text-cover);
   font-weight: 300;
   color: var(--wwt-ink-white);
-  line-height: 1.0;
+  line-height: 1;
   letter-spacing: -0.02em;
   margin: 0 0 var(--wwt-space-6);
 }

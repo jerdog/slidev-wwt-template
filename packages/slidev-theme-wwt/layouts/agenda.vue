@@ -10,7 +10,7 @@ const items = ($frontmatter?.items ?? []) as string[];
     <div class="wwt-monogram-mark wwt-agenda__monogram" role="img" aria-label="WWT" />
     <div class="wwt-agenda__body">
       <h1>Agenda</h1>
-      <ol class="wwt-agenda__list" v-auto-animate>
+      <ol v-auto-animate class="wwt-agenda__list">
         <v-clicks>
           <li v-for="(item, index) in items" :key="index" class="wwt-agenda__item">
             <span class="wwt-agenda__number">{{ String(index + 1).padStart(2, "0") }}</span>

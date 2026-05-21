@@ -27,8 +27,5 @@ declare module "@slidev/client" {
   export function defineUnoSetup(fn: () => unknown): void;
   export function defineMonacoSetup(fn: () => unknown): void;
   export function defineMermaidSetup(fn: () => unknown): void;
-  export function defineTransition(
-    name: string,
-    transition: unknown
-  ): void;
+  export function defineTransition(name: string, transition: unknown): void;
 }

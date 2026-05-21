@@ -13,8 +13,12 @@ defineProps<{
       <span v-else class="wwt-person__initials">{{ name.charAt(0) }}</span>
     </div>
     <div class="wwt-person__meta">
-      <div class="wwt-person__name">{{ name }}</div>
-      <div class="wwt-person__role">{{ role }}</div>
+      <div class="wwt-person__name">
+        {{ name }}
+      </div>
+      <div class="wwt-person__role">
+        {{ role }}
+      </div>
     </div>
   </article>
 </template>

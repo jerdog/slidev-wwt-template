@@ -35,8 +35,8 @@ const SRC: Record<Variant, string> = {
   "monogram-white": "/wwt-monogram-white.png",
 };
 
-const resolvedWidth = computed(() =>
-  props.width ?? Math.round(props.height * RATIOS[props.variant]),
+const resolvedWidth = computed(
+  () => props.width ?? Math.round(props.height * RATIOS[props.variant]),
 );
 </script>
 

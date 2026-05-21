@@ -12,10 +12,16 @@ const { $frontmatter } = useSlideContext();
         <img :src="String($frontmatter.photo)" :alt="String($frontmatter?.name ?? '')" />
       </figure>
       <blockquote class="wwt-customer__body">
-        <p class="wwt-customer__quote">{{ $frontmatter?.quote }}</p>
+        <p class="wwt-customer__quote">
+          {{ $frontmatter?.quote }}
+        </p>
         <footer class="wwt-customer__cite">
-          <div class="wwt-customer__name">{{ $frontmatter?.name }}</div>
-          <div class="wwt-customer__role">{{ $frontmatter?.role }}</div>
+          <div class="wwt-customer__name">
+            {{ $frontmatter?.name }}
+          </div>
+          <div class="wwt-customer__role">
+            {{ $frontmatter?.role }}
+          </div>
           <img
             v-if="$frontmatter?.logo"
             :src="String($frontmatter.logo)"

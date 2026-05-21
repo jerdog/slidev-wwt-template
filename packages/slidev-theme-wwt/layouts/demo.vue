@@ -7,7 +7,9 @@ const { $frontmatter } = useSlideContext();
   <div class="wwt-demo slidev-layout">
     <GradientRule />
     <div class="wwt-monogram-mark wwt-demo__monogram" role="img" aria-label="WWT" />
-    <h1 v-if="$frontmatter?.title">{{ $frontmatter.title }}</h1>
+    <h1 v-if="$frontmatter?.title">
+      {{ $frontmatter.title }}
+    </h1>
     <figure class="wwt-demo__frame">
       <img
         v-if="$frontmatter?.src && !$frontmatter?.iframe"

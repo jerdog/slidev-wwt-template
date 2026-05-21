@@ -14,7 +14,10 @@ export default defineShikiSetup(() => ({
         { scope: ["keyword", "storage", "storage.type"], settings: { foreground: "#66B6F2" } },
         { scope: ["string", "string.quoted"], settings: { foreground: "#99CFF7" } },
         { scope: ["constant.numeric"], settings: { foreground: "#FB550E" } },
-        { scope: ["entity.name.function", "support.function"], settings: { foreground: "#E31C79" } },
+        {
+          scope: ["entity.name.function", "support.function"],
+          settings: { foreground: "#E31C79" },
+        },
         { scope: ["variable", "variable.parameter"], settings: { foreground: "#FFFFFF" } },
         { scope: ["entity.name.type", "support.class"], settings: { foreground: "#A499CF" } },
       ],
@@ -31,7 +34,10 @@ export default defineShikiSetup(() => ({
         { scope: ["keyword", "storage", "storage.type"], settings: { foreground: "#1C0087" } },
         { scope: ["string", "string.quoted"], settings: { foreground: "#0086EA" } },
         { scope: ["constant.numeric"], settings: { foreground: "#FB550E" } },
-        { scope: ["entity.name.function", "support.function"], settings: { foreground: "#E31C79" } },
+        {
+          scope: ["entity.name.function", "support.function"],
+          settings: { foreground: "#E31C79" },
+        },
         { scope: ["variable", "variable.parameter"], settings: { foreground: "#0A0B19" } },
         { scope: ["entity.name.type", "support.class"], settings: { foreground: "#162FB4" } },
       ],

@@ -11,18 +11,28 @@ const right = ($frontmatter?.right ?? { title: "", points: [] }) as Side;
   <div class="wwt-comparison slidev-layout">
     <GradientRule />
     <div class="wwt-monogram-mark wwt-comparison__monogram" role="img" aria-label="WWT" />
-    <h1 v-if="$frontmatter?.title">{{ $frontmatter.title }}</h1>
+    <h1 v-if="$frontmatter?.title">
+      {{ $frontmatter.title }}
+    </h1>
     <div class="wwt-comparison__grid">
       <section class="wwt-comparison__card">
-        <header class="wwt-comparison__header">{{ left.title }}</header>
+        <header class="wwt-comparison__header">
+          {{ left.title }}
+        </header>
         <ul>
-          <li v-for="p in left.points" :key="p">{{ p }}</li>
+          <li v-for="p in left.points" :key="p">
+            {{ p }}
+          </li>
         </ul>
       </section>
       <section class="wwt-comparison__card">
-        <header class="wwt-comparison__header">{{ right.title }}</header>
+        <header class="wwt-comparison__header">
+          {{ right.title }}
+        </header>
         <ul>
-          <li v-for="p in right.points" :key="p">{{ p }}</li>
+          <li v-for="p in right.points" :key="p">
+            {{ p }}
+          </li>
         </ul>
       </section>
     </div>

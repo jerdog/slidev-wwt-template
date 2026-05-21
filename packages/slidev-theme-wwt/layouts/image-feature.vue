@@ -4,7 +4,12 @@ const { $frontmatter } = useSlideContext();
 </script>
 
 <template>
-  <div :class="['wwt-image-feature slidev-layout', `wwt-image-feature--${$frontmatter?.side ?? 'right'}`]">
+  <div
+    :class="[
+      'wwt-image-feature slidev-layout',
+      `wwt-image-feature--${$frontmatter?.side ?? 'right'}`,
+    ]"
+  >
     <GradientRule />
     <div class="wwt-monogram-mark wwt-image-feature__monogram" role="img" aria-label="WWT" />
     <div class="wwt-image-feature__copy">

@@ -5,7 +5,9 @@ defineProps<{
 </script>
 
 <template>
-  <div class="wwt-section-number">{{ n }}</div>
+  <div class="wwt-section-number">
+    {{ n }}
+  </div>
 </template>
 
 <style scoped>

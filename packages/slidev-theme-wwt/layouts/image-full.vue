@@ -36,11 +36,7 @@ const { $frontmatter } = useSlideContext();
 .wwt-image-full__scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(29, 30, 72, 0.85) 0%,
-    rgba(22, 47, 180, 0.6) 100%
-  );
+  background: linear-gradient(135deg, rgba(29, 30, 72, 0.85) 0%, rgba(22, 47, 180, 0.6) 100%);
 }
 
 .wwt-image-full__headline {
@@ -49,7 +45,7 @@ const { $frontmatter } = useSlideContext();
   color: var(--wwt-ink-white);
   font-size: var(--wwt-text-cover);
   font-weight: 300;
-  line-height: 1.0;
+  line-height: 1;
   max-width: 70%;
   padding: 5rem;
   margin: 0;

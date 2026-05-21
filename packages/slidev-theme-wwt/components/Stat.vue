@@ -8,9 +8,15 @@ defineProps<{
 
 <template>
   <article class="wwt-stat">
-    <div class="wwt-stat__value">{{ value }}</div>
-    <div class="wwt-stat__label">{{ label }}</div>
-    <p v-if="caption" class="wwt-stat__caption">{{ caption }}</p>
+    <div class="wwt-stat__value">
+      {{ value }}
+    </div>
+    <div class="wwt-stat__label">
+      {{ label }}
+    </div>
+    <p v-if="caption" class="wwt-stat__caption">
+      {{ caption }}
+    </p>
   </article>
 </template>
 

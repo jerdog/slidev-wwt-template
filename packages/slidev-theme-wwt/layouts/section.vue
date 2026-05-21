@@ -8,7 +8,9 @@ const { $frontmatter } = useSlideContext();
     <GraphicDevice variant="dark" />
     <div class="wwt-section__body">
       <SectionNumber v-if="$frontmatter?.number" :n="$frontmatter.number" />
-      <h1 class="wwt-section__title">{{ $frontmatter?.title ?? "Section title" }}</h1>
+      <h1 class="wwt-section__title">
+        {{ $frontmatter?.title ?? "Section title" }}
+      </h1>
     </div>
   </div>
 </template>
@@ -39,7 +41,7 @@ const { $frontmatter } = useSlideContext();
   font-size: var(--wwt-text-section);
   font-weight: 300;
   color: var(--wwt-ink-white);
-  line-height: 1.0;
+  line-height: 1;
   letter-spacing: -0.02em;
   margin: 0;
 }
