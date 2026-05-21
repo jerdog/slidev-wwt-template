@@ -69,5 +69,80 @@ Run `pnpm dev` and Slidev rebuilds in milliseconds. Ship a PDF with
 `pnpm export` when you're ready to hand it off.
 
 ---
+layout: quote
+attribution: WWT customer
+role: Fortune 100 retailer
+---
+
+Markdown-first authoring shaved a full day off our quarterly business review
+prep — and the deck still looks like a real WWT deck.
+
+---
+layout: image-feature
+title: Capability spotlight
+side: right
+image: /wwt-gradient-rule.png
+imageAlt: Sample placeholder — replace with your screenshot.
+---
+
+# Capability spotlight
+
+Drop a screenshot, demo capture, or hero image alongside a short paragraph.
+The frontmatter `side` key flips the image between left and right.
+
+---
+layout: image-full
+image: /bg-section-gradient.jpeg
+headline: One world. One team.
+imageAlt: WWT section break visual.
+---
+
+---
+layout: stats
+title: By the numbers
+stats:
+  - value: "17"
+    label: layouts
+    caption: every common business slide pattern
+  - value: "1"
+    label: command
+    caption: pnpm dev to preview
+  - value: "0"
+    label: license fees
+    caption: Inter as the Roobert stand-in
+---
+
+---
+layout: team
+title: Your team
+members:
+  - name: Avery Chen
+    role: Engagement Lead
+  - name: Jordan Patel
+    role: Principal Architect
+  - name: Riley Okonkwo
+    role: Solutions Engineer
+  - name: Sam Rivera
+    role: Customer Success
+---
+
+---
+layout: comparison
+title: Markdown vs slide-master decks
+left:
+  title: Slide-master deck
+  points:
+    - Drag boxes around for hours
+    - Inconsistent typography
+    - Version control unfriendly
+right:
+  title: Markdown deck
+  points:
+    - Write content, not layout
+    - On-brand by default
+    - Pull-request-friendly
+---
+
+---
 layout: end
 ---
