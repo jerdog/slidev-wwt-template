@@ -5,3 +5,4 @@ import "@fontsource/inter/700.css";
 
 import "./tokens.css";
 import "./layout.css";
+import "./print.css";
