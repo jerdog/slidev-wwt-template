@@ -8,3 +8,9 @@ presenter: Your Name
 presenterRole: Solutions Architect, World Wide Technology
 date: 2026
 ---
+
+---
+layout: section
+number: 01
+title: Why this template exists
+---
