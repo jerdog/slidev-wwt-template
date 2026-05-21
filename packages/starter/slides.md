@@ -196,5 +196,11 @@ name: Anonymous customer
 role: VP, Engineering
 
 ---
+layout: demo
+title: Live preview
+src: /bg-section-gradient.jpeg
+caption: Sample placeholder — drop in your product screenshot or set `iframe: true` for an embedded URL.
+
+---
 layout: end
 ---
