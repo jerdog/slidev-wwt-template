@@ -14,3 +14,7 @@ layout: section
 number: 01
 title: Why this template exists
 ---
+
+---
+layout: end
+---
