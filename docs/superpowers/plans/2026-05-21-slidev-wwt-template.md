@@ -3443,3 +3443,483 @@ Tick each before declaring the project shippable:
   `.png` — chosen because the source asset in the wwt-presentation skill is
   a JPEG. The layouts that reference it (`image-full` default, `demo`
   placeholder) use the `.jpeg` path consistently.
+
+---
+
+# Amendment 1 — Dark mode + AutoAnimate
+
+These tasks add dark-mode support and the AutoAnimate motion layer. Execute
+them after Phase 4 is complete (i.e., after all 17 layouts exist), but before
+Phase 7 verification. Order: 40 → 41 → 42 → 43 → 44 → 45.
+
+The amendment also modifies existing tasks 18-31 (every layout that hardcodes
+the monogram `<img>`). The amendment's Task 41 patches all of them in one
+pass.
+
+## Task 40: Dark-mode token overrides
+
+**Files:**
+- Modify: `packages/slidev-theme-wwt/styles/tokens.css`
+
+- [ ] **Step 1: Append dark-mode overrides to `tokens.css`**
+
+Append after the existing `:root { ... }` block:
+
+```css
+:root {
+  --wwt-monogram-url: url("/wwt-monogram.png");
+}
+
+.dark {
+  --wwt-bg-base: #0a0b19;
+  --wwt-ink-base: #ffffff;
+  --wwt-ink-muted: rgba(255, 255, 255, 0.7);
+  --wwt-primary-lightest: rgba(102, 182, 242, 0.15);
+  --wwt-monogram-url: url("/wwt-monogram-white.png");
+}
+```
+
+- [ ] **Step 2: Verify dark mode in dev**
+
+```bash
+pnpm dev
+```
+
+Open `localhost:3030`. Press `D` to toggle dark mode. Expected: white content
+slides flip to near-black background with white text. Always-dark slides
+(cover, section, end, code-focus, image-full) are unchanged. The monogram in
+the corner is still the color version (will be fixed in Task 41).
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add packages/slidev-theme-wwt/styles/tokens.css
+git commit -m "feat(theme): add dark-mode token overrides"
+```
+
+---
+
+## Task 41: CSS-driven monogram mark (dark-mode auto-swap)
+
+**Files:**
+- Modify: `packages/slidev-theme-wwt/styles/layout.css` (append shared `.wwt-monogram-mark` rule)
+- Modify (in 12 layouts): replace `<img src="/wwt-monogram.png" ... />` with `<div class="wwt-monogram-mark" role="img" aria-label="WWT" />`
+
+Layouts that contain the hardcoded `<img>` (from Phase 4):
+`default.vue`, `agenda.vue`, `two-cols.vue`, `quote.vue` (light branch),
+`image-feature.vue`, `stats.vue`, `team.vue`, `comparison.vue`,
+`timeline.vue`, `process.vue`, `customer-quote.vue`, `demo.vue`.
+
+- [ ] **Step 1: Append shared rule to `styles/layout.css`**
+
+```css
+.wwt-monogram-mark {
+  width: 32px;
+  height: 32px;
+  background: var(--wwt-monogram-url) center / contain no-repeat;
+  display: block;
+}
+```
+
+- [ ] **Step 2: Find every monogram img tag**
+
+```bash
+grep -rln "wwt-monogram.png" packages/slidev-theme-wwt/layouts/
+```
+
+Expected: 12 layout files listed.
+
+- [ ] **Step 3: Replace each `<img>` with the mark `<div>`**
+
+For each listed layout, replace:
+
+```vue
+<img src="/wwt-monogram.png" alt="WWT" width="32" height="32" class="wwt-<layout>__monogram" />
+```
+
+with:
+
+```vue
+<div class="wwt-monogram-mark wwt-<layout>__monogram" role="img" aria-label="WWT" />
+```
+
+The per-layout `wwt-<layout>__monogram` class still positions it
+(absolutely top-left). The shared `wwt-monogram-mark` class handles the
+background image, which now reads from `--wwt-monogram-url`.
+
+- [ ] **Step 4: Update each layout's scoped `.wwt-<layout>__monogram` rule**
+
+In each layout's `<style scoped>` block, remove `width: 32px; height: 32px;`
+from `.wwt-<layout>__monogram` (the shared class already sets them). Keep
+the `position`, `top`, and `left` declarations.
+
+- [ ] **Step 5: Verify dark-mode monogram swaps**
+
+```bash
+pnpm dev
+```
+
+Toggle `D`. Expected: monogram switches between color (light mode) and
+white (dark mode) in the top-left of every content slide.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add packages/slidev-theme-wwt/layouts packages/slidev-theme-wwt/styles/layout.css
+git commit -m "refactor(theme): switch monogram to CSS-driven mark for dark-mode swap"
+```
+
+---
+
+## Task 42: AutoAnimate plugin and global directive
+
+**Files:**
+- Modify: `packages/slidev-theme-wwt/package.json` (add dependency)
+- Modify: `packages/slidev-theme-wwt/setup/main.ts` (register plugin)
+
+- [ ] **Step 1: Add dependency**
+
+```bash
+pnpm --filter slidev-theme-wwt add @formkit/auto-animate
+```
+
+Expected: `package.json` `dependencies` now contains `@formkit/auto-animate`.
+
+- [ ] **Step 2: Register the plugin globally in `setup/main.ts`**
+
+Replace the file contents:
+
+```ts
+import { defineAppSetup } from "@slidev/types";
+import autoAnimatePlugin from "@formkit/auto-animate/vue";
+import "../styles/index";
+
+export default defineAppSetup(({ app }) => {
+  app.use(autoAnimatePlugin);
+});
+```
+
+- [ ] **Step 3: Confirm dev still boots**
+
+```bash
+pnpm dev
+```
+
+Expected: dev server starts without errors. The directive `v-auto-animate`
+is now available globally; nothing animates yet because no layout uses it.
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add packages/slidev-theme-wwt
+git commit -m "feat(theme): register AutoAnimate plugin globally"
+```
+
+---
+
+## Task 43: Apply `v-auto-animate` and `<v-clicks>` to reveal layouts
+
+**Files (modify in each):**
+- `packages/slidev-theme-wwt/layouts/agenda.vue`
+- `packages/slidev-theme-wwt/layouts/timeline.vue`
+- `packages/slidev-theme-wwt/layouts/stats.vue`
+- `packages/slidev-theme-wwt/layouts/team.vue`
+- `packages/slidev-theme-wwt/layouts/process.vue`
+
+For each, wrap the iterating element with `v-auto-animate` and wrap children
+with Slidev's `<v-clicks>` so each appears on click with a smooth tween.
+
+- [ ] **Step 1: Patch `agenda.vue`**
+
+Replace the existing `<ol class="wwt-agenda__list">` block with:
+
+```vue
+<ol class="wwt-agenda__list" v-auto-animate>
+  <v-clicks>
+    <li v-for="(item, index) in items" :key="index" class="wwt-agenda__item">
+      <span class="wwt-agenda__number">{{ String(index + 1).padStart(2, "0") }}</span>
+      <span class="wwt-agenda__label">{{ item }}</span>
+    </li>
+  </v-clicks>
+</ol>
+```
+
+- [ ] **Step 2: Patch `timeline.vue`**
+
+Replace the existing `<ol class="wwt-timeline__line">` block with:
+
+```vue
+<ol class="wwt-timeline__line" v-auto-animate>
+  <v-clicks>
+    <li v-for="(e, i) in events" :key="i" class="wwt-timeline__event">
+      <div class="wwt-timeline__dot" />
+      <div class="wwt-timeline__date">{{ e.date }}</div>
+      <div class="wwt-timeline__label">{{ e.label }}</div>
+      <p v-if="e.detail" class="wwt-timeline__detail">{{ e.detail }}</p>
+    </li>
+  </v-clicks>
+</ol>
+```
+
+- [ ] **Step 3: Patch `stats.vue`**
+
+Replace the existing `<div class="wwt-stats__grid" :data-count="stats.length">`
+block with:
+
+```vue
+<div class="wwt-stats__grid" :data-count="stats.length" v-auto-animate>
+  <v-clicks>
+    <Stat
+      v-for="(s, i) in stats"
+      :key="i"
+      :value="s.value"
+      :label="s.label"
+      :caption="s.caption"
+    />
+  </v-clicks>
+</div>
+```
+
+- [ ] **Step 4: Patch `team.vue`**
+
+Replace the existing `<div class="wwt-team__grid">` block with:
+
+```vue
+<div class="wwt-team__grid" v-auto-animate>
+  <v-clicks>
+    <PersonCard
+      v-for="m in members"
+      :key="m.name"
+      :name="m.name"
+      :role="m.role"
+      :photo="m.photo"
+    />
+  </v-clicks>
+</div>
+```
+
+- [ ] **Step 5: Patch `process.vue`**
+
+Replace the existing `<ol class="wwt-process__steps">` block with:
+
+```vue
+<ol class="wwt-process__steps" v-auto-animate>
+  <v-clicks>
+    <li v-for="(step, i) in steps" :key="i" class="wwt-process__step">
+      <div class="wwt-process__number">{{ String(i + 1).padStart(2, "0") }}</div>
+      <div class="wwt-process__title">{{ step.title }}</div>
+      <p v-if="step.detail" class="wwt-process__detail">{{ step.detail }}</p>
+    </li>
+  </v-clicks>
+</ol>
+```
+
+- [ ] **Step 6: Verify in dev**
+
+```bash
+pnpm dev
+```
+
+For each patched slide (agenda, timeline, stats, team, process), confirm
+each child item appears on click with a smooth tween instead of an abrupt
+swap. Use arrow keys to step through clicks.
+
+- [ ] **Step 7: Commit**
+
+```bash
+git add packages/slidev-theme-wwt/layouts
+git commit -m "feat(theme): animate reveal layouts with AutoAnimate + v-clicks"
+```
+
+---
+
+## Task 44: DarkToggle component in Footer
+
+**Files:**
+- Create: `packages/slidev-theme-wwt/components/DarkToggle.vue`
+- Modify: `packages/slidev-theme-wwt/components/Footer.vue`
+
+- [ ] **Step 1: Create `DarkToggle.vue`**
+
+```vue
+<script setup lang="ts">
+import { useDark } from "@slidev/client";
+
+const isDark = useDark();
+
+function toggle() {
+  isDark.value = !isDark.value;
+}
+</script>
+
+<template>
+  <button
+    type="button"
+    class="wwt-dark-toggle"
+    :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+    :aria-pressed="isDark"
+    @click="toggle"
+  >
+    <span v-if="isDark" aria-hidden="true">☀</span>
+    <span v-else aria-hidden="true">☾</span>
+  </button>
+</template>
+
+<style scoped>
+.wwt-dark-toggle {
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  color: inherit;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: opacity 120ms ease;
+}
+
+.wwt-dark-toggle:hover {
+  opacity: 1;
+}
+</style>
+```
+
+- [ ] **Step 2: Add `<DarkToggle />` to Footer**
+
+In `packages/slidev-theme-wwt/components/Footer.vue`, replace the existing
+template with:
+
+```vue
+<template>
+  <footer class="wwt-footer">
+    <div class="wwt-monogram-mark wwt-footer__monogram" role="img" aria-label="WWT" />
+    <span class="wwt-footer__title">{{ $frontmatter?.title ?? "World Wide Technology" }}</span>
+    <DarkToggle />
+    <span class="wwt-footer__page">{{ currentSlideNo }} / {{ total }}</span>
+  </footer>
+</template>
+```
+
+Update the scoped styles: remove the old `.wwt-footer__monogram img`
+declarations and add a sizing override:
+
+```css
+.wwt-footer__monogram {
+  width: 24px;
+  height: 24px;
+}
+```
+
+(The shared `.wwt-monogram-mark` rule from Task 41 sets the background image
+and base size; this override shrinks it to 24px for the footer.)
+
+- [ ] **Step 3: Verify**
+
+```bash
+pnpm dev
+```
+
+Expected: every interior slide's footer shows a small sun/moon toggle next
+to the slide number. Click toggles dark mode. The footer's monogram also
+swaps color/white based on dark mode.
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add packages/slidev-theme-wwt/components
+git commit -m "feat(theme): add DarkToggle component and embed in Footer"
+```
+
+---
+
+## Task 45: Update READMEs and starter sample
+
+**Files:**
+- Modify: `packages/slidev-theme-wwt/README.md` (add Dark mode and Animation sections)
+- Modify: `packages/starter/README.md` (mention `D` toggle)
+- Modify: `packages/starter/slides.md` (no structural change; the existing
+  layouts now auto-reveal via Task 43)
+
+- [ ] **Step 1: Append a "Dark mode" section to theme README**
+
+After the "Typography" section, add:
+
+````markdown
+## Dark mode
+
+The theme ships with both light and dark color schemes. Press `D` during a
+presentation to toggle, click the sun/moon button in the footer, or pin a
+deck to one mode via frontmatter:
+
+```markdown
+---
+theme: wwt
+colorSchema: dark
+---
+```
+
+Always-dark layouts (`cover`, `section`, `end`, `code-focus`, `image-full`)
+stay dark regardless of toggle. Light content layouts swap background, ink,
+and monogram colors cleanly.
+````
+
+- [ ] **Step 2: Append an "Animation" section to theme README**
+
+After the "Dark mode" section, add:
+
+````markdown
+## Animation
+
+The theme combines three layers:
+
+1. **Slidev built-ins** — `v-click`, `v-clicks`, named slide `transition:`
+   frontmatter.
+2. **AutoAnimate** — `v-auto-animate` directive is registered globally; use
+   it on any container whose children appear, disappear, or reorder.
+3. **`<v-motion>` presets** — for explicit entrance/exit motion. Examples:
+
+```vue
+<v-motion
+  :initial="{ y: 24, opacity: 0 }"
+  :enter="{ y: 0, opacity: 1 }"
+>
+  Slide-up entrance
+</v-motion>
+```
+
+Five built-in layouts use `v-auto-animate` + `<v-clicks>` already:
+`agenda`, `timeline`, `stats`, `team`, `process`. Each child appears on
+click with a smooth tween.
+````
+
+- [ ] **Step 3: Append a `D` toggle note to starter README**
+
+In the "Develop" section, add:
+
+```markdown
+Press `D` during the deck to toggle dark mode; press it again to switch back.
+```
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add packages/slidev-theme-wwt/README.md packages/starter/README.md
+git commit -m "docs: cover dark mode and animation patterns"
+```
+
+---
+
+## Amended acceptance checklist (add to original list)
+
+- [ ] Pressing `D` toggles dark mode; content slides swap cleanly; always-
+  dark slides are unaffected
+- [ ] Light-blue H1 contrast ≥3:1 against the dark-mode background
+- [ ] Monogram auto-swaps between color and white based on color scheme
+- [ ] `agenda`, `timeline`, `stats`, `team`, `process` each reveal children
+  on click with a visible AutoAnimate tween
+- [ ] Footer shows a discoverable sun/moon toggle
+- [ ] `@formkit/auto-animate` is in theme `dependencies` (not `devDependencies`)
+- [ ] Theme README has Dark mode and Animation sections

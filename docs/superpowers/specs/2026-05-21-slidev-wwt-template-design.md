@@ -20,12 +20,11 @@ gradient line, graphic device, tone) while remaining easy to install and edit.
 ## Non-goals
 
 - Multi-language / i18n support
-- A dark-mode toggle on content slides (covers and code-focus stay dark per
-  brand; content slides stay white)
-- Custom Slidev plugins beyond Shiki and Mermaid setup
-- An animation framework beyond Slidev's built-in click animations
+- Custom Slidev plugins beyond Shiki, Mermaid, and AutoAnimate setup
 - Distributing proprietary Roobert font files
 - Auto-cross-slide chapter numbering (frontmatter sets `number` explicitly)
+- Heavy animation libraries (GSAP, Motion One) beyond AutoAnimate +
+  Slidev's built-in `<v-motion>` and `v-click` directives
 
 ## Architecture
 
@@ -228,7 +227,10 @@ public API.
 - `<Stat :value :label :caption />` — large numeral in `--wwt-primary-base`.
 - `<PersonCard :name :role :photo />` — circular photo, name bold, role caption.
 - `<SectionNumber :n />` — 220px light-weight light-blue numeral.
-- `<Footer />` — slide number, deck title, monogram bottom-left on interior slides.
+- `<Footer />` — slide number, deck title, monogram bottom-left on interior
+  slides; optionally embeds `<DarkToggle />`.
+- `<DarkToggle />` — small button that flips `colorSchema` via Slidev's
+  `useDark()` composable. Sun/moon glyph; hidden on always-dark slides.
 
 ## Code blocks (Shiki)
 
@@ -272,6 +274,90 @@ PNGs are copied from the `wwt-brand`/`wwt-presentation` skills into
 
 These are served from the theme package's `public/` directory and reachable as
 `/wwt-logo.png` etc. inside slide markdown.
+
+## Dark mode
+
+The theme supports both light and dark color schemes. Slidev applies a `.dark`
+class on the root element when the user toggles dark mode (keyboard `D`,
+the optional `<DarkToggle />` UI in the footer, or `colorSchema: dark` in
+frontmatter). The theme's `package.json` declares `"colorSchema": "both"`.
+
+**Which slides change:**
+
+- **Light content layouts** (`default`, `agenda`, `two-cols`, `quote` light
+  variant, `image-feature`, `stats`, `team`, `comparison`, `timeline`,
+  `process`, `customer-quote`, `demo`) — switch background and ink colors
+  via CSS variable overrides. Layouts themselves do not change.
+- **Always-dark layouts** (`cover`, `section`, `end`, `code-focus`, `image-full`,
+  `quote` with `dark: true`) — unaffected by dark mode. They are dark by
+  design in both schemes.
+
+**Token overrides** (appended to `styles/tokens.css`):
+
+```css
+:root {
+  --wwt-monogram-url: url("/wwt-monogram.png");
+}
+
+.dark {
+  --wwt-bg-base: #0a0b19;
+  --wwt-ink-base: #ffffff;
+  --wwt-ink-muted: rgba(255, 255, 255, 0.7);
+  --wwt-primary-lightest: rgba(102, 182, 242, 0.15);
+  --wwt-monogram-url: url("/wwt-monogram-white.png");
+}
+```
+
+`--wwt-primary-base` (`#0086EA`) stays constant — it has 4.5:1 contrast on
+the dark background, sufficient for AA-large given our 40px bold H1.
+
+**Monogram swap:** Layouts that show the small WWT monogram in the corner use
+a CSS-backed `<div>` instead of an `<img>`, reading the asset URL from the
+`--wwt-monogram-url` token. This auto-swaps to the white monogram in dark
+mode without any Vue logic.
+
+```vue
+<div class="wwt-monogram-mark" role="img" aria-label="WWT" />
+```
+```css
+.wwt-monogram-mark {
+  width: 32px;
+  height: 32px;
+  background: var(--wwt-monogram-url) center / contain no-repeat;
+}
+```
+
+**Optional `<DarkToggle />` component** sits inside `<Footer />` and uses
+Slidev's `useDark()` composable to flip the scheme on click. Slidev's `D`
+keyboard shortcut remains the primary toggle.
+
+## Animation
+
+The theme combines three layers of motion, escalating from least to most code:
+
+1. **Slidev built-ins** — `v-click`, `v-clicks`, `v-after` for progressive
+   reveals; named slide transitions (`transition: slide-left` etc.) in
+   frontmatter; `<v-motion>` from `@vueuse/motion` (Slidev's bundled
+   dependency) for declarative entrance/exit motion.
+2. **AutoAnimate** — `@formkit/auto-animate` registered globally as the
+   `v-auto-animate` directive. Applied to layouts whose content reveals or
+   reorders: `agenda`, `timeline`, `stats`, `team`, `process`. Auto-tweens
+   child add/remove/move with zero per-call configuration.
+3. **Documented `<v-motion>` patterns** — the theme README lists 4-6 ready-
+   to-paste presets (slide-up, fade-in, stagger-list, magic-number, etc.)
+   for authors who want emphasis animation on a specific element.
+
+**Implementation:**
+- Dep: `@formkit/auto-animate` (~3KB) added to the theme `dependencies`
+- Plugin registered in `setup/main.ts` via `autoAnimatePlugin`
+- Affected layouts wrap their reveal lists with `v-auto-animate`
+- Combined with Slidev's `v-clicks` so each child appears on click with a
+  smooth tween instead of an abrupt swap
+
+**Default click model:** Every list/grid layout uses `<ul v-auto-animate>`
+with `<v-clicks>` children — authors get progressive reveal + smooth motion
+by default, with no extra markup. Authors who want all-at-once display can
+remove the `v-clicks` wrapper.
 
 ## Print / PDF export
 
@@ -350,6 +436,11 @@ Sample copy in `slides.md` and READMEs follows WWT tone:
   appear as intended
 - ESLint, Prettier, and TypeScript pass with no errors
 - WCAG AA contrast satisfied for every text-on-background combination used by
-  the theme's layouts
+  the theme's layouts, in **both** light and dark mode
+- Pressing `D` toggles dark mode; light content layouts swap background/ink/
+  monogram cleanly; always-dark layouts (cover, section, end, code-focus,
+  image-full) are unaffected
+- Reveal-style layouts (agenda, timeline, stats, team, process) animate
+  children smoothly via `v-auto-animate` + `<v-clicks>`; no janky pop-in
 - Sample deck reads in WWT tone (purposeful, bold, simple, refreshing) and
   signs off with "Make a new world happen"
