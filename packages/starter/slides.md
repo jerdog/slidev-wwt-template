@@ -144,5 +144,22 @@ right:
 ---
 
 ---
+layout: timeline
+title: Engagement milestones
+events:
+  - date: Week 0
+    label: Kickoff
+    detail: Goals and stakeholders aligned.
+  - date: Week 2
+    label: Discovery
+    detail: Architecture and risks captured.
+  - date: Week 6
+    label: Build
+    detail: Iterative delivery with weekly demos.
+  - date: Week 10
+    label: Launch
+    detail: Operational handoff and runbook.
+
+---
 layout: end
 ---
