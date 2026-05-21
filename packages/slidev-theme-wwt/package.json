@@ -1,0 +1,45 @@
+{
+  "name": "slidev-theme-wwt",
+  "version": "0.1.0",
+  "description": "WWT-branded theme for Slidev",
+  "type": "module",
+  "license": "MIT",
+  "keywords": ["slidev-theme", "slidev", "wwt"],
+  "files": [
+    "layouts/",
+    "components/",
+    "styles/",
+    "setup/",
+    "public/",
+    "package.json",
+    "README.md"
+  ],
+  "slidev": {
+    "colorSchema": "both",
+    "highlighter": "shiki"
+  },
+  "peerDependencies": {
+    "@slidev/cli": ">=0.49.0",
+    "@slidev/types": ">=0.49.0",
+    "vue": ">=3.4.0"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.1.0"
+  },
+  "devDependencies": {
+    "@slidev/cli": "^0.49.0",
+    "@slidev/types": "^0.49.0",
+    "@types/node": "^20.14.0",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "@vue/test-utils": "^2.4.6",
+    "happy-dom": "^15.7.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.3",
+    "vue": "^3.5.12",
+    "vue-tsc": "^2.1.10"
+  },
+  "scripts": {
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest run"
+  }
+}
