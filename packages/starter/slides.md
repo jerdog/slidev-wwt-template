@@ -174,5 +174,21 @@ steps:
     detail: Runbooks, handoff, and ongoing support.
 
 ---
+layout: code-focus
+title: Author in Markdown
+---
+
+```ts
+// slides.md frontmatter drives every layout
+const slide = {
+  layout: "stats",
+  stats: [
+    { value: "17", label: "layouts" },
+    { value: "1", label: "command" },
+  ],
+};
+```
+
+---
 layout: end
 ---
