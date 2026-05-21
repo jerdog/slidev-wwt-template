@@ -52,5 +52,22 @@ title: How to use it
 3. Use `pnpm dev` to preview, `pnpm export` to ship a PDF
 
 ---
+layout: two-cols
+title: Built for speed
+---
+
+# Built for speed
+
+::left::
+
+Author in Markdown — every layout responds to frontmatter so you spend zero
+time fighting slide masters.
+
+::right::
+
+Run `pnpm dev` and Slidev rebuilds in milliseconds. Ship a PDF with
+`pnpm export` when you're ready to hand it off.
+
+---
 layout: end
 ---
