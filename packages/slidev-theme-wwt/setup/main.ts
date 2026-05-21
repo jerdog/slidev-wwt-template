@@ -1,8 +1,7 @@
 import { defineAppSetup } from "@slidev/types";
+import { autoAnimatePlugin } from "@formkit/auto-animate/vue";
 import "../styles/index";
 
-export default defineAppSetup(({ app, router }) => {
-  // styles imported above
-  void app;
-  void router;
+export default defineAppSetup(({ app }) => {
+  app.use(autoAnimatePlugin);
 });

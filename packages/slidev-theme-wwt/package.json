@@ -4,7 +4,11 @@
   "description": "WWT-branded theme for Slidev",
   "type": "module",
   "license": "MIT",
-  "keywords": ["slidev-theme", "slidev", "wwt"],
+  "keywords": [
+    "slidev-theme",
+    "slidev",
+    "wwt"
+  ],
   "files": [
     "layouts/",
     "components/",
@@ -24,7 +28,8 @@
     "vue": ">=3.4.0"
   },
   "dependencies": {
-    "@fontsource/inter": "^5.1.0"
+    "@fontsource/inter": "^5.1.0",
+    "@formkit/auto-animate": "^0.9.0"
   },
   "devDependencies": {
     "@slidev/cli": "^0.49.0",

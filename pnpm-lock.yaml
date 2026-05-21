@@ -32,13 +32,13 @@ importers:
       '@fontsource/inter':
         specifier: ^5.1.0
         version: 5.2.8
+      '@formkit/auto-animate':
+        specifier: ^0.9.0
+        version: 0.9.0
     devDependencies:
       '@slidev/cli':
         specifier: ^0.49.0
         version: 0.49.29(@babel/parser@7.29.3)(@nuxt/kit@3.21.6)(@types/markdown-it@14.1.2)(@types/node@20.19.41)(@vue/compiler-sfc@3.5.34)(postcss@8.5.15)(rollup@4.60.4)
-      '@slidev/client':
-        specifier: ^0.49.0
-        version: 0.49.29(@nuxt/kit@3.21.6)(@vue/compiler-sfc@3.5.34)(postcss@8.5.15)(rollup@4.60.4)(vite@5.4.21(@types/node@20.19.41))
       '@slidev/types':
         specifier: ^0.49.0
         version: 0.49.29(@nuxt/kit@3.21.6)(@vue/compiler-sfc@3.5.34)(postcss@8.5.15)(rollup@4.60.4)(typescript@5.9.3)(vite@5.4.21(@types/node@20.19.41))
@@ -724,6 +724,9 @@ packages:
 
   '@fontsource/inter@5.2.8':
     resolution: {integrity: sha512-P6r5WnJoKiNVV+zvW2xM13gNdFhAEpQ9dQJHt3naLvfg+LkF2ldgSLiF4T41lf1SQCM9QmkqPTn4TH568IRagg==}
+
+  '@formkit/auto-animate@0.9.0':
+    resolution: {integrity: sha512-VhP4zEAacXS3dfTpJpJ88QdLqMTcabMg0jwpOSxZ/VzfQVfl3GkZSCZThhGC5uhq/TxPHPzW0dzr4H9Bb1OgKA==}
 
   '@humanfs/core@0.19.2':
     resolution: {integrity: sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA==}
@@ -4242,6 +4245,8 @@ snapshots:
   '@floating-ui/utils@0.2.11': {}
 
   '@fontsource/inter@5.2.8': {}
+
+  '@formkit/auto-animate@0.9.0': {}
 
   '@humanfs/core@0.19.2':
     dependencies:
