@@ -58,4 +58,14 @@
     var(--wwt-accent1-base) 0%,
     var(--wwt-accent7-base) 70%
   );
+
+  --wwt-monogram-url: url("/wwt-monogram.png");
+}
+
+.dark {
+  --wwt-bg-base: #0a0b19;
+  --wwt-ink-base: #ffffff;
+  --wwt-ink-muted: rgba(255, 255, 255, 0.7);
+  --wwt-primary-lightest: rgba(102, 182, 242, 0.15);
+  --wwt-monogram-url: url("/wwt-monogram-white.png");
 }
