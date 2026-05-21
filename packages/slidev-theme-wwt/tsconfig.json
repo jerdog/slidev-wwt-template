@@ -3,7 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@slidev/client": ["./env.d.ts"]
     }
   },
   "include": ["**/*.ts", "**/*.vue", "**/*.d.ts"],
