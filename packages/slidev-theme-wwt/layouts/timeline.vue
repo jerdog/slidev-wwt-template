@@ -11,13 +11,15 @@ const events = ($frontmatter?.events ?? []) as Event[];
     <GradientRule />
     <div class="wwt-monogram-mark wwt-timeline__monogram" role="img" aria-label="WWT" />
     <h1 v-if="$frontmatter?.title">{{ $frontmatter.title }}</h1>
-    <ol class="wwt-timeline__line">
-      <li v-for="(e, i) in events" :key="i" class="wwt-timeline__event">
-        <div class="wwt-timeline__dot" />
-        <div class="wwt-timeline__date">{{ e.date }}</div>
-        <div class="wwt-timeline__label">{{ e.label }}</div>
-        <p v-if="e.detail" class="wwt-timeline__detail">{{ e.detail }}</p>
-      </li>
+    <ol class="wwt-timeline__line" v-auto-animate>
+      <v-clicks>
+        <li v-for="(e, i) in events" :key="i" class="wwt-timeline__event">
+          <div class="wwt-timeline__dot" />
+          <div class="wwt-timeline__date">{{ e.date }}</div>
+          <div class="wwt-timeline__label">{{ e.label }}</div>
+          <p v-if="e.detail" class="wwt-timeline__detail">{{ e.detail }}</p>
+        </li>
+      </v-clicks>
     </ol>
     <Footer />
   </div>
