@@ -16,5 +16,32 @@ title: Why this template exists
 ---
 
 ---
+layout: default
+title: Why this template exists
+---
+
+# Why this template exists
+
+World Wide Technology helps the world's most ambitious companies deliver
+business outcomes. This Slidev template gives WWT teams a fast, on-brand
+way to author technical presentations in Markdown.
+
+- Author once in Markdown, present anywhere
+- Brand-compliant out of the box
+- Inter as a Roobert stand-in — swap in your licensed copy when ready
+- Export to PDF for handoff
+
+---
+layout: default
+title: How to use it
+---
+
+# How to use it
+
+1. Clone this repo and run `pnpm install`
+2. Open `slides.md` and start writing
+3. Use `pnpm dev` to preview, `pnpm export` to ship a PDF
+
+---
 layout: end
 ---
