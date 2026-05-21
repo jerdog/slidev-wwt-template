@@ -14,7 +14,7 @@ const { $frontmatter } = useSlideContext();
       class="wwt-image-feature__image"
       :style="{ backgroundImage: `url(${$frontmatter?.image ?? '/wwt-gradient-rule.png'})` }"
       role="img"
-      :aria-label="$frontmatter?.imageAlt ?? ''"
+      :aria-label="String($frontmatter?.imageAlt ?? '')"
     />
     <Footer />
   </div>

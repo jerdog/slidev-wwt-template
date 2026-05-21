@@ -9,7 +9,7 @@ const { $frontmatter } = useSlideContext();
       class="wwt-image-full__bg"
       :style="{ backgroundImage: `url(${$frontmatter?.image ?? ''})` }"
       role="img"
-      :aria-label="$frontmatter?.imageAlt ?? ''"
+      :aria-label="String($frontmatter?.imageAlt ?? '')"
     />
     <div class="wwt-image-full__scrim" />
     <h1 v-if="$frontmatter?.headline" class="wwt-image-full__headline">
