@@ -1,11 +1,10 @@
 ---
 theme: wwt
-title: WWT Slidev Starter
-info: |
-  ## WWT Slidev Starter
-  Make a new world happen.
+title: Make a new world happen
+info: Sample deck for the slidev-theme-wwt package.
+layout: cover
+subtitle: A WWT-branded Slidev starter — every layout in one deck.
+presenter: Your Name
+presenterRole: Solutions Architect, World Wide Technology
+date: 2026
 ---
-
-# Hello WWT
-
-Placeholder cover slide — Task 15 replaces this with the real `cover` layout.
