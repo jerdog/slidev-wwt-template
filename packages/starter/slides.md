@@ -161,5 +161,18 @@ events:
     detail: Operational handoff and runbook.
 
 ---
+layout: process
+title: How we deliver
+steps:
+  - title: Listen
+    detail: We start with your business outcomes.
+  - title: Architect
+    detail: Reference architectures grounded in lab-tested patterns.
+  - title: Deliver
+    detail: Iterative builds with continuous demos.
+  - title: Operate
+    detail: Runbooks, handoff, and ongoing support.
+
+---
 layout: end
 ---
