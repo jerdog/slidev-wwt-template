@@ -10,6 +10,7 @@ pnpm dev                # opens localhost:3030
 ```
 
 Edit `slides.md` and Slidev hot-reloads on save.
+Press `D` during the deck to toggle dark mode; press it again to switch back.
 
 ## Export
 

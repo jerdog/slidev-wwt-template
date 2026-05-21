@@ -48,6 +48,46 @@ The theme ships with [Inter](https://rsms.me/inter/) as a Roobert stand-in. If
 you have a licensed copy of Roobert, drop it into your deck's `public/fonts/`
 and override the font stack in your own CSS.
 
+## Dark mode
+
+The theme ships with both light and dark color schemes. Press `D` during a
+presentation to toggle, click the sun/moon button in the footer, or pin a
+deck to one mode via frontmatter:
+
+```markdown
+---
+theme: wwt
+colorSchema: dark
+---
+```
+
+Always-dark layouts (`cover`, `section`, `end`, `code-focus`, `image-full`)
+stay dark regardless of toggle. Light content layouts swap background, ink,
+and monogram colors cleanly.
+
+## Animation
+
+The theme combines three layers:
+
+1. **Slidev built-ins** — `v-click`, `v-clicks`, named slide `transition:`
+   frontmatter.
+2. **AutoAnimate** — `v-auto-animate` directive is registered globally; use
+   it on any container whose children appear, disappear, or reorder.
+3. **`<v-motion>` presets** — for explicit entrance/exit motion. Examples:
+
+```vue
+<v-motion
+  :initial="{ y: 24, opacity: 0 }"
+  :enter="{ y: 0, opacity: 1 }"
+>
+  Slide-up entrance
+</v-motion>
+```
+
+Five built-in layouts use `v-auto-animate` + `<v-clicks>` already:
+`agenda`, `timeline`, `stats`, `team`, `process`. Each child appears on
+click with a smooth tween.
+
 ## License
 
 MIT
