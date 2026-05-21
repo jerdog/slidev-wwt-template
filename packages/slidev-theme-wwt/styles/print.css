@@ -5,10 +5,6 @@
     print-color-adjust: exact !important;
   }
 
-  .wwt-footer {
-    display: none;
-  }
-
   .wwt-cover .wwt-footer,
   .wwt-section .wwt-footer,
   .wwt-end .wwt-footer,

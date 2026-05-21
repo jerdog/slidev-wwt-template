@@ -91,7 +91,7 @@ const events = ($frontmatter?.events ?? []) as Event[];
 
 .wwt-timeline__date {
   font-size: var(--wwt-text-caption);
-  color: var(--wwt-primary-base);
+  color: var(--wwt-secondary-base);
   font-weight: 600;
 }
 

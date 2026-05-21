@@ -15,7 +15,10 @@ defineProps<{
 
 <style scoped>
 .wwt-gradient-rule {
-  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   background-image: url("/wwt-gradient-rule.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;

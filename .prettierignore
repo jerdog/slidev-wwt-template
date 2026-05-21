@@ -1,0 +1,4 @@
+packages/starter/slides.md
+**/dist/
+**/node_modules/
+pnpm-lock.yaml
