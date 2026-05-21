@@ -10,6 +10,15 @@ date: 2026
 ---
 
 ---
+layout: agenda
+items:
+  - Why this template exists
+  - How to use it
+  - What's in the box
+  - Make it your own
+---
+
+---
 layout: section
 number: 01
 title: Why this template exists
