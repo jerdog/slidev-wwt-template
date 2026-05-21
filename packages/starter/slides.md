@@ -190,5 +190,11 @@ const slide = {
 ```
 
 ---
+layout: customer-quote
+quote: We rebuilt our annual customer review in two days instead of two weeks — and it actually looked like a WWT deck.
+name: Anonymous customer
+role: VP, Engineering
+
+---
 layout: end
 ---
