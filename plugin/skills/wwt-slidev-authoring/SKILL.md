@@ -65,7 +65,7 @@ point (adjust to the topic):
 6. Content slides — `code-focus`, `demo`, `comparison`, `timeline`, `process`
 7. `customer-quote` or `image-feature` — anchoring narrative
 8. `default` — recap
-9. `end` — "Make a new world happen"
+9. `end` — closing slide
 
 For a 25-minute talk, aim for ~15–20 slides. Density belongs in speaker
 notes, not on the slide.
@@ -81,16 +81,12 @@ Every deck must sound like WWT. Four pillars:
 3. **Beautifully simple** — short crisp sentences. Active voice. Everyday
    words. Cut jargon. One idea per sentence.
 4. **Refreshing** — human, not corporate. Optimistic. Personal and genuine.
+   With a touch of tongue-in-cheek humor.
 
 Conventions:
 
 - Company name is "World Wide Technology" on first use; "WWT" thereafter.
-- Sign off decks with **"Make a new world happen"** — this is the WWT
-  tagline. The `end` layout renders this by default; don't remove it unless
-  the user explicitly asks.
 - Never use ALL CAPS for body text or headlines.
-- Left-align everything. The theme enforces this; don't fight it with
-  inline styles.
 
 ## Dark mode + animation
 

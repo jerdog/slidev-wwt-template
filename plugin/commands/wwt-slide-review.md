@@ -26,14 +26,13 @@ You are reviewing an existing WWT deck for brand compliance and quality.
   text (should never appear in body or headlines).
 - **Refreshing:** Flag corporate boilerplate ("solutions", "leverage",
   "synergy"), stale metaphors, buzzwords used without content behind them.
+  Reward writing that lands with warmth or a bit of tongue-in-cheek humor;
+  flag stretches that read as flat or overly earnest.
 
-### Company name & sign-off
+### Company name
 
 - First use of the company should be "World Wide Technology"; "WWT"
   thereafter. Flag if reversed or inconsistent.
-- The deck should end on a slide using `layout: end`. If missing, flag as
-  critical. The default sign-off "Make a new world happen" should be
-  present unless the user has customized it via `signoff:`.
 
 ### Layout choice
 
@@ -76,7 +75,6 @@ You are reviewing an existing WWT deck for brand compliance and quality.
 - Word count: <n>
 - Slide count: <n> (approx <m> minutes at 75s/slide)
 - Layouts used: [cover, agenda, section×2, default×3, stats, ...]
-- Sign-off present: yes/no
 ```
 
 Do NOT edit the deck unless the user asks. This is a read-only audit.
