@@ -19,6 +19,7 @@
 ### Task 1: Initialize pnpm monorepo root
 
 **Files:**
+
 - Create: `package.json`
 - Create: `pnpm-workspace.yaml`
 - Create: `.gitignore`
@@ -177,6 +178,7 @@ Expected: `pnpm install` succeeds, creates `pnpm-lock.yaml`.
 ### Task 2: Scaffold theme package shell
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/package.json`
 - Create: `packages/slidev-theme-wwt/tsconfig.json`
 - Create: `packages/slidev-theme-wwt/.gitignore`
@@ -193,15 +195,7 @@ Expected: `pnpm install` succeeds, creates `pnpm-lock.yaml`.
   "type": "module",
   "license": "MIT",
   "keywords": ["slidev-theme", "slidev", "wwt"],
-  "files": [
-    "layouts/",
-    "components/",
-    "styles/",
-    "setup/",
-    "public/",
-    "package.json",
-    "README.md"
-  ],
+  "files": ["layouts/", "components/", "styles/", "setup/", "public/", "package.json", "README.md"],
   "slidev": {
     "colorSchema": "both",
     "highlighter": "shiki"
@@ -288,6 +282,7 @@ Expected: `pnpm install` resolves new workspace package without error.
 ### Task 3: Copy WWT brand assets into theme public
 
 **Files:**
+
 - Copy into `packages/slidev-theme-wwt/public/`:
   - `wwt-logo.png`, `wwt-logo-white.png`, `wwt-logo-black.png`
   - `wwt-monogram.png`, `wwt-monogram-white.png`
@@ -350,6 +345,7 @@ git commit -m "feat(theme): vendor WWT brand image assets"
 ### Task 4: Scaffold starter package shell
 
 **Files:**
+
 - Create: `packages/starter/package.json`
 - Create: `packages/starter/slides.md` (minimal cover only)
 - Create: `packages/starter/.gitignore`
@@ -402,6 +398,7 @@ Placeholder cover slide — Task 15 replaces this with the real `cover` layout.
 - [ ] **Step 3: Create `packages/starter/.gitignore` and README**
 
 `.gitignore`:
+
 ```
 node_modules/
 .output/
@@ -411,6 +408,7 @@ slides-export/
 ```
 
 `README.md`:
+
 ```markdown
 # WWT Slidev Starter
 
@@ -449,6 +447,7 @@ git commit -m "feat(starter): scaffold sample deck consuming workspace theme"
 ### Task 5: Design tokens (CSS custom properties)
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/styles/tokens.css`
 
 - [ ] **Step 1: Create `tokens.css`**
@@ -529,6 +528,7 @@ git commit -m "feat(theme): add WWT design tokens as CSS custom properties"
 ### Task 6: Typography base styles and font loading
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/styles/layout.css`
 - Create: `packages/slidev-theme-wwt/styles/index.ts`
 
@@ -638,6 +638,7 @@ git commit -m "feat(theme): add typography base styles and font bundle"
 ### Task 7: Theme app setup wiring
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/setup/main.ts`
 
 Slidev's `defineAppSetup` lets a theme run code at app boot. We use it only to import the styles bundle.
@@ -677,6 +678,7 @@ git commit -m "feat(theme): wire app setup to import styles bundle"
 ### Task 8: WwtLogo component (with unit test)
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/components/WwtLogo.vue`
 - Create: `packages/slidev-theme-wwt/components/__tests__/WwtLogo.test.ts`
 - Create: `packages/slidev-theme-wwt/vitest.config.ts`
@@ -789,7 +791,9 @@ const SRC: Record<Variant, string> = {
   "monogram-white": "/wwt-monogram-white.png",
 };
 
-const resolvedWidth = computed(() => props.width ?? Math.round(props.height * RATIOS[props.variant]));
+const resolvedWidth = computed(
+  () => props.width ?? Math.round(props.height * RATIOS[props.variant]),
+);
 </script>
 
 <template>
@@ -829,6 +833,7 @@ git commit -m "feat(theme): add WwtLogo with proportional sizing and unit tests"
 ### Task 9: GradientRule component
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/components/GradientRule.vue`
 
 - [ ] **Step 1: Implement `GradientRule.vue`**
@@ -871,6 +876,7 @@ git commit -m "feat(theme): add GradientRule component"
 ### Task 10: GraphicDevice (background) component
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/components/GraphicDevice.vue`
 
 This component is a positioned background image. It does NOT draw the diagonal lines programmatically — it uses the pre-rendered PNG.
@@ -926,6 +932,7 @@ git commit -m "feat(theme): add GraphicDevice background component"
 ### Task 11: Footer component
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/components/Footer.vue`
 
 - [ ] **Step 1: Implement `Footer.vue`**
@@ -985,6 +992,7 @@ git commit -m "feat(theme): add Footer component with monogram, title, slide num
 ### Task 12: Stat component
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/components/Stat.vue`
 
 - [ ] **Step 1: Implement `Stat.vue`**
@@ -1047,6 +1055,7 @@ git commit -m "feat(theme): add Stat component"
 ### Task 13: PersonCard component
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/components/PersonCard.vue`
 
 - [ ] **Step 1: Implement `PersonCard.vue`**
@@ -1128,6 +1137,7 @@ git commit -m "feat(theme): add PersonCard component"
 ### Task 14: SectionNumber component
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/components/SectionNumber.vue`
 
 - [ ] **Step 1: Implement `SectionNumber.vue`**
@@ -1172,6 +1182,7 @@ Each layout task follows the same pattern: create the Vue layout file, add or up
 ### Task 15: `cover` layout
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/layouts/cover.vue`
 - Modify: `packages/starter/slides.md` (replace placeholder with real cover)
 
@@ -1196,7 +1207,9 @@ const { $frontmatter } = useSlideContext();
       <div v-if="$frontmatter?.presenter || $frontmatter?.date" class="wwt-cover__meta">
         <span v-if="$frontmatter?.presenter">
           {{ $frontmatter.presenter }}
-          <template v-if="$frontmatter?.presenterRole"> — {{ $frontmatter.presenterRole }}</template>
+          <template v-if="$frontmatter?.presenterRole">
+            — {{ $frontmatter.presenterRole }}</template
+          >
         </span>
         <span v-if="$frontmatter?.date">{{ $frontmatter.date }}</span>
       </div>
@@ -1235,7 +1248,7 @@ const { $frontmatter } = useSlideContext();
   font-size: var(--wwt-text-cover);
   font-weight: 300;
   color: var(--wwt-ink-white);
-  line-height: 1.0;
+  line-height: 1;
   letter-spacing: -0.02em;
   margin: 0 0 var(--wwt-space-6);
 }
@@ -1293,6 +1306,7 @@ git commit -m "feat(theme): add cover layout"
 ### Task 16: `section` layout
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/layouts/section.vue`
 - Modify: `packages/starter/slides.md` (append section break slide)
 
@@ -1340,7 +1354,7 @@ const { $frontmatter } = useSlideContext();
   font-size: var(--wwt-text-section);
   font-weight: 300;
   color: var(--wwt-ink-white);
-  line-height: 1.0;
+  line-height: 1;
   letter-spacing: -0.02em;
   margin: 0;
 }
@@ -1373,6 +1387,7 @@ git commit -m "feat(theme): add section layout"
 ### Task 17: `end` layout
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/layouts/end.vue`
 - Modify: `packages/starter/slides.md` (append end slide)
 
@@ -1466,6 +1481,7 @@ git commit -m "feat(theme): add end layout"
 ### Task 18: `default` layout override
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/layouts/default.vue`
 - Modify: `packages/starter/slides.md` (insert two content slides between section 01 and end)
 
@@ -1538,8 +1554,10 @@ way to author technical presentations in Markdown.
 - Export to PDF for handoff
 
 ---
+
 layout: default
 title: How to use it
+
 ---
 
 # How to use it
@@ -1565,6 +1583,7 @@ git commit -m "feat(theme): add default layout override"
 ### Task 19: `agenda` layout
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/layouts/agenda.vue`
 - Modify: `packages/starter/slides.md`
 
@@ -1664,6 +1683,7 @@ git commit -m "feat(theme): add agenda layout"
 ### Task 20: `two-cols` layout override
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/layouts/two-cols.vue`
 - Modify: `packages/starter/slides.md`
 
@@ -1750,6 +1770,7 @@ git commit -m "feat(theme): add two-cols layout override"
 ### Task 21: `quote` layout (light + dark variants)
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/layouts/quote.vue`
 - Modify: `packages/starter/slides.md`
 
@@ -1881,6 +1902,7 @@ git commit -m "feat(theme): add quote layout with light and dark variants"
 ### Task 22: `image-feature` layout
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/layouts/image-feature.vue`
 - Modify: `packages/starter/slides.md`
 
@@ -1893,9 +1915,20 @@ const { $frontmatter } = useSlideContext();
 </script>
 
 <template>
-  <div :class="['wwt-image-feature slidev-layout', `wwt-image-feature--${$frontmatter?.side ?? 'right'}`]">
+  <div
+    :class="[
+      'wwt-image-feature slidev-layout',
+      `wwt-image-feature--${$frontmatter?.side ?? 'right'}`,
+    ]"
+  >
     <GradientRule />
-    <img src="/wwt-monogram.png" alt="WWT" width="32" height="32" class="wwt-image-feature__monogram" />
+    <img
+      src="/wwt-monogram.png"
+      alt="WWT"
+      width="32"
+      height="32"
+      class="wwt-image-feature__monogram"
+    />
     <div class="wwt-image-feature__copy">
       <slot />
     </div>
@@ -1982,6 +2015,7 @@ git commit -m "feat(theme): add image-feature layout"
 ### Task 23: `image-full` layout
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/layouts/image-full.vue`
 - Modify: `packages/starter/slides.md`
 
@@ -2026,11 +2060,7 @@ const { $frontmatter } = useSlideContext();
 .wwt-image-full__scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(29, 30, 72, 0.85) 0%,
-    rgba(22, 47, 180, 0.6) 100%
-  );
+  background: linear-gradient(135deg, rgba(29, 30, 72, 0.85) 0%, rgba(22, 47, 180, 0.6) 100%);
 }
 
 .wwt-image-full__headline {
@@ -2039,7 +2069,7 @@ const { $frontmatter } = useSlideContext();
   color: var(--wwt-ink-white);
   font-size: var(--wwt-text-cover);
   font-weight: 300;
-  line-height: 1.0;
+  line-height: 1;
   max-width: 70%;
   padding: 5rem;
   margin: 0;
@@ -2070,6 +2100,7 @@ git commit -m "feat(theme): add image-full layout"
 ### Task 24: `stats` layout
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/layouts/stats.vue`
 - Modify: `packages/starter/slides.md`
 
@@ -2173,6 +2204,7 @@ git commit -m "feat(theme): add stats layout"
 ### Task 25: `team` layout
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/layouts/team.vue`
 - Modify: `packages/starter/slides.md`
 
@@ -2260,6 +2292,7 @@ git commit -m "feat(theme): add team layout"
 ### Task 26: `comparison` layout
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/layouts/comparison.vue`
 - Modify: `packages/starter/slides.md`
 
@@ -2278,7 +2311,13 @@ const right = ($frontmatter?.right ?? { title: "", points: [] }) as Side;
 <template>
   <div class="wwt-comparison slidev-layout">
     <GradientRule />
-    <img src="/wwt-monogram.png" alt="WWT" width="32" height="32" class="wwt-comparison__monogram" />
+    <img
+      src="/wwt-monogram.png"
+      alt="WWT"
+      width="32"
+      height="32"
+      class="wwt-comparison__monogram"
+    />
     <h1 v-if="$frontmatter?.title">{{ $frontmatter.title }}</h1>
     <div class="wwt-comparison__grid">
       <section class="wwt-comparison__card">
@@ -2373,6 +2412,7 @@ git commit -m "feat(theme): add comparison layout"
 ### Task 27: `timeline` layout
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/layouts/timeline.vue`
 - Modify: `packages/starter/slides.md`
 
@@ -2513,6 +2553,7 @@ git commit -m "feat(theme): add timeline layout"
 ### Task 28: `process` layout
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/layouts/process.vue`
 - Modify: `packages/starter/slides.md`
 
@@ -2627,6 +2668,7 @@ git commit -m "feat(theme): add process layout"
 ### Task 29: `code-focus` layout
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/layouts/code-focus.vue`
 - Modify: `packages/starter/slides.md`
 
@@ -2714,6 +2756,7 @@ git commit -m "feat(theme): add code-focus layout"
 ### Task 30: `customer-quote` layout
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/layouts/customer-quote.vue`
 - Modify: `packages/starter/slides.md`
 
@@ -2858,6 +2901,7 @@ git commit -m "feat(theme): add customer-quote layout"
 ### Task 31: `demo` layout
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/layouts/demo.vue`
 - Modify: `packages/starter/slides.md`
 
@@ -2961,6 +3005,7 @@ git commit -m "feat(theme): add demo layout"
 ### Task 32: Shiki setup with WWT-tinted themes
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/setup/shiki.ts`
 
 Slidev's `defineShikiSetup` lets us register themes by name. We define a light and dark variant by extending built-in Shiki themes with our brand color overrides.
@@ -2984,7 +3029,10 @@ export default defineShikiSetup(() => ({
         { scope: ["keyword", "storage", "storage.type"], settings: { foreground: "#66B6F2" } },
         { scope: ["string", "string.quoted"], settings: { foreground: "#99CFF7" } },
         { scope: ["constant.numeric"], settings: { foreground: "#FB550E" } },
-        { scope: ["entity.name.function", "support.function"], settings: { foreground: "#E31C79" } },
+        {
+          scope: ["entity.name.function", "support.function"],
+          settings: { foreground: "#E31C79" },
+        },
         { scope: ["variable", "variable.parameter"], settings: { foreground: "#FFFFFF" } },
         { scope: ["entity.name.type", "support.class"], settings: { foreground: "#A499CF" } },
       ],
@@ -3001,7 +3049,10 @@ export default defineShikiSetup(() => ({
         { scope: ["keyword", "storage", "storage.type"], settings: { foreground: "#1C0087" } },
         { scope: ["string", "string.quoted"], settings: { foreground: "#0086EA" } },
         { scope: ["constant.numeric"], settings: { foreground: "#FB550E" } },
-        { scope: ["entity.name.function", "support.function"], settings: { foreground: "#E31C79" } },
+        {
+          scope: ["entity.name.function", "support.function"],
+          settings: { foreground: "#E31C79" },
+        },
         { scope: ["variable", "variable.parameter"], settings: { foreground: "#0A0B19" } },
         { scope: ["entity.name.type", "support.class"], settings: { foreground: "#162FB4" } },
       ],
@@ -3030,6 +3081,7 @@ git commit -m "feat(theme): add WWT-tinted Shiki light and dark themes"
 ### Task 33: Mermaid setup with WWT theme variables
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/setup/mermaid.ts`
 
 - [ ] **Step 1: Create `setup/mermaid.ts`**
@@ -3065,6 +3117,7 @@ git commit -m "feat(theme): add WWT Mermaid theme variables"
 ### Task 34: Print and PDF export CSS
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/styles/print.css`
 - Modify: `packages/slidev-theme-wwt/styles/index.ts` (import print.css)
 
@@ -3117,11 +3170,12 @@ git commit -m "feat(theme): add print CSS for PDF export fidelity"
 ### Task 35: Theme README
 
 **Files:**
+
 - Modify: `packages/slidev-theme-wwt/README.md`
 
 - [ ] **Step 1: Replace `packages/slidev-theme-wwt/README.md`**
 
-```markdown
+````markdown
 # slidev-theme-wwt
 
 WWT-branded theme for [Slidev](https://sli.dev/). Author a presentation in
@@ -3132,6 +3186,7 @@ Markdown and ship it on-brand.
 ```bash
 pnpm add -D slidev-theme-wwt @slidev/cli
 ```
+````
 
 ## Use
 
@@ -3146,25 +3201,25 @@ title: Your deck title
 
 ## Layouts
 
-| Layout | Purpose |
-|---|---|
-| `cover` | Title slide — dark gradient |
-| `section` | Section break — large numeral + title |
-| `default` | White content slide with monogram + gradient rule |
-| `agenda` | Numbered table of contents |
-| `two-cols` | Two-column content using `::left::` / `::right::` |
-| `quote` | Pull quote (light or `dark: true`) |
-| `image-feature` | Headline beside an edge-bleed image (`side: left\|right`) |
-| `image-full` | Full-bleed image with overlay headline |
-| `stats` | 1-4 big-number stats |
-| `team` | Team grid with photos |
-| `comparison` | Side-by-side cards |
-| `timeline` | Horizontal milestone strip |
-| `process` | Numbered process steps |
-| `code-focus` | Dark code-centric slide |
-| `customer-quote` | Photo + large pull quote |
-| `demo` | Framed screenshot or iframe |
-| `end` | Closing slide — "Make a new world happen" |
+| Layout           | Purpose                                                   |
+| ---------------- | --------------------------------------------------------- |
+| `cover`          | Title slide — dark gradient                               |
+| `section`        | Section break — large numeral + title                     |
+| `default`        | White content slide with monogram + gradient rule         |
+| `agenda`         | Numbered table of contents                                |
+| `two-cols`       | Two-column content using `::left::` / `::right::`         |
+| `quote`          | Pull quote (light or `dark: true`)                        |
+| `image-feature`  | Headline beside an edge-bleed image (`side: left\|right`) |
+| `image-full`     | Full-bleed image with overlay headline                    |
+| `stats`          | 1-4 big-number stats                                      |
+| `team`           | Team grid with photos                                     |
+| `comparison`     | Side-by-side cards                                        |
+| `timeline`       | Horizontal milestone strip                                |
+| `process`        | Numbered process steps                                    |
+| `code-focus`     | Dark code-centric slide                                   |
+| `customer-quote` | Photo + large pull quote                                  |
+| `demo`           | Framed screenshot or iframe                               |
+| `end`            | Closing slide — "Make a new world happen"                 |
 
 ## Typography
 
@@ -3175,25 +3230,27 @@ and override the font stack in your own CSS.
 ## License
 
 MIT
-```
+
+````
 
 - [ ] **Step 2: Commit**
 
 ```bash
 git add packages/slidev-theme-wwt/README.md
 git commit -m "docs(theme): write full README"
-```
+````
 
 ---
 
 ### Task 36: Starter README
 
 **Files:**
+
 - Modify: `packages/starter/README.md`
 
 - [ ] **Step 1: Replace `packages/starter/README.md`**
 
-```markdown
+````markdown
 # WWT Slidev Starter
 
 A ready-to-edit Slidev deck that consumes `slidev-theme-wwt`.
@@ -3204,6 +3261,7 @@ A ready-to-edit Slidev deck that consumes `slidev-theme-wwt`.
 pnpm install            # from the repo root
 pnpm dev                # opens localhost:3030
 ```
+````
 
 Edit `slides.md` and Slidev hot-reloads on save.
 
@@ -3230,20 +3288,22 @@ See `packages/slidev-theme-wwt/README.md` for the full layout catalog.
 
 Write in the WWT voice: purposeful, bold and confident, beautifully simple,
 refreshing. Sign off with "Make a new world happen."
-```
+
+````
 
 - [ ] **Step 2: Commit**
 
 ```bash
 git add packages/starter/README.md
 git commit -m "docs(starter): write authoring guide"
-```
+````
 
 ---
 
 ### Task 37: GitHub Actions CI workflow
 
 **Files:**
+
 - Create: `.github/workflows/ci.yml`
 
 - [ ] **Step 1: Create `.github/workflows/ci.yml`**
@@ -3288,11 +3348,12 @@ git commit -m "ci: add GitHub Actions workflow"
 ### Task 38: Root README
 
 **Files:**
+
 - Create: `README.md`
 
 - [ ] **Step 1: Create root `README.md`**
 
-```markdown
+````markdown
 # slidev-wwt-template
 
 A Slidev theme and starter deck for World Wide Technology (WWT)
@@ -3300,10 +3361,10 @@ presentations.
 
 ## What's in here
 
-| Package | Purpose |
-|---|---|
-| [`packages/slidev-theme-wwt`](./packages/slidev-theme-wwt) | Publishable Slidev theme |
-| [`packages/starter`](./packages/starter) | Sample deck consuming the theme |
+| Package                                                    | Purpose                         |
+| ---------------------------------------------------------- | ------------------------------- |
+| [`packages/slidev-theme-wwt`](./packages/slidev-theme-wwt) | Publishable Slidev theme        |
+| [`packages/starter`](./packages/starter)                   | Sample deck consuming the theme |
 
 ## Quick start
 
@@ -3311,33 +3372,35 @@ presentations.
 pnpm install
 pnpm dev
 ```
+````
 
 Open `localhost:3030`. Edit `packages/starter/slides.md` and watch it hot
 reload.
 
 ## Scripts
 
-| Command | What it does |
-|---|---|
-| `pnpm dev` | Run the starter deck |
-| `pnpm build` | Build the starter to static HTML |
-| `pnpm export` | Export the starter to PDF |
-| `pnpm lint` | Run ESLint across the workspace |
-| `pnpm typecheck` | Type-check every package |
-| `pnpm test` | Run theme unit tests |
-| `pnpm format` | Prettier-format everything |
+| Command          | What it does                     |
+| ---------------- | -------------------------------- |
+| `pnpm dev`       | Run the starter deck             |
+| `pnpm build`     | Build the starter to static HTML |
+| `pnpm export`    | Export the starter to PDF        |
+| `pnpm lint`      | Run ESLint across the workspace  |
+| `pnpm typecheck` | Type-check every package         |
+| `pnpm test`      | Run theme unit tests             |
+| `pnpm format`    | Prettier-format everything       |
 
 ## License
 
 MIT — make a new world happen.
-```
+
+````
 
 - [ ] **Step 2: Commit**
 
 ```bash
 git add README.md
 git commit -m "docs: add root README"
-```
+````
 
 ---
 
@@ -3373,6 +3436,7 @@ pnpm dev
 ```
 
 Click through every slide. For each, confirm:
+
 - Cover, section, end show the dark navy gradient with the graphic device
 - Content slides have the gradient rule on top and monogram in the corner
 - Stats, team, comparison, timeline, process render their frontmatter data
@@ -3411,15 +3475,15 @@ Tick each before declaring the project shippable:
 - [ ] `pnpm build` and `pnpm export` succeed
 - [ ] `pnpm lint`, `pnpm typecheck`, `pnpm test` all pass
 - [ ] WCAG AA contrast satisfied: Light Blue (`#0086EA`) headlines on white
-  use ≥40px or bold weight; white text on the navy gradient uses default body
-  weight
+      use ≥40px or bold weight; white text on the navy gradient uses default body
+      weight
 - [ ] Logos preserve intrinsic aspect ratio (Task 8's `WwtLogo` does this via
-  the `RATIOS` table)
+      the `RATIOS` table)
 - [ ] Gradient rule and graphic device are pre-rendered PNGs (no programmatic
-  recreations)
+      recreations)
 - [ ] All 17 layouts exercised in `packages/starter/slides.md`
 - [ ] No ALL CAPS body text; text left-aligned except on the `end` slide
-  sign-off
+      sign-off
 - [ ] Starter deck signs off with "Make a new world happen"
 - [ ] Theme `README.md` lists every layout and its frontmatter contract
 
@@ -3459,6 +3523,7 @@ pass.
 ## Task 40: Dark-mode token overrides
 
 **Files:**
+
 - Modify: `packages/slidev-theme-wwt/styles/tokens.css`
 
 - [ ] **Step 1: Append dark-mode overrides to `tokens.css`**
@@ -3502,6 +3567,7 @@ git commit -m "feat(theme): add dark-mode token overrides"
 ## Task 41: CSS-driven monogram mark (dark-mode auto-swap)
 
 **Files:**
+
 - Modify: `packages/slidev-theme-wwt/styles/layout.css` (append shared `.wwt-monogram-mark` rule)
 - Modify (in 12 layouts): replace `<img src="/wwt-monogram.png" ... />` with `<div class="wwt-monogram-mark" role="img" aria-label="WWT" />`
 
@@ -3574,6 +3640,7 @@ git commit -m "refactor(theme): switch monogram to CSS-driven mark for dark-mode
 ## Task 42: AutoAnimate plugin and global directive
 
 **Files:**
+
 - Modify: `packages/slidev-theme-wwt/package.json` (add dependency)
 - Modify: `packages/slidev-theme-wwt/setup/main.ts` (register plugin)
 
@@ -3620,6 +3687,7 @@ git commit -m "feat(theme): register AutoAnimate plugin globally"
 ## Task 43: Apply `v-auto-animate` and `<v-clicks>` to reveal layouts
 
 **Files (modify in each):**
+
 - `packages/slidev-theme-wwt/layouts/agenda.vue`
 - `packages/slidev-theme-wwt/layouts/timeline.vue`
 - `packages/slidev-theme-wwt/layouts/stats.vue`
@@ -3736,6 +3804,7 @@ git commit -m "feat(theme): animate reveal layouts with AutoAnimate + v-clicks"
 ## Task 44: DarkToggle component in Footer
 
 **Files:**
+
 - Create: `packages/slidev-theme-wwt/components/DarkToggle.vue`
 - Modify: `packages/slidev-theme-wwt/components/Footer.vue`
 
@@ -3838,6 +3907,7 @@ git commit -m "feat(theme): add DarkToggle component and embed in Footer"
 ## Task 45: Update READMEs and starter sample
 
 **Files:**
+
 - Modify: `packages/slidev-theme-wwt/README.md` (add Dark mode and Animation sections)
 - Modify: `packages/starter/README.md` (mention `D` toggle)
 - Modify: `packages/starter/slides.md` (no structural change; the existing
@@ -3882,10 +3952,7 @@ The theme combines three layers:
 3. **`<v-motion>` presets** — for explicit entrance/exit motion. Examples:
 
 ```vue
-<v-motion
-  :initial="{ y: 24, opacity: 0 }"
-  :enter="{ y: 0, opacity: 1 }"
->
+<v-motion :initial="{ y: 24, opacity: 0 }" :enter="{ y: 0, opacity: 1 }">
   Slide-up entrance
 </v-motion>
 ```
@@ -3915,11 +3982,11 @@ git commit -m "docs: cover dark mode and animation patterns"
 ## Amended acceptance checklist (add to original list)
 
 - [ ] Pressing `D` toggles dark mode; content slides swap cleanly; always-
-  dark slides are unaffected
+      dark slides are unaffected
 - [ ] Light-blue H1 contrast ≥3:1 against the dark-mode background
 - [ ] Monogram auto-swaps between color and white based on color scheme
 - [ ] `agenda`, `timeline`, `stats`, `team`, `process` each reveal children
-  on click with a visible AutoAnimate tween
+      on click with a visible AutoAnimate tween
 - [ ] Footer shows a discoverable sun/moon toggle
 - [ ] `@formkit/auto-animate` is in theme `dependencies` (not `devDependencies`)
 - [ ] Theme README has Dark mode and Animation sections

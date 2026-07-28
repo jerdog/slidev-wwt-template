@@ -22,25 +22,25 @@ title: Your deck title
 
 ## Layouts
 
-| Layout | Purpose |
-|---|---|
-| `cover` | Title slide — dark gradient |
-| `section` | Section break — large numeral + title |
-| `default` | White content slide with monogram + gradient rule |
-| `agenda` | Numbered table of contents |
-| `two-cols` | Two-column content using `::left::` / `::right::` |
-| `quote` | Pull quote (light or `dark: true`) |
-| `image-feature` | Headline beside an edge-bleed image (`side: left\|right`) |
-| `image-full` | Full-bleed image with overlay headline |
-| `stats` | 1-4 big-number stats |
-| `team` | Team grid with photos |
-| `comparison` | Side-by-side cards |
-| `timeline` | Horizontal milestone strip |
-| `process` | Numbered process steps |
-| `code-focus` | Dark code-centric slide |
-| `customer-quote` | Photo + large pull quote |
-| `demo` | Framed screenshot or iframe |
-| `end` | Closing slide — "Make a new world happen" |
+| Layout           | Purpose                                                   |
+| ---------------- | --------------------------------------------------------- |
+| `cover`          | Title slide — dark gradient                               |
+| `section`        | Section break — large numeral + title                     |
+| `default`        | White content slide with monogram + gradient rule         |
+| `agenda`         | Numbered table of contents                                |
+| `two-cols`       | Two-column content using `::left::` / `::right::`         |
+| `quote`          | Pull quote (light or `dark: true`)                        |
+| `image-feature`  | Headline beside an edge-bleed image (`side: left\|right`) |
+| `image-full`     | Full-bleed image with overlay headline                    |
+| `stats`          | 1-4 big-number stats                                      |
+| `team`           | Team grid with photos                                     |
+| `comparison`     | Side-by-side cards                                        |
+| `timeline`       | Horizontal milestone strip                                |
+| `process`        | Numbered process steps                                    |
+| `code-focus`     | Dark code-centric slide                                   |
+| `customer-quote` | Photo + large pull quote                                  |
+| `demo`           | Framed screenshot or iframe                               |
+| `end`            | Closing slide — "Make a new world happen"                 |
 
 ## Typography
 
@@ -76,10 +76,7 @@ The theme combines three layers:
 3. **`<v-motion>` presets** — for explicit entrance/exit motion. Examples:
 
 ```vue
-<v-motion
-  :initial="{ y: 24, opacity: 0 }"
-  :enter="{ y: 0, opacity: 1 }"
->
+<v-motion :initial="{ y: 24, opacity: 0 }" :enter="{ y: 0, opacity: 1 }">
   Slide-up entrance
 </v-motion>
 ```
