@@ -20,7 +20,7 @@ just this plugin.
 From an interactive Claude Code session:
 
 ```
-/plugin marketplace add github:jerdog/slidev-wwt-template
+/plugin marketplace add jerdog/slidev-wwt-template
 /plugin install wwt-slidev@slidev-wwt
 /reload-plugins
 ```
