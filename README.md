@@ -25,6 +25,14 @@ title: Your deck title
 ---
 ```
 
+**Known-issue post-install step** (see the [Known issues](#known-issues)
+section below): copy the theme's public assets into your deck's `public/`
+directory so logos and gradients resolve at their expected paths:
+
+```bash
+mkdir -p public && cp node_modules/slidev-theme-wwt/public/* public/
+```
+
 ## Layouts
 
 | Layout           | Purpose                                                   |
@@ -106,6 +114,42 @@ Then use slash commands like `/wwt-talk-new`, `/wwt-talk-retheme`,
 `/wwt-talk-import`, `/wwt-slide-add`, `/wwt-slide-review`, and
 `/wwt-talk-preview` to author decks conversationally. Full details in
 [`plugin/README.md`](./plugin/README.md).
+
+## Known issues
+
+### Theme public assets resolve to broken paths
+
+The theme's components reference root-absolute paths (`/wwt-logo.png`,
+`/wwt-monogram.png`, `/wwt-gradient-rule.png`, `/bg-cover-gradient.png`,
+`/bg-section-gradient.jpeg`). Slidev's `vite-plugin-static-copy` integration
+nests theme public assets under `dist/theme/node_modules/.pnpm/…/public/*`
+instead of the root path the components request. The images render as
+broken in both dev and build, silently, with no console error.
+
+**Workaround** (already shown in the Install section above): copy the
+theme's public assets into your deck's own `public/` directory:
+
+```bash
+mkdir -p public && cp node_modules/slidev-theme-wwt/public/* public/
+```
+
+Verify with `curl -sI http://localhost:3030/wwt-logo.png | head -1` — a
+`200 OK` with `Content-Type: image/png` means it's serving the file; a
+`200 OK` with `Content-Type: text/html` means Vite's SPA fallback is
+serving `index.html` and the copy didn't land.
+
+### `process` layout overflows past ~5 items
+
+`process.vue` uses `grid-auto-flow: column` with no wrapping. Six or
+seven steps render off the right edge of the slide even with short
+labels. For 6+ steps, use `default` with your own grid.
+
+### `<v-clicks>`-native layouts render empty on load
+
+`agenda`, `timeline`, `stats`, `team`, and `process` use `<v-clicks>`
+under the hood. On the first render they display nothing until you press
+`→`. When reviewing these slides in isolation, either advance the click
+counter or append `?clicks=999` to the URL.
 
 ## Developing this theme
 

@@ -14,25 +14,43 @@ render correctly, follow WWT tone, and use the right layout for each idea.
 Every slide sets `layout: <name>` in its frontmatter. Pick the layout by
 what the slide is trying to do, not by decoration.
 
-| Layout           | Use for                                             | Key frontmatter                                                                     |
-| ---------------- | --------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `cover`          | Deck title slide (dark)                             | `title`, `subtitle?`, `presenter?`, `presenterRole?`, `date?`                       |
-| `section`        | Section break with big numeral (dark)               | `number` (string, e.g. `"01"`), `title`                                             |
-| `default`        | General content slide (light)                       | `title?` — the slide's H1 is the markdown `# Heading`                               |
-| `agenda`         | Numbered table of contents                          | `items: string[]`                                                                   |
-| `two-cols`       | Two-column content                                  | Uses Slidev `::left::` and `::right::` slots                                        |
-| `quote`          | Pull quote (light by default, dark if `dark: true`) | `attribution`, `role?`, `dark?`                                                     |
-| `image-feature`  | Headline beside an edge-bleed image                 | `title?`, `image`, `imageAlt?`, `side: "left" \| "right"`                           |
-| `image-full`     | Full-bleed image with overlay headline              | `image`, `imageAlt?`, `headline?`                                                   |
-| `stats`          | 1–4 big-number stats (auto-fits grid)               | `title?`, `stats: { value: string, label: string, caption?: string }[]`             |
-| `team`           | Team grid with photos                               | `title?`, `members: { name, role, photo? }[]`                                       |
-| `comparison`     | Side-by-side cards                                  | `title?`, `left: { title, points: string[] }`, `right: { title, points: string[] }` |
-| `timeline`       | Horizontal milestone strip                          | `title?`, `events: { date, label, detail? }[]`                                      |
-| `process`        | Numbered process steps                              | `title?`, `steps: { title, detail? }[]`                                             |
-| `code-focus`     | Dark code-centric slide                             | `title?` — put a fenced code block in the slide body                                |
-| `customer-quote` | Photo + large pull quote                            | `quote`, `name`, `role`, `photo?`, `logo?`                                          |
-| `demo`           | Framed screenshot or iframe                         | `title?`, `src`, `caption?`, `iframe?` (bool)                                       |
-| `end`            | Closing slide — "Make a new world happen" (dark)    | `signoff?` (overrides default tagline)                                              |
+The **Body slot?** column matters: layouts marked **No** render only from
+frontmatter — any markdown/HTML you put in the slide body is **silently
+dropped** (no error, no warning). Only layouts marked **Yes** accept body
+content.
+
+| Layout           | Body slot? | Use for                                             | Key frontmatter                                                                     |
+| ---------------- | ---------- | --------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `cover`          | No         | Deck title slide (dark)                             | `title`, `subtitle?`, `presenter?`, `presenterRole?`, `date?`                       |
+| `section`        | No         | Section break with big numeral (dark)               | `number` (string, e.g. `"01"`), `title`                                             |
+| `default`        | **Yes**    | General content slide (light)                       | `title?` — the slide's H1 is the markdown `# Heading`                               |
+| `agenda`         | No         | Numbered table of contents                          | `items: string[]`                                                                   |
+| `two-cols`       | **Yes**    | Two-column content                                  | Uses Slidev `::left::` and `::right::` slots                                        |
+| `quote`          | **Yes**    | Pull quote (light by default, dark if `dark: true`) | `attribution`, `role?`, `dark?`                                                     |
+| `image-feature`  | **Yes**    | Headline beside an edge-bleed image                 | `title?`, `image`, `imageAlt?`, `side: "left" \| "right"`                           |
+| `image-full`     | No         | Full-bleed image with overlay headline              | `image`, `imageAlt?`, `headline?`                                                   |
+| `stats`          | No         | 1–4 big-number stats (auto-fits grid)               | `title?`, `stats: { value: string, label: string, caption?: string }[]`             |
+| `team`           | No         | Team grid with photos                               | `title?`, `members: { name, role, photo? }[]`                                       |
+| `comparison`     | No         | Side-by-side cards                                  | `title?`, `left: { title, points: string[] }`, `right: { title, points: string[] }` |
+| `timeline`       | No         | Horizontal milestone strip                          | `title?`, `events: { date, label, detail? }[]`                                      |
+| `process`        | No         | Numbered process steps (see capacity note below)    | `title?`, `steps: { title, detail? }[]`                                             |
+| `code-focus`     | **Yes**    | Dark code-centric slide                             | `title?` — put a fenced code block in the slide body                                |
+| `customer-quote` | No         | Photo + large pull quote                            | `quote`, `name`, `role`, `photo?`, `logo?`                                          |
+| `demo`           | No         | Framed screenshot or iframe                         | `title?`, `src`, `caption?`, `iframe?` (bool)                                       |
+| `end`            | No         | Closing slide — "Make a new world happen" (dark)    | `signoff?` (overrides default tagline)                                              |
+
+### Layout capacity notes
+
+- **`process` overflows past ~5 items.** Its grid uses `grid-auto-flow:
+column` with no wrapping — the 6th and 7th steps render off the right
+  edge of the slide, even with short text. For 6+ steps, use `default`
+  with your own CSS grid instead. Same watch-out likely applies to
+  `agenda`, `stats`, and `team` at higher counts; verify visually.
+- **No source-line field.** Layouts like `comparison`, `process`,
+  `timeline`, and `agenda` have no dedicated field for citing a source.
+  Fold citations into an existing string — usually `title` (e.g.
+  `title: "The experience gap — Sonar 2026"`) or a `caption` if the
+  layout has one. `stats` has per-item `caption?` for this.
 
 ## Frontmatter format rules
 
@@ -194,6 +212,115 @@ have a chance to redirect before you commit to disk.
 
 For 1, ditto — brainstorm the section outline before writing full slides.
 
+## Known issues (as of theme 0.2.0)
+
+These are current bugs in `slidev-theme-wwt`. If you see them, apply the
+workaround and consider filing/updating an issue against the repo.
+
+### Theme public assets resolve to broken paths
+
+**Symptom:** logos, monograms, and gradient backgrounds render as broken
+images in `pnpm dev` and `pnpm build`, with zero console error and zero
+build warning.
+
+**Cause:** the theme's components reference root-absolute paths
+(`/wwt-logo.png`, `/wwt-monogram.png`, `/wwt-gradient-rule.png`,
+`/bg-cover-gradient.png`, `/bg-section-gradient.jpeg`, and the
+`--wwt-monogram-url` token). Slidev's `vite-plugin-static-copy` integration
+nests theme public assets under `dist/theme/node_modules/.pnpm/…/public/*`
+— never at the root path the components request.
+
+**Workaround:** copy the theme's public assets into the consumer deck's
+own `public/` directory at the same root filenames:
+
+```bash
+cp node_modules/slidev-theme-wwt/public/* public/
+```
+
+**Verify:**
+
+```bash
+curl -sI http://localhost:3030/wwt-logo.png | head -1
+# HTTP/1.1 200 OK  → served correctly
+# HTTP/1.1 200 OK  with Content-Type: text/html  → Vite's SPA fallback
+#                                                   served index.html instead
+```
+
+If you scaffold a new deck via `/wwt-talk-new` or `/wwt-talk-import`, add
+this asset copy as a post-install step.
+
+### `<v-clicks>`-native layouts render empty on load
+
+**Symptom:** opening `agenda`, `timeline`, `stats`, `team`, or `process`
+directly by URL (or on the very first load) shows an apparently-empty
+slide — no bullets, no cards, nothing.
+
+**Cause:** these layouts use `<v-clicks>` for reveals, and the initial
+click index is 0 (no children visible yet).
+
+**Workaround:** advance the click counter. Add `?clicks=999` to the URL
+to reveal everything, or press `→` repeatedly. When reviewing content in
+isolation (screenshot, MCP inspection), do this **before** concluding a
+slide is broken.
+
+## Custom styling
+
+### Overriding a layout's internals from a slide `<style>` block
+
+**Rule: use `:deep(...)`** for any selector that targets an element the
+layout renders internally.
+
+```vue
+<style>
+/* WRONG — compiles to `.wwt-quote__text[data-v-<slidehash>]`
+   which never matches, and there's no error. */
+.wwt-quote__text {
+  font-size: 56px !important;
+}
+
+/* RIGHT */
+:deep(.wwt-quote__text) {
+  font-size: 56px !important;
+}
+</style>
+```
+
+Vue only stamps the slide's scoped-CSS hash onto the layout's **root
+element**, not onto descendants. Plain selectors compile to a stamped
+attribute selector that matches nothing. It fails silently — no console
+error, no build warning, the override just doesn't apply.
+
+### Building a custom component that fills a `default` slide
+
+Use `flex: 1; min-height: 0` on the component's root — **not**
+`height: 100%`:
+
+```vue
+<style scoped>
+.my-diagram {
+  flex: 1;
+  min-height: 0;
+}
+</style>
+```
+
+`.wwt-default__content` is a column flexbox without its own
+`min-height: 0`. A percentage-height child inherits that gap and can
+render taller than the slide's fixed canvas, clipped silently by
+`overflow: hidden`. The bottom of your diagram just disappears.
+
+## Small gotchas
+
+- **Angle brackets in HTML comments inside `<style>`/`<script>` blocks
+  can break slide compilation.** A comment like `/* the outer <p> tag */`
+  inside a `<style>` block will sometimes be misparsed as a stray tag and
+  produce a confusing Vue compiler error. Avoid literal `<tag>`-shaped
+  text inside such comments; write "the outer `p` tag" instead.
+- **`presenter:` on the cover slide may trip an IDE type-schema warning.**
+  Slidev reserves `presenter` for "enable presenter mode" (boolean), but
+  the WWT `cover` layout also accepts `presenter:` as a string name. Both
+  work at runtime; the warning is cosmetic. Don't "fix" it by renaming.
+
 ## When you author
 
 - Ask the user for the talk's topic, audience, duration, and any content
@@ -204,6 +331,12 @@ For 1, ditto — brainstorm the section outline before writing full slides.
   force everything into `default`.
 - When you write speaker notes (Slidev supports HTML comments as notes),
   keep them one paragraph max per slide.
+- **A clean `pnpm build` does not mean the deck renders correctly.** All
+  the known issues above (broken asset paths, non-matching scoped CSS,
+  layout overflow, `<v-clicks>` empty-on-load) compile without error.
+  After drafting slides with custom components or per-slide style
+  overrides, visually verify in a running dev server — screenshot or
+  browser-tool the actual rendered slide, don't rely on the build alone.
 
 ## When you edit
 
@@ -212,3 +345,6 @@ For 1, ditto — brainstorm the section outline before writing full slides.
 - Verify YAML indentation stays consistent across sibling slides.
 - If Prettier is enabled in the deck's repo and `slides.md` is not in
   `.prettierignore`, warn the user before running `pnpm format`.
+- After any change to a `<style>` block or custom-component sizing, re-
+  verify visually — see the note above about clean builds not meaning
+  correctness.
