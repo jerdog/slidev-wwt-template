@@ -37,7 +37,7 @@ You are helping the user bootstrap a new WWT conference talk deck.
        "export": "slidev export"
      },
      "dependencies": {
-       "slidev-theme-wwt": "github:wwt/slidev-wwt-template"
+       "slidev-theme-wwt": "github:jerdog/slidev-wwt-template"
      },
      "devDependencies": {
        "@slidev/cli": "^0.49.0",

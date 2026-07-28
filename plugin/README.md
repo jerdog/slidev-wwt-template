@@ -12,7 +12,7 @@ Works alongside the [`slidev-theme-wwt`](../) theme in this repo.
 From a Claude Code session (interactive terminal):
 
 ```
-/plugin install github:wwt/slidev-wwt-template#feat/initial-implementation --path plugin
+/plugin install github:jerdog/slidev-wwt-template#feat/initial-implementation --path plugin
 ```
 
 Or, if you've cloned this repo locally:

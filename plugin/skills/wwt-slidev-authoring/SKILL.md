@@ -130,7 +130,7 @@ in `<v-clicks>`:
 Consumers install the theme from GitHub:
 
 ```bash
-pnpm add -D github:wwt/slidev-wwt-template
+pnpm add -D github:jerdog/slidev-wwt-template
 ```
 
 Then `slides.md` starts with:

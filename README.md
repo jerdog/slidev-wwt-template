@@ -9,7 +9,7 @@ Code plugin for conversational authoring.
 The theme is distributed directly from this GitHub repo (no npm publish):
 
 ```bash
-pnpm add -D github:wwt/slidev-wwt-template
+pnpm add -D github:jerdog/slidev-wwt-template
 ```
 
 Then set the theme in your deck's `slides.md` frontmatter:
