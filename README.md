@@ -94,9 +94,18 @@ smooth tween.
 
 The [`plugin/`](./plugin) directory ships a Claude Code plugin that teaches
 Claude the layout catalog, WWT tone, and conference-talk authoring workflow.
-Install it from this repo and use slash commands like `/wwt-talk-new` and
-`/wwt-slide-add` to author decks conversationally. See
-[`plugin/README.md`](./plugin/README.md) for setup.
+Install it from an interactive Claude Code session:
+
+```
+/plugin marketplace add github:jerdog/slidev-wwt-template
+/plugin install wwt-slidev@slidev-wwt
+/reload-plugins
+```
+
+Then use slash commands like `/wwt-talk-new`, `/wwt-talk-retheme`,
+`/wwt-talk-import`, `/wwt-slide-add`, `/wwt-slide-review`, and
+`/wwt-talk-preview` to author decks conversationally. Full details in
+[`plugin/README.md`](./plugin/README.md).
 
 ## Developing this theme
 

@@ -1,0 +1,14 @@
+{
+  "name": "slidev-wwt",
+  "owner": {
+    "name": "Jeremy Meiss",
+    "url": "https://github.com/jerdog"
+  },
+  "plugins": [
+    {
+      "name": "wwt-slidev",
+      "source": "./plugin",
+      "description": "Author WWT-branded Slidev presentations with Claude Code — layouts, tone, and conference-talk workflow."
+    }
+  ]
+}

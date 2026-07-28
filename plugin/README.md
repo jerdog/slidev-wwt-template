@@ -13,20 +13,36 @@ Works alongside the [`slidev-theme-wwt`](../) theme in this repo.
 
 ## Install
 
-From a Claude Code session (interactive terminal):
+Claude Code installs plugins via marketplaces. This repo publishes a
+marketplace at its root (`.claude-plugin/marketplace.json`) that hosts
+just this plugin.
+
+From an interactive Claude Code session:
 
 ```
-/plugin install github:jerdog/slidev-wwt-template#feat/initial-implementation --path plugin
+/plugin marketplace add github:jerdog/slidev-wwt-template
+/plugin install wwt-slidev@slidev-wwt
+/reload-plugins
 ```
 
-Or, if you've cloned this repo locally:
+The first command adds the marketplace; the second installs the plugin
+from it; the third activates it in the current session. Claude Code will
+prompt you to pick an install scope (user / project / session) — choose
+whichever fits.
+
+If you've cloned the repo locally, point at the checkout instead:
 
 ```
-/plugin install ./plugin
+/plugin marketplace add /path/to/slidev-wwt-template
+/plugin install wwt-slidev@slidev-wwt
+/reload-plugins
 ```
 
-(Exact syntax depends on your Claude Code version. See the Claude Code
-plugin docs for local vs remote install.)
+Refresh after the marketplace repo updates:
+
+```
+/plugin marketplace update slidev-wwt
+```
 
 ## What's included
 
