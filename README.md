@@ -4,6 +4,10 @@ WWT-branded theme for [Slidev](https://sli.dev/). Author a presentation in
 Markdown and ship it on-brand — with a companion starter deck and a Claude
 Code plugin for conversational authoring.
 
+> This is a personal open-source project by [@jerdog](https://github.com/jerdog).
+> It is not an official World Wide Technology product and is not affiliated
+> with or endorsed by WWT.
+
 ## Install
 
 The theme is distributed directly from this GitHub repo (no npm publish):

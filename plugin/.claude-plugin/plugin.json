@@ -4,7 +4,8 @@
   "description": "Author WWT-branded Slidev presentations with Claude Code — layouts, tone, and conference-talk workflow.",
   "authors": [
     {
-      "name": "World Wide Technology"
+      "name": "Jeremy Meiss",
+      "url": "https://github.com/jerdog"
     }
   ],
   "homepage": "https://github.com/jerdog/slidev-wwt-template",

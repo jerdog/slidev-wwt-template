@@ -7,6 +7,10 @@ conversationally.
 
 Works alongside the [`slidev-theme-wwt`](../) theme in this repo.
 
+> This is a personal open-source project by [@jerdog](https://github.com/jerdog).
+> It is not an official World Wide Technology product and is not affiliated
+> with or endorsed by WWT.
+
 ## Install
 
 From a Claude Code session (interactive terminal):
