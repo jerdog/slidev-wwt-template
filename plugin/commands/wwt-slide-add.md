@@ -35,15 +35,23 @@ You are helping the user append a slide to an existing WWT Slidev deck.
    indentation. Follow WWT tone: purposeful, bold, simple, refreshing.
    Keep to one idea per slide.
 
-6. **Insert at the right position.** Use Edit to add the slide with a
-   blank line before `---` for correct Slidev parsing.
+6. **Insert at the right position.**
+   - **If Slidev's MCP server is attached** (any `mcp__slidev__*` tool
+     available — e.g., an add-slide or insert-slide tool), use it. The MCP
+     handles parser edge cases (frontmatter delimiters, `v-clicks` scoping)
+     that a naive text edit can corrupt.
+   - Otherwise, use `Edit` on `slides.md` and insert the new slide with a
+     blank line before its opening `---` so Slidev parses it as a new
+     slide, not appended content of the previous one.
 
-7. **Verify.** Read back the surrounding slides. Confirm:
+7. **Verify.** Whether you used the MCP or file I/O, read back the
+   surrounding slides. Confirm:
    - The new slide's frontmatter is valid YAML
    - The document-level frontmatter is unchanged
    - No accidental double `---` or missing separators
 
-8. **Report** what layout you picked, why, and where you inserted it.
-   Suggest the user reload their `pnpm dev` server if it's running.
+8. **Report** what layout you picked, why, and where you inserted it. Note
+   whether you used the Slidev MCP or file I/O. If a dev server is
+   running, HMR will pick up the change automatically.
 
 Do NOT modify other slides while adding this one.

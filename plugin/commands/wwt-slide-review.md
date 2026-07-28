@@ -11,9 +11,15 @@ You are reviewing an existing WWT deck for brand compliance and quality.
 1. **Locate `slides.md`** in the cwd (or ask the user).
 
 2. **Read the full deck.**
+   - **If Slidev's MCP server is attached**, prefer its structured
+     read tools (e.g., a list-slides / get-slide tool) — you get slide
+     metadata (layout, index, frontmatter keys) already parsed instead of
+     re-parsing YAML yourself.
+   - Otherwise, `Read` the full `slides.md`.
 
 3. **Run the checks below.** Report findings grouped by severity. Cite
-   file:line for every finding.
+   file:line for every finding. When you have MCP slide indices, cite
+   `slide #N` alongside the file line for easier navigation.
 
 ### Brand tone (per the WWT tone pillars)
 

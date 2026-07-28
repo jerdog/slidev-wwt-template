@@ -57,9 +57,40 @@ Teaches:
    audience, duration. Claude scaffolds a `package.json`, `slides.md`,
    installs the theme from GitHub, and drafts the outline.
 2. Iterate slides in the editor or via `/wwt-slide-add`.
-3. `/wwt-slide-review` before rehearsing — catches tone drift, missing
-   sign-off, WCAG issues.
-4. `/wwt-talk-preview` when ready — open the URL in your browser.
+3. `/wwt-slide-review` before rehearsing — catches tone drift and WCAG
+   issues.
+4. `/wwt-talk-preview` when ready — opens the URL in your browser AND
+   attaches Slidev's built-in MCP server (see below).
+
+## Integration with Slidev's MCP server
+
+Slidev ships its own MCP server that gives AI agents structured tools for
+slide inspection, editing, reordering, and navigation — see
+[the Slidev docs](https://sli.dev/guide/work-with-ai). This plugin's skill
+and slash commands are aware of it: when the MCP is attached, Claude
+prefers its structured tools over raw file edits; when it isn't, Claude
+falls back to `slides.md` I/O.
+
+Two ways to attach:
+
+**HTTP mode** (when the dev server is running) — `/wwt-talk-preview` does
+this for you after starting the dev server:
+
+```bash
+claude mcp add --transport http slidev http://localhost:3030/__mcp
+```
+
+**stdio mode** (no dev server needed) — run from a deck directory:
+
+```bash
+slidev mcp slides.md
+```
+
+Register with Claude Code the same way as any other stdio MCP.
+
+The plugin does NOT declare Slidev's MCP in its own `plugin.json` — the
+stdio server needs a `slides.md` path that only makes sense per-deck, and
+auto-registering would fail in every non-Slidev workspace.
 
 ## Why a plugin instead of an MCP server?
 

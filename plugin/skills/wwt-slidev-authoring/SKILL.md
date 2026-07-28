@@ -121,6 +121,33 @@ in `<v-clicks>`:
 </v-clicks>
 ```
 
+## Slidev's built-in MCP server
+
+Slidev ships an MCP server that exposes structured tools for slide
+inspection, editing, reordering, and navigation
+(<https://sli.dev/guide/work-with-ai>). Two ways to attach it:
+
+- **HTTP mode** (dev server is running): register with
+  `claude mcp add --transport http slidev http://localhost:<port>/__mcp`.
+  The `/wwt-talk-preview` command does this automatically after starting
+  the dev server.
+- **stdio mode** (no dev server needed): `slidev mcp slides.md` from the
+  deck directory registers a stdio MCP that operates directly on files.
+
+**When the MCP is registered, prefer its tools over raw file I/O** for
+anything the tools cover — reading slide metadata, adding/reordering/
+removing slides, jumping the presenter to a specific slide. The MCP knows
+Slidev's parser rules (frontmatter delimiters, `<v-clicks>` scoping, etc.)
+and won't corrupt the file the way a naive text edit can.
+
+Fall back to `Read` / `Edit` on `slides.md` when:
+
+- No `mcp__slidev__*` tools appear in your available tool list
+- The tool for what you need doesn't exist yet (the MCP evolves; check the
+  actual tool list before assuming)
+- You're doing something the MCP wasn't built for (e.g., editing the
+  theme's own layout files, not a consumer deck's slides)
+
 ## Workflow
 
 Consumers install the theme from GitHub:
