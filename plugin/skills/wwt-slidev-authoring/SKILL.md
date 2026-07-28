@@ -169,6 +169,31 @@ info: One-line description.
 Preview with `pnpm slidev` (or `pnpm dev` if the deck's `package.json` has
 that script). Build a PDF with `slidev export`.
 
+## Common authoring workflows
+
+Three patterns cover most WWT deck work. Match your approach to how the
+user is starting:
+
+1. **From scratch** — no draft, just intent. Ask about topic, audience,
+   duration; sketch a section outline; then draft slides. Slash command:
+   `/wwt-talk-new`.
+2. **Retheme an existing deck** — the user has a `slides.md` from a
+   different theme (or no theme). Do a mechanical layout mapping first
+   (theme swap + `layout:` updates + required frontmatter), get approval,
+   apply it, then run a separate opinionated pass for tone and structure.
+   Slash command: `/wwt-talk-retheme`.
+3. **Compose from content** — the user has a Markdown article, outline,
+   brainstorm dump, or previous Claude output. Analyze source structure
+   (headers, lists, quotes, code, tables) to pick layouts; sketch the
+   outline in chat; approve; then write `slides.md`. Slash command:
+   `/wwt-talk-import`.
+
+For 2 and 3, always show your plan (the layout mapping or the outline)
+before writing files. Both involve opinionated choices — the user should
+have a chance to redirect before you commit to disk.
+
+For 1, ditto — brainstorm the section outline before writing full slides.
+
 ## When you author
 
 - Ask the user for the talk's topic, audience, duration, and any content

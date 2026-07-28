@@ -37,30 +37,42 @@ using `theme: wwt`, or when you ask Claude to draft a WWT presentation.
 Teaches:
 
 - All 17 layouts and their frontmatter contracts
-- WWT tone of voice (purposeful, bold, simple, refreshing)
-- The "Make a new world happen" sign-off convention
+- WWT tone of voice (purposeful, bold, simple, refreshing with a touch of humor)
+- Recommended narrative arcs for talks (cover → agenda → sections → recap → end)
 - Dark mode and animation patterns
+- Slidev's built-in MCP server: when it's attached, prefer its tools
 - YAML frontmatter formatting gotchas
 
 ### Slash commands
 
-| Command             | What it does                                                  |
-| ------------------- | ------------------------------------------------------------- |
-| `/wwt-talk-new`     | Scaffold a new WWT deck for a conference talk                 |
-| `/wwt-slide-add`    | Add a slide to the current deck with the right layout         |
-| `/wwt-slide-review` | Audit the current deck for tone, layout choice, accessibility |
-| `/wwt-talk-preview` | Launch `pnpm dev` and report the preview URL                  |
+| Command             | What it does                                                     |
+| ------------------- | ---------------------------------------------------------------- |
+| `/wwt-talk-new`     | Scaffold a new WWT deck from scratch (topic, audience, duration) |
+| `/wwt-talk-retheme` | Convert an existing `slides.md` to the WWT theme + layouts       |
+| `/wwt-talk-import`  | Compose a WWT `slides.md` from a Markdown content file           |
+| `/wwt-slide-add`    | Add a slide to the current deck with the right layout            |
+| `/wwt-slide-review` | Audit the current deck for tone, layout choice, accessibility    |
+| `/wwt-talk-preview` | Launch `pnpm dev`, attach Slidev's MCP server                    |
 
-## Typical flow
+## Typical flows
 
-1. `/wwt-talk-new` in a fresh directory — answer questions about topic,
-   audience, duration. Claude scaffolds a `package.json`, `slides.md`,
-   installs the theme from GitHub, and drafts the outline.
-2. Iterate slides in the editor or via `/wwt-slide-add`.
-3. `/wwt-slide-review` before rehearsing — catches tone drift and WCAG
-   issues.
-4. `/wwt-talk-preview` when ready — opens the URL in your browser AND
-   attaches Slidev's built-in MCP server (see below).
+**Start from scratch.**
+`/wwt-talk-new` in a fresh directory → iterate via `/wwt-slide-add` →
+`/wwt-slide-review` before rehearsing → `/wwt-talk-preview` when ready.
+
+**Retheme an existing deck.**
+`/wwt-talk-retheme` on a `slides.md` from another theme → the mechanical
+theme + layout swap happens with your approval, followed by an
+opinionated pass suggesting tone and structure changes → `/wwt-slide-add`
+or manual edits to close gaps → `/wwt-talk-preview`.
+
+**Compose from a content file.**
+`/wwt-talk-import` with an article, outline, or brainstorm dump → outline
+proposed and approved in chat before any file is written → `/wwt-slide-add`
+to fill gaps → `/wwt-talk-preview`.
+
+`/wwt-talk-preview` also attaches Slidev's built-in MCP server so Claude
+gets structured slide tools for the rest of the session (see below).
 
 ## Integration with Slidev's MCP server
 
