@@ -1,0 +1,71 @@
+/* WWT Brand Design Tokens
+ * Seeded from Blue Steel Design System token mapping.
+ * Use the scripts/sync-tokens.mjs helper (TBD task) to refresh from the
+ * Blue Steel MCP when available.
+ */
+
+:root {
+  /* Primary — WWT Light Blue */
+  --wwt-primary-base: #0086ea;
+  --wwt-primary-medium: #339eee;
+  --wwt-primary-light: #66b6f2;
+  --wwt-primary-lightest: #99cff7;
+
+  /* Secondary — WWT Dark Blue */
+  --wwt-secondary-base: #1c0087;
+  --wwt-secondary-medium: #49339f;
+  --wwt-secondary-light: #7766b7;
+  --wwt-secondary-lightest: #a499cf;
+
+  /* Accents */
+  --wwt-accent1-base: #162fb4; /* Royal Blue */
+  --wwt-accent2-base: #330072; /* Violet */
+  --wwt-accent3-base: #e31c79; /* Pink */
+  --wwt-accent4-base: #8212c4; /* Purple */
+  --wwt-accent5-base: #fb550e; /* Orange */
+  --wwt-accent6-base: #ee282a; /* Bright Red — accents only */
+  --wwt-accent7-base: #1d1e48; /* Navy */
+
+  /* Ink and background */
+  --wwt-ink-base: #0a0b19;
+  --wwt-ink-white: #ffffff;
+  --wwt-ink-muted: rgba(10, 11, 25, 0.7);
+  --wwt-bg-base: #ffffff;
+
+  /* Spacing scale (used by layouts) */
+  --wwt-space-1: 0.25rem;
+  --wwt-space-2: 0.5rem;
+  --wwt-space-3: 0.75rem;
+  --wwt-space-4: 1rem;
+  --wwt-space-6: 1.5rem;
+  --wwt-space-8: 2rem;
+  --wwt-space-12: 3rem;
+  --wwt-space-16: 4rem;
+
+  /* Type scale (px to match Slidev's 1980x1080 canvas) */
+  --wwt-text-cover: 72px;
+  --wwt-text-section: 84px;
+  --wwt-text-section-number: 220px;
+  --wwt-text-h1: 40px;
+  --wwt-text-h2: 28px;
+  --wwt-text-body: 20px;
+  --wwt-text-caption: 16px;
+  --wwt-text-quote: 36px;
+
+  /* Signature radial gradient (matches Blue Steel gradientBlueCenter) */
+  --wwt-grad-cover: radial-gradient(
+    circle at center,
+    var(--wwt-accent1-base) 0%,
+    var(--wwt-accent7-base) 70%
+  );
+
+  --wwt-monogram-url: url("/wwt-monogram.png");
+}
+
+.dark {
+  --wwt-bg-base: #0a0b19;
+  --wwt-ink-base: #ffffff;
+  --wwt-ink-muted: rgba(255, 255, 255, 0.7);
+  --wwt-primary-lightest: rgba(102, 182, 242, 0.15);
+  --wwt-monogram-url: url("/wwt-monogram-white.png");
+}

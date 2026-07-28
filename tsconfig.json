@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@slidev/client": ["./env.d.ts"]
+    }
+  },
+  "include": [
+    "layouts/**/*.vue",
+    "components/**/*.vue",
+    "components/**/*.ts",
+    "styles/**/*.ts",
+    "setup/**/*.ts",
+    "env.d.ts"
+  ],
+  "exclude": ["node_modules", "dist", "starter", "plugin"]
+}

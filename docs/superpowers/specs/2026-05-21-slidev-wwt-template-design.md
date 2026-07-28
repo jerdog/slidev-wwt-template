@@ -133,35 +133,37 @@ the Blue Steel MCP when available.
 ```css
 :root {
   /* Primary — Light Blue */
-  --wwt-primary-base: #0086EA;
-  --wwt-primary-medium: #339EEE;
-  --wwt-primary-light: #66B6F2;
-  --wwt-primary-lightest: #99CFF7;
+  --wwt-primary-base: #0086ea;
+  --wwt-primary-medium: #339eee;
+  --wwt-primary-light: #66b6f2;
+  --wwt-primary-lightest: #99cff7;
 
   /* Secondary — Dark Blue */
-  --wwt-secondary-base: #1C0087;
-  --wwt-secondary-medium: #49339F;
-  --wwt-secondary-light: #7766B7;
-  --wwt-secondary-lightest: #A499CF;
+  --wwt-secondary-base: #1c0087;
+  --wwt-secondary-medium: #49339f;
+  --wwt-secondary-light: #7766b7;
+  --wwt-secondary-lightest: #a499cf;
 
   /* Accents */
-  --wwt-accent1-base: #162FB4;  /* Royal Blue */
-  --wwt-accent2-base: #330072;  /* Violet */
-  --wwt-accent3-base: #E31C79;  /* Pink */
-  --wwt-accent4-base: #8212C4;  /* Purple */
-  --wwt-accent5-base: #FB550E;  /* Orange */
-  --wwt-accent6-base: #EE282A;  /* Bright Red — accents only */
-  --wwt-accent7-base: #1D1E48;  /* Navy */
+  --wwt-accent1-base: #162fb4; /* Royal Blue */
+  --wwt-accent2-base: #330072; /* Violet */
+  --wwt-accent3-base: #e31c79; /* Pink */
+  --wwt-accent4-base: #8212c4; /* Purple */
+  --wwt-accent5-base: #fb550e; /* Orange */
+  --wwt-accent6-base: #ee282a; /* Bright Red — accents only */
+  --wwt-accent7-base: #1d1e48; /* Navy */
 
   /* Ink + background */
-  --wwt-ink-base: #0A0B19;
-  --wwt-ink-white: #FFFFFF;
-  --wwt-bg-base: #FFFFFF;
+  --wwt-ink-base: #0a0b19;
+  --wwt-ink-white: #ffffff;
+  --wwt-bg-base: #ffffff;
 
   /* Signature gradient (matches Blue Steel gradientBlueCenter) */
-  --wwt-grad-cover: radial-gradient(circle at center,
+  --wwt-grad-cover: radial-gradient(
+    circle at center,
     var(--wwt-accent1-base) 0%,
-    var(--wwt-accent7-base) 70%);
+    var(--wwt-accent7-base) 70%
+  );
 }
 ```
 
@@ -175,16 +177,16 @@ the Blue Steel MCP when available.
   for their own `@font-face` declarations.
 - **Type scale (Slidev runs at a default 1980×1080 canvas):**
 
-  | Element | Size | Weight | Color | Leading |
-  |---|---|---|---|---|
-  | Cover headline | 72px | 300 (Light) | `--wwt-ink-white` | 100% |
-  | Section title | 84px | 300 | `--wwt-ink-white` | 100% |
-  | Section number | 220px | 300 | `--wwt-primary-base` | 100% |
-  | Slide H1 | 40px | 700 (Bold) | `--wwt-primary-base` | 110% |
-  | Slide H2 | 28px | 600 | `--wwt-ink-base` | 130% |
-  | Body | 20px | 400 | `--wwt-ink-base` | 135% |
-  | Caption | 16px | 400 | `--wwt-ink-base` at 70% opacity | 130% |
-  | Pull quote | 36px | 400 | `--wwt-ink-base` | 130% |
+  | Element        | Size  | Weight      | Color                           | Leading |
+  | -------------- | ----- | ----------- | ------------------------------- | ------- |
+  | Cover headline | 72px  | 300 (Light) | `--wwt-ink-white`               | 100%    |
+  | Section title  | 84px  | 300         | `--wwt-ink-white`               | 100%    |
+  | Section number | 220px | 300         | `--wwt-primary-base`            | 100%    |
+  | Slide H1       | 40px  | 700 (Bold)  | `--wwt-primary-base`            | 110%    |
+  | Slide H2       | 28px  | 600         | `--wwt-ink-base`                | 130%    |
+  | Body           | 20px  | 400         | `--wwt-ink-base`                | 135%    |
+  | Caption        | 16px  | 400         | `--wwt-ink-base` at 70% opacity | 130%    |
+  | Pull quote     | 36px  | 400         | `--wwt-ink-base`                | 130%    |
 
 - **Rules:** left-aligned only, no ALL CAPS, no gradient treatment on text,
   no center/right alignment on body text. Light-blue headlines must be bold
@@ -195,25 +197,25 @@ the Blue Steel MCP when available.
 Each layout maps to `layout: <name>` in frontmatter. Frontmatter keys are the
 public API.
 
-| Layout | Background | Frontmatter keys (besides `layout`) |
-|---|---|---|
-| `cover` | Pre-rendered navy radial gradient with graphic device; white reversed full logo top-right | `title`, `subtitle`, `presenter`, `presenterRole`, `date` |
-| `section` | Same gradient family as cover | `number`, `title` |
-| `default` | White; gradient rule top; monogram top-left | The slide H1 is the markdown `# Heading` |
-| `agenda` | White | `items: string[]` (auto-numbered) |
-| `two-cols` | White | Uses Slidev's `::left::` / `::right::` slots |
-| `quote` | White (default) or dark gradient (when `dark: true`) | `attribution`, `role`, `dark?` |
-| `image-feature` | White, image edge-bleed | `image`, `side: 'left' \| 'right'` |
-| `image-full` | Full-bleed image with gradient scrim for legibility | `image`, `headline` |
-| `stats` | White | `stats: { value, label, caption? }[]` (1–4 cards) |
-| `team` | White | `members: { name, role, photo? }[]` |
-| `comparison` | White, two cards with light-blue header bars | `left: { title, points[] }`, `right: { title, points[] }` |
-| `timeline` | White, gradient rule as baseline | `events: { date, label, detail? }[]` |
-| `process` | White, numbered chevrons | `steps: { title, detail? }[]` |
-| `code-focus` | Dark (`--wwt-accent7-base`) | code block in slide body |
-| `customer-quote` | White; large pull quote | `quote`, `name`, `role`, `photo?`, `logo?` |
-| `demo` | White; framed screenshot/iframe with light shadow | `src`, `caption?` |
-| `end` | Navy gradient; "Make a new world happen"; full reversed logo center; "wwt.com" footer | `signoff?` (overrides default tagline) |
+| Layout           | Background                                                                                | Frontmatter keys (besides `layout`)                       |
+| ---------------- | ----------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| `cover`          | Pre-rendered navy radial gradient with graphic device; white reversed full logo top-right | `title`, `subtitle`, `presenter`, `presenterRole`, `date` |
+| `section`        | Same gradient family as cover                                                             | `number`, `title`                                         |
+| `default`        | White; gradient rule top; monogram top-left                                               | The slide H1 is the markdown `# Heading`                  |
+| `agenda`         | White                                                                                     | `items: string[]` (auto-numbered)                         |
+| `two-cols`       | White                                                                                     | Uses Slidev's `::left::` / `::right::` slots              |
+| `quote`          | White (default) or dark gradient (when `dark: true`)                                      | `attribution`, `role`, `dark?`                            |
+| `image-feature`  | White, image edge-bleed                                                                   | `image`, `side: 'left' \| 'right'`                        |
+| `image-full`     | Full-bleed image with gradient scrim for legibility                                       | `image`, `headline`                                       |
+| `stats`          | White                                                                                     | `stats: { value, label, caption? }[]` (1–4 cards)         |
+| `team`           | White                                                                                     | `members: { name, role, photo? }[]`                       |
+| `comparison`     | White, two cards with light-blue header bars                                              | `left: { title, points[] }`, `right: { title, points[] }` |
+| `timeline`       | White, gradient rule as baseline                                                          | `events: { date, label, detail? }[]`                      |
+| `process`        | White, numbered chevrons                                                                  | `steps: { title, detail? }[]`                             |
+| `code-focus`     | Dark (`--wwt-accent7-base`)                                                               | code block in slide body                                  |
+| `customer-quote` | White; large pull quote                                                                   | `quote`, `name`, `role`, `photo?`, `logo?`                |
+| `demo`           | White; framed screenshot/iframe with light shadow                                         | `src`, `caption?`                                         |
+| `end`            | Navy gradient; "Make a new world happen"; full reversed logo center; "wwt.com" footer     | `signoff?` (overrides default tagline)                    |
 
 ### Shared components
 
@@ -319,6 +321,7 @@ mode without any Vue logic.
 ```vue
 <div class="wwt-monogram-mark" role="img" aria-label="WWT" />
 ```
+
 ```css
 .wwt-monogram-mark {
   width: 32px;
@@ -348,6 +351,7 @@ The theme combines three layers of motion, escalating from least to most code:
    for authors who want emphasis animation on a specific element.
 
 **Implementation:**
+
 - Dep: `@formkit/auto-animate` (~3KB) added to the theme `dependencies`
 - Plugin registered in `setup/main.ts` via `autoAnimatePlugin`
 - Affected layouts wrap their reveal lists with `v-auto-animate`
@@ -362,6 +366,7 @@ remove the `v-clicks` wrapper.
 ## Print / PDF export
 
 `styles/print.css` handles `slidev export`:
+
 - Force backgrounds to print (`-webkit-print-color-adjust: exact`)
 - Hide footer slide-number on full-bleed cover/section/end slides
 - Ensure gradient line and logos render at full opacity
@@ -393,6 +398,7 @@ Demonstrates every layout in a coherent narrative — order:
 ## Tone of voice (sample copy and README)
 
 Sample copy in `slides.md` and READMEs follows WWT tone:
+
 - Purposeful, bold and confident, beautifully simple, refreshing
 - "World Wide Technology" on first use, "WWT" thereafter
 - Sign-off on the `end` slide: "Make a new world happen"

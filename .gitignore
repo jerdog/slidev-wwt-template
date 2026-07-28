@@ -1,5 +1,18 @@
-# npm
-node_modules
+node_modules/
+.DS_Store
+dist/
+.output/
+.cache/
+.vite/
+*.log
+.env
+.env.*
+!.env.example
+slides-export/
+*.pdf
+.pnpm-store/
+.vscode/*
+!.vscode/extensions.json
 
-# claude
+# claude memory
 .remember

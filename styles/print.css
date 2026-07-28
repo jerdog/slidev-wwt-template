@@ -1,0 +1,14 @@
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .wwt-cover .wwt-footer,
+  .wwt-section .wwt-footer,
+  .wwt-end .wwt-footer,
+  .wwt-image-full .wwt-footer {
+    display: none !important;
+  }
+}
