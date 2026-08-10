@@ -9,6 +9,14 @@ declare module "@slidev/client" {
   export function useNav(): {
     currentSlideNo: ComputedRef<number>;
     total: ComputedRef<number>;
+    currentLayout: ComputedRef<string>;
+    // No currentFrontmatter shorthand at this theme's floor version
+    // (@slidev/cli >=0.49.0) — go through currentSlideRoute instead, the
+    // same path newer Slidev versions use to derive that shorthand
+    // internally. Minimally typed: only the fields anything here reads.
+    currentSlideRoute: ComputedRef<{
+      meta: { slide: { frontmatter: Record<string, unknown> } };
+    }>;
     [key: string]: unknown;
   };
 

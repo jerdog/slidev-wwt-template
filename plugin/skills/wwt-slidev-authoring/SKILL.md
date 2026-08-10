@@ -51,6 +51,12 @@ column` with no wrapping — the 6th and 7th steps render off the right
   Fold citations into an existing string — usually `title` (e.g.
   `title: "The experience gap — Sonar 2026"`) or a `caption` if the
   layout has one. `stats` has per-item `caption?` for this.
+- **`badge: false` isn't layout-specific.** If the deck has a
+  `CornerBadge` wired up via its own `global-top.vue` (see
+  `/wwt-talk-new`'s optional corner-motif step), this flag suppresses it
+  on that one slide, regardless of which layout the slide uses — it's not
+  another column in the table above, it's read by the badge component
+  itself.
 
 ## Frontmatter format rules
 
@@ -262,6 +268,28 @@ click index is 0 (no children visible yet).
 to reveal everything, or press `→` repeatedly. When reviewing content in
 isolation (screenshot, MCP inspection), do this **before** concluding a
 slide is broken.
+
+### `:global(.dark)` silently fails to compile
+
+**Symptom:** a dark-mode color override written as
+`:global(.dark) .foo { color: ...; }` inside a component's `<style scoped>`
+block — or inside a Slidev per-slide style block in a consumer's
+`slides.md` — never applies. No build error, no console warning; the rule
+simply never appears in the served stylesheet.
+
+**Cause:** unconfirmed root cause, confirmed symptom — verified by
+inspecting `document.styleSheets` directly, not just by screenshot. A
+screenshot can look "close enough" at a glance and still be measurably
+wrong; this bug has fooled that check before.
+
+**Workaround:** don't scope the override to the component or slide at all.
+Add it to the deck's project-root `global-top.vue` instead, in a plain
+*unscoped* `<style>` block (no `scoped` attribute), as `.dark .foo { color:
+...; }` — **with `!important`.** The `!important` is load-bearing, not
+defensive: `.dark .foo` and the original rule's compiled
+`.foo[data-v-hash]` selector are equal CSS specificity, so without it the
+winner depends on stylesheet load order — verified to go the wrong way,
+silently, more often than not.
 
 ## Custom styling
 
