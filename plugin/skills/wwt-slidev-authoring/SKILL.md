@@ -284,7 +284,7 @@ wrong; this bug has fooled that check before.
 
 **Workaround:** don't scope the override to the component or slide at all.
 Add it to the deck's project-root `global-top.vue` instead, in a plain
-*unscoped* `<style>` block (no `scoped` attribute), as `.dark .foo { color:
+_unscoped_ `<style>` block (no `scoped` attribute), as `.dark .foo { color:
 ...; }` — **with `!important`.** The `!important` is load-bearing, not
 defensive: `.dark .foo` and the original rule's compiled
 `.foo[data-v-hash]` selector are equal CSS specificity, so without it the
@@ -345,12 +345,13 @@ render taller than the slide's fixed canvas, clipped silently by
   produce a confusing Vue compiler error. Avoid literal `<tag>`-shaped
   text inside such comments; write "the outer `p` tag" instead.
 - **Use `presenterName:` on the cover slide, never `presenter:`.** Slidev
-  reserves `presenter` as document-level headmatter (`boolean | 'dev' |
-  'build'`) that toggles presenter mode and the `/presenter` route. Slide
-  1's frontmatter is that global headmatter block, so a string value there
-  silently overwrites Slidev's own config — no error, no warning, and the
-  presenter toolbar button just stops working. The `cover` layout reads
-  `presenterName` specifically to avoid this collision.
+  reserves `presenter` as document-level headmatter (a boolean or `'dev'`
+  / `'build'`) that toggles presenter mode and the `/presenter` route.
+  Slide 1's frontmatter is that global headmatter block, so a string
+  value there silently overwrites Slidev's own config — no error, no
+  warning, and the presenter toolbar button just stops working. The
+  `cover` layout reads `presenterName` specifically to avoid this
+  collision.
 
 ## When you author
 
