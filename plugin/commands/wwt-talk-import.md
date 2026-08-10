@@ -64,7 +64,7 @@ similar. Sketch the outline first, get approval, then draft slides.
 
 5. **Draft `slides.md`.** After approval:
    - Document-level frontmatter: `theme: wwt`, `title`, `info`, and
-     `presenter` if provided
+     `presenterName` if provided
    - One slide per idea; target ~1 slide per 60–90 seconds of talk time
    - Follow the skill's tone pillars (purposeful, bold, simple,
      refreshing with a touch of humor)

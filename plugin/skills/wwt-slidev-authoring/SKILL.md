@@ -21,7 +21,7 @@ content.
 
 | Layout           | Body slot? | Use for                                             | Key frontmatter                                                                     |
 | ---------------- | ---------- | --------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `cover`          | No         | Deck title slide (dark)                             | `title`, `subtitle?`, `presenter?`, `presenterRole?`, `date?`                       |
+| `cover`          | No         | Deck title slide (dark)                             | `title`, `subtitle?`, `presenterName?`, `presenterRole?`, `date?`                   |
 | `section`        | No         | Section break with big numeral (dark)               | `number` (string, e.g. `"01"`), `title`                                             |
 | `default`        | **Yes**    | General content slide (light)                       | `title?` — the slide's H1 is the markdown `# Heading`                               |
 | `agenda`         | No         | Numbered table of contents                          | `items: string[]`                                                                   |
@@ -316,10 +316,13 @@ render taller than the slide's fixed canvas, clipped silently by
   inside a `<style>` block will sometimes be misparsed as a stray tag and
   produce a confusing Vue compiler error. Avoid literal `<tag>`-shaped
   text inside such comments; write "the outer `p` tag" instead.
-- **`presenter:` on the cover slide may trip an IDE type-schema warning.**
-  Slidev reserves `presenter` for "enable presenter mode" (boolean), but
-  the WWT `cover` layout also accepts `presenter:` as a string name. Both
-  work at runtime; the warning is cosmetic. Don't "fix" it by renaming.
+- **Use `presenterName:` on the cover slide, never `presenter:`.** Slidev
+  reserves `presenter` as document-level headmatter (`boolean | 'dev' |
+  'build'`) that toggles presenter mode and the `/presenter` route. Slide
+  1's frontmatter is that global headmatter block, so a string value there
+  silently overwrites Slidev's own config — no error, no warning, and the
+  presenter toolbar button just stops working. The `cover` layout reads
+  `presenterName` specifically to avoid this collision.
 
 ## When you author
 

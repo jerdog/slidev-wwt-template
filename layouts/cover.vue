@@ -15,9 +15,9 @@ const { $frontmatter } = useSlideContext();
       <p v-if="$frontmatter?.subtitle" class="wwt-cover__subtitle">
         {{ $frontmatter.subtitle }}
       </p>
-      <div v-if="$frontmatter?.presenter || $frontmatter?.date" class="wwt-cover__meta">
-        <span v-if="$frontmatter?.presenter">
-          {{ $frontmatter.presenter }}
+      <div v-if="$frontmatter?.presenterName || $frontmatter?.date" class="wwt-cover__meta">
+        <span v-if="$frontmatter?.presenterName">
+          {{ $frontmatter.presenterName }}
           <template v-if="$frontmatter?.presenterRole">
             — {{ $frontmatter.presenterRole }}</template
           >
