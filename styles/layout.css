@@ -82,3 +82,26 @@ body,
   background: var(--wwt-monogram-url) center / contain no-repeat;
   display: block;
 }
+
+/* Opt-in modifier for Slidev's built-in `two-cols-header` layout (not a WWT
+   layout — Slidev core ships it directly, so it isn't in this theme's own
+   catalog). That layout's header row renders flush left by default; apply
+   this class to center it instead:
+
+     ---
+     layout: two-cols-header
+     layoutClass: wwt-header-center
+     ---
+
+   `layoutClass`, not `class`: `class` on this layout only reaches its
+   columns, never the header row or the root — verified in a real deck,
+   not assumed from the layout's source.
+
+   The `*` half of the selector is load-bearing. `.slidev-layout * { text-
+   align: left }` above matches the heading element directly, and a direct
+   declaration beats an inherited one — so setting text-align on
+   `.col-header` alone would leave the heading left-aligned regardless. */
+.wwt-header-center .col-header,
+.wwt-header-center .col-header * {
+  text-align: center;
+}

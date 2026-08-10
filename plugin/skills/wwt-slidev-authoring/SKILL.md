@@ -57,6 +57,18 @@ column` with no wrapping — the 6th and 7th steps render off the right
   on that one slide, regardless of which layout the slide uses — it's not
   another column in the table above, it's read by the badge component
   itself.
+- **Slidev's own core layouts work too, and this theme styles one of
+  them.** `two-cols-header` isn't in the table above — it ships with
+  Slidev itself, not this theme — but its header row renders flush left
+  by default, and `layoutClass: wwt-header-center` centers it:
+  ```yaml
+  ---
+  layout: two-cols-header
+  layoutClass: wwt-header-center
+  ---
+  ```
+  Use `layoutClass`, not `class` — on this layout, `class` only reaches
+  the columns, never the header row or the root.
 
 ## Frontmatter format rules
 
