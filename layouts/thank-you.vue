@@ -35,11 +35,21 @@ const speakers = computed(() => {
           <ul v-if="s.socials.length" class="wwt-thank-you__socials">
             <li v-for="social in s.socials" :key="`${social.platform}-${social.label}`">
               <a v-if="social.url" :href="social.url" target="_blank" rel="noopener noreferrer">
-                <SocialIcon :platform="social.platform" aria-hidden="true" />
+                <SocialIcon
+                  v-if="social.platform !== 'link'"
+                  :platform="social.platform"
+                  aria-hidden="true"
+                />
+                <span v-else>{{ social.name }}:</span>
                 <span>{{ social.label }}</span>
               </a>
               <span v-else class="wwt-thank-you__social-text">
-                <SocialIcon :platform="social.platform" aria-hidden="true" />
+                <SocialIcon
+                  v-if="social.platform !== 'link'"
+                  :platform="social.platform"
+                  aria-hidden="true"
+                />
+                <span v-else>{{ social.name }}:</span>
                 <span>{{ social.label }}</span>
               </span>
             </li>
@@ -61,8 +71,6 @@ const speakers = computed(() => {
           }}</a>
         </p>
       </div>
-
-      <WwtLogo variant="white" :height="56" />
     </div>
   </div>
 </template>
@@ -124,9 +132,9 @@ const speakers = computed(() => {
 .wwt-thank-you__socials {
   list-style: none;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--wwt-space-4);
+  flex-direction: column;
+  align-items: center;
+  gap: var(--wwt-space-2);
   padding: 0;
   margin: 0;
 }
@@ -140,14 +148,17 @@ const speakers = computed(() => {
   display: inline-flex;
   align-items: center;
   gap: var(--wwt-space-2);
-  font-size: var(--wwt-text-caption);
+  font-size: var(--wwt-text-body);
 }
 
 /* Dark background: the theme's default link color (--wwt-primary-base)
    is tuned for light backgrounds. --wwt-primary-light matches the
-   existing dark-layout convention (see end.vue's "wwt.com" site line). */
+   existing dark-layout convention (see end.vue's "wwt.com" site line).
+   border-bottom: none overrides the global `.slidev-layout a` underline —
+   this list reads better as plain colored text. */
 .wwt-thank-you__socials a {
   color: var(--wwt-primary-light);
+  border-bottom: none;
 }
 
 .wwt-thank-you__social-text {

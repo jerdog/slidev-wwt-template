@@ -54,6 +54,10 @@ export type SocialValue = string | SocialOverride;
 /** What SocialIcon.vue and SpeakerCard.vue actually render. */
 export interface ResolvedSocial {
   platform: SocialIconKey;
+  /** Brand-cased display name of the platform (e.g. "GitHub", "Bluesky"),
+   * not a naive capitalization of the YAML key. Used by layouts that show
+   * "<name>: <handle>" text (e.g. `thank-you`). */
+  name: string;
   label: string;
   url: string;
 }
@@ -89,6 +93,30 @@ function isKnownPlatform(key: string): key is SocialIconKey {
   return KNOWN_PLATFORMS.has(key as SocialIconKey);
 }
 
+/** Brand-cased display name per known platform — "GitHub" and "LinkedIn",
+ * not what naive capitalization of "github"/"linkedin" would produce. */
+const PLATFORM_LABELS: Record<SocialIconKey, string> = {
+  bluesky: "Bluesky",
+  mastodon: "Mastodon",
+  github: "GitHub",
+  gitlab: "GitLab",
+  linkedin: "LinkedIn",
+  x: "X",
+  youtube: "YouTube",
+  instagram: "Instagram",
+  facebook: "Facebook",
+  medium: "Medium",
+  discord: "Discord",
+  slack: "Slack",
+  email: "Email",
+  link: "Link",
+};
+
+// Unknown platform (the escape hatch): no brand casing to look up, so fall
+// back to capitalizing whatever YAML key the author wrote.
+const platformName = (key: string, normalized: SocialIconKey | undefined): string =>
+  normalized ? PLATFORM_LABELS[normalized] : key.charAt(0).toUpperCase() + key.slice(1);
+
 const stripAt = (handle: string) => handle.replace(/^@/, "");
 const isUrl = (value: string) => /^https?:\/\//.test(value);
 
@@ -111,7 +139,14 @@ const URL_BUILDERS: Record<SocialIconKey, (handle: string) => string> = {
   },
   github: (h) => `https://github.com/${stripAt(h)}`,
   gitlab: (h) => `https://gitlab.com/${stripAt(h)}`,
-  linkedin: (h) => `https://www.linkedin.com/in/${stripAt(h)}`,
+  // Accepts either a bare handle ("jeremy-meiss") or a path already
+  // rooted at "/in/..." or "/company/..." — both are common to copy
+  // straight from a LinkedIn profile URL.
+  linkedin: (h) => {
+    if (isUrl(h)) return h;
+    if (h.startsWith("/")) return `https://www.linkedin.com${h}`;
+    return `https://www.linkedin.com/in/${stripAt(h)}`;
+  },
   x: (h) => `https://x.com/${stripAt(h)}`,
   youtube: (h) => `https://youtube.com/${h.startsWith("@") ? h : `@${h}`}`,
   instagram: (h) => `https://instagram.com/${stripAt(h)}`,
@@ -131,20 +166,22 @@ const URL_BUILDERS: Record<SocialIconKey, (handle: string) => string> = {
  */
 export function resolveSocial(key: string, value: SocialValue): ResolvedSocial {
   const normalized = normalizeKey(key);
+  const name = platformName(key, normalized);
 
   if (typeof value === "object" && value !== null) {
     return {
       platform: value.icon ?? normalized ?? "link",
+      name,
       label: value.label ?? key,
       url: value.url,
     };
   }
 
   if (normalized) {
-    return { platform: normalized, label: value, url: URL_BUILDERS[normalized](value) };
+    return { platform: normalized, name, label: value, url: URL_BUILDERS[normalized](value) };
   }
 
   // Unknown platform key + bare string value: we don't know how to turn a
   // handle into a URL, so only link it if the value already looks like one.
-  return { platform: "link", label: key, url: asIsIfUrl(value) };
+  return { platform: "link", name, label: key, url: asIsIfUrl(value) };
 }
