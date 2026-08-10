@@ -51,7 +51,7 @@ column` with no wrapping — the 6th and 7th steps render off the right
   Fold citations into an existing string — usually `title` (e.g.
   `title: "The experience gap — Sonar 2026"`) or a `caption` if the
   layout has one. `stats` has per-item `caption?` for this.
-- **`badge: false` isn't layout-specific.** If the deck has a
+- **`hideBadge: true` isn't layout-specific.** If the deck has a
   `CornerBadge` wired up via its own `global-top.vue` (see
   `/wwt-talk-new`'s optional corner-motif step), this flag suppresses it
   on that one slide, regardless of which layout the slide uses — it's not

@@ -82,7 +82,7 @@ You are helping the user bootstrap a new WWT conference talk deck.
    Tell the user to drop their badge image into `public/` and update `src`
    to match its filename. To hide the badge on any individual slide (a
    cover slide with its own logo treatment, a full-bleed photo it would
-   clutter), set `badge: false` in that slide's frontmatter — no code
+   clutter), set `hideBadge: true` in that slide's frontmatter — no code
    change needed. Skip this whole sub-step if the user didn't want a badge;
    nothing else in the deck depends on `global-top.vue` existing.
 

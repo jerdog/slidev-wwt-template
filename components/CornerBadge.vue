@@ -4,8 +4,8 @@
 // mounts once, outside any single slide's own component tree.
 // useSlideContext() relies on provide/inject up that tree, so from a
 // global layer it silently binds to whichever context it can find
-// (observed: the badge stayed visible and ignored badge: false on every
-// slide) rather than reactively tracking slide navigation. useNav() is a
+// (observed: the badge stayed visible and ignored hideBadge: true on
+// every slide) rather than reactively tracking slide navigation. useNav() is a
 // shared composable (createSharedComposable in @slidev/client) with no
 // such tree dependency, so it works correctly from anywhere in the app.
 //
@@ -34,7 +34,7 @@ const frontmatter = computed<Record<string, unknown>>(
 </script>
 
 <template>
-  <div v-if="frontmatter?.badge !== false" class="wwt-corner-badge-layer" aria-hidden="true">
+  <div v-if="!frontmatter?.hideBadge" class="wwt-corner-badge-layer" aria-hidden="true">
     <img
       class="wwt-corner-badge"
       :src="src"

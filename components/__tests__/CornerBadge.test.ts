@@ -8,20 +8,20 @@ describe("CornerBadge", () => {
     frontmatter.value = {};
   });
 
-  it("renders when badge is unset", () => {
+  it("renders when hideBadge is unset", () => {
     const wrapper = mount(CornerBadge, { props: { src: "/badge.png" } });
     expect(wrapper.find("img").exists()).toBe(true);
     expect(wrapper.find("img").attributes("src")).toBe("/badge.png");
   });
 
-  it("renders when badge is explicitly true", () => {
-    frontmatter.value = { badge: true };
+  it("renders when hideBadge is explicitly false", () => {
+    frontmatter.value = { hideBadge: false };
     const wrapper = mount(CornerBadge, { props: { src: "/badge.png" } });
     expect(wrapper.find("img").exists()).toBe(true);
   });
 
-  it("does not render when badge: false", () => {
-    frontmatter.value = { badge: false };
+  it("does not render when hideBadge: true", () => {
+    frontmatter.value = { hideBadge: true };
     const wrapper = mount(CornerBadge, { props: { src: "/badge.png" } });
     expect(wrapper.find("img").exists()).toBe(false);
   });
