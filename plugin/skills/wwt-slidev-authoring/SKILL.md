@@ -271,7 +271,7 @@ have a chance to redirect before you commit to disk.
 
 For 1, ditto — brainstorm the section outline before writing full slides.
 
-## Known issues (as of theme 0.4.0)
+## Known issues (as of theme 0.4.1)
 
 These are current bugs in `slidev-theme-wwt`. If you see them, apply the
 workaround and consider filing/updating an issue against the repo.

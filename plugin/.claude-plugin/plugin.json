@@ -1,6 +1,6 @@
 {
   "name": "wwt-slidev",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Author WWT-branded Slidev presentations with Claude Code — layouts, tone, and conference-talk workflow.",
   "authors": [
     {
