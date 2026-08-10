@@ -34,11 +34,7 @@ const frontmatter = computed<Record<string, unknown>>(
 </script>
 
 <template>
-  <div
-    v-if="frontmatter?.badge !== false"
-    class="wwt-corner-badge-layer"
-    aria-hidden="true"
-  >
+  <div v-if="frontmatter?.badge !== false" class="wwt-corner-badge-layer" aria-hidden="true">
     <img
       class="wwt-corner-badge"
       :src="src"
