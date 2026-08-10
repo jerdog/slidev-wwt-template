@@ -1,6 +1,6 @@
 ---
 name: wwt-slidev-authoring
-description: Use when authoring or editing a WWT-branded Slidev presentation — any project whose slides.md declares `theme: wwt`, or where the user asks to draft a WWT conference talk, technical presentation, or customer deck. Covers the 17 layouts, frontmatter contracts, WWT tone of voice, and the "Make a new world happen" sign-off convention.
+description: Use when authoring or editing a WWT-branded Slidev presentation — any project whose slides.md declares `theme: wwt`, or where the user asks to draft a WWT conference talk, technical presentation, or customer deck. Covers the 19 layouts, frontmatter contracts, WWT tone of voice, and the "Make a new world happen" sign-off convention.
 ---
 
 # Authoring WWT Slidev presentations
@@ -22,6 +22,7 @@ content.
 | Layout           | Body slot? | Use for                                             | Key frontmatter                                                                     |
 | ---------------- | ---------- | --------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | `cover`          | No         | Deck title slide (dark)                             | `title`, `subtitle?`, `presenterName?`, `presenterRole?`, `date?`                   |
+| `speaker`        | No         | Speaker bio, 1–2 speakers (light)                   | `title?`, `speakers: { name, role?, company?, photo?, socials?, orgs? }[]`          |
 | `section`        | No         | Section break with big numeral (dark)               | `number` (string, e.g. `"01"`), `title`                                             |
 | `default`        | **Yes**    | General content slide (light)                       | `title?` — the slide's H1 is the markdown `# Heading`                               |
 | `agenda`         | No         | Numbered table of contents                          | `items: string[]`                                                                   |
@@ -37,6 +38,7 @@ content.
 | `code-focus`     | **Yes**    | Dark code-centric slide                             | `title?` — put a fenced code block in the slide body                                |
 | `customer-quote` | No         | Photo + large pull quote                            | `quote`, `name`, `role`, `photo?`, `logo?`                                          |
 | `demo`           | No         | Framed screenshot or iframe                         | `title?`, `src`, `caption?`, `iframe?` (bool)                                       |
+| `thank-you`      | No         | Closing, 1–2 speakers + slides link (dark)          | `speakers: { name, socials? }[]`, `slidesUrl?`, `qr?`, `heading?`                   |
 | `end`            | No         | Closing slide — "Make a new world happen" (dark)    | `signoff?` (overrides default tagline)                                              |
 
 ### Layout capacity notes
@@ -69,6 +71,40 @@ column` with no wrapping — the 6th and 7th steps render off the right
   ```
   Use `layoutClass`, not `class` — on this layout, `class` only reaches
   the columns, never the header row or the root.
+- **`speaker` and `thank-you` support 1–2 speakers, not more.** Both
+  layouts lay speakers out in a fixed one- or two-column arrangement; a
+  third entry will overflow rather than reflow. For 3+ presenters, use
+  `team` instead.
+
+### `socials:` and `orgs:` — the speaker/thank-you frontmatter shape
+
+`speaker` and `thank-you` both take a `speakers:` list; each entry's
+`socials:` is a map of platform key → handle, e.g.:
+
+```yaml
+speakers:
+  - name: Jeremy Meiss
+    role: Director, Developer Relations # speaker only
+    company: World Wide Technology # speaker only
+    socials:
+      bluesky: "@jerdog.dev"
+      github: jerdog
+    orgs: # speaker only
+      - CNCF Ambassador
+```
+
+Known platform keys (`bluesky`, `mastodon`, `github`, `gitlab`,
+`linkedin`, `x`/`twitter`, `youtube`, `instagram`, `facebook`, `medium`,
+`email`) resolve a bare handle straight to a profile URL and the matching
+icon. `discord` and `slack` need a full URL as the value — there's no
+fixed per-user URL pattern for either, so a bare handle for those (or any
+unrecognized key that isn't already a URL) renders as plain, non-linking
+text rather than a broken link. For a platform the registry doesn't know,
+or full control over icon/label/url, pass an object instead of a string:
+`{ icon: link, label: "...", url: "..." }`. Full reference, including the
+`orgs:` shape (plain string or `{ name, logo?, url? }`), is in the theme's
+[README](../../../README.md#speaker-and-thank-you-frontmatter) — point
+the user there rather than re-deriving it.
 
 ## Frontmatter format rules
 
@@ -94,14 +130,19 @@ For a WWT conference talk or customer deck, use this shape as a starting
 point (adjust to the topic):
 
 1. `cover` — deck title, presenter
-2. `agenda` — 3-5 items, one per section
-3. `section` — "01 · Section title" (dark break)
-4. Content slides — `default`, `stats`, `quote`, `two-cols`
-5. `section` — "02 · Section title"
-6. Content slides — `code-focus`, `demo`, `comparison`, `timeline`, `process`
-7. `customer-quote` or `image-feature` — anchoring narrative
-8. `default` — recap
-9. `end` — closing slide
+2. `speaker` — presenter bio (optional; skip for a solo talk where
+   `cover`'s `presenterName`/`presenterRole` already covers it — use this
+   when you want socials/orgs on screen, or there's a co-speaker)
+3. `agenda` — 3-5 items, one per section
+4. `section` — "01 · Section title" (dark break)
+5. Content slides — `default`, `stats`, `quote`, `two-cols`
+6. `section` — "02 · Section title"
+7. Content slides — `code-focus`, `demo`, `comparison`, `timeline`, `process`
+8. `customer-quote` or `image-feature` — anchoring narrative
+9. `default` — recap
+10. `end` or `thank-you` — closing slide. Use `thank-you` when the audience
+    should leave with the speakers' socials and a link to the slides on
+    screen; use `end` for the pure brand sign-off.
 
 For a 25-minute talk, aim for ~15–20 slides. Density belongs in speaker
 notes, not on the slide.
@@ -128,8 +169,8 @@ Conventions:
 
 The theme supports dark mode via `D` keyboard toggle, a footer button, or
 `colorSchema: dark` in the deck's document-level frontmatter. Content
-slides swap cleanly; `cover`, `section`, `end`, `code-focus`, `image-full`
-stay dark in both modes by design.
+slides swap cleanly; `cover`, `section`, `end`, `thank-you`, `code-focus`,
+`image-full` stay dark in both modes by design.
 
 Five layouts already reveal children on click via `v-auto-animate` +
 `<v-clicks>`: `agenda`, `timeline`, `stats`, `team`, `process`. No
@@ -230,7 +271,7 @@ have a chance to redirect before you commit to disk.
 
 For 1, ditto — brainstorm the section outline before writing full slides.
 
-## Known issues (as of theme 0.2.0)
+## Known issues (as of theme 0.3.0)
 
 These are current bugs in `slidev-theme-wwt`. If you see them, apply the
 workaround and consider filing/updating an issue against the repo.

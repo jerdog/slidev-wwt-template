@@ -51,9 +51,11 @@ You are reviewing an existing WWT deck for brand compliance and quality.
 
 ### Structure
 
-- Deck should open with a `cover` slide.
+- Deck should open with a `cover` slide, optionally followed by `speaker`.
 - Sections should be numbered consistently (e.g. `"01"`, `"02"`).
-- `agenda` and `end` should each appear at most once.
+- `agenda`, `speaker`, `end`, and `thank-you` should each appear at most
+  once. Flag a deck that uses both `end` and `thank-you` — pick one
+  closing layout.
 
 ### Accessibility & rendering
 

@@ -26,6 +26,7 @@ similar. Sketch the outline first, get approval, then draft slides.
    | Signal in the source                              | Likely layout    |
    | ------------------------------------------------- | ---------------- |
    | H1 / top-level title                              | `cover`          |
+   | Speaker bio / "about me" section                  | `speaker`        |
    | Numbered list at the top ("what we'll cover")     | `agenda`         |
    | H1 / H2 that opens a major section                | `section`        |
    | Prose paragraph with 1 clear takeaway             | `default`        |
@@ -40,6 +41,7 @@ similar. Sketch the outline first, get approval, then draft slides.
    | Full-bleed hero visual                            | `image-full`     |
    | Team introductions                                | `team`           |
    | Explicit closing / call to action                 | `end`            |
+   | Closing with contact info / socials / slides link | `thank-you`      |
 
 3. **Draft the outline in chat first.** Present a bullet outline before
    writing any files:

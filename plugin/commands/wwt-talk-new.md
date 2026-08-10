@@ -15,6 +15,11 @@ You are helping the user bootstrap a new WWT conference talk deck.
    - Duration in minutes
    - Topic / core message in one sentence
    - Target directory name (default: kebab-case of the title)
+   - Optional: a co-presenter, and whether either speaker wants a
+     dedicated bio slide (`speaker` layout) with socials/community orgs,
+     or a closing `thank-you` slide with socials + a link to the slides.
+     Skip either if the user just wants `cover`'s built-in
+     `presenterName`/`presenterRole` and `end`'s sign-off.
    - Optional: a recurring corner motif/badge image (a running visual joke,
      a client logo, a conference badge — anything that should appear in the
      same corner of every slide). Skip this if the user doesn't want one.

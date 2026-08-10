@@ -30,6 +30,8 @@ You are helping the user append a slide to an existing WWT Slidev deck.
      `quote` (without a photo)
    - Screenshot walkthrough → `demo`
    - New section beginning → `section`
+   - Introducing the speaker(s) → `speaker`
+   - Closing with contact info / where to find the slides → `thank-you`
 
 5. **Draft the slide.** Write proper YAML frontmatter with correct
    indentation. Follow WWT tone: purposeful, bold, simple, refreshing.

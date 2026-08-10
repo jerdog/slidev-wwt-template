@@ -10,6 +10,28 @@ date: 2026
 ---
 
 ---
+layout: speaker
+title: Meet your speakers
+speakers:
+  - name: Priya Raman
+    role: Principal Engineer
+    company: World Wide Technology
+    socials:
+      bluesky: "@priyaraman.dev"
+      github: priyaraman
+      linkedin: priyaraman
+    orgs:
+      - CNCF Ambassador
+      - name: DevOpsDays Chicago
+  - name: Marcus Webb
+    role: Solutions Architect
+    company: World Wide Technology
+    socials:
+      mastodon: "@marcuswebb@fosstodon.org"
+      github: marcuswebb
+---
+
+---
 layout: agenda
 items:
   - Why this template exists
@@ -72,7 +94,7 @@ Run `pnpm dev` and Slidev rebuilds in milliseconds. Ship a PDF with
 layout: stats
 title: By the numbers
 stats:
-  - value: "17"
+  - value: "19"
     label: layouts
     caption: every common business slide pattern
   - value: "1"
@@ -122,7 +144,7 @@ title: Author in Markdown
 const slide = {
   layout: "stats",
   stats: [
-    { value: "17", label: "layouts" },
+    { value: "19", label: "layouts" },
     { value: "1", label: "command" },
   ],
 };
@@ -218,10 +240,24 @@ title: Recap
 
 # Recap
 
-- 17 WWT-branded layouts ready to compose
+- 19 WWT-branded layouts ready to compose
 - Light and dark modes with one keystroke (`D`)
 - AutoAnimate reveals on agenda, timeline, stats, team, process
 - Author in Markdown, ship a PDF
+
+---
+layout: thank-you
+speakers:
+  - name: Priya Raman
+    socials:
+      bluesky: "@priyaraman.dev"
+      github: priyaraman
+  - name: Marcus Webb
+    socials:
+      mastodon: "@marcuswebb@fosstodon.org"
+      github: marcuswebb
+slidesUrl: wwt.com/talks/make-a-new-world-happen
+---
 
 ---
 layout: end

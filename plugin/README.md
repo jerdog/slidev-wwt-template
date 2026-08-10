@@ -52,7 +52,7 @@ Refresh after the marketplace repo updates:
 using `theme: wwt`, or when you ask Claude to draft a WWT presentation.
 Teaches:
 
-- All 17 layouts and their frontmatter contracts
+- All 19 layouts and their frontmatter contracts
 - WWT tone of voice (purposeful, bold, simple, refreshing with a touch of humor)
 - Recommended narrative arcs for talks (cover → agenda → sections → recap → end)
 - Dark mode and animation patterns
@@ -124,7 +124,7 @@ auto-registering would fail in every non-Slidev workspace.
 
 The plugin ships instructions, not tools. Claude Code already has the file
 I/O and shell tools it needs to author decks; what it was missing is
-_context_ — the 17 layouts, the tone, the sign-off. A skill delivers that
+_context_ — the 19 layouts, the tone, the sign-off. A skill delivers that
 context on demand. If a future integration needs a real capability Claude
 can't otherwise reach (e.g., publishing to an internal WWT presentation
 hub), we can add an MCP server here alongside the skill.

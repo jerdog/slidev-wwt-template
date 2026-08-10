@@ -24,24 +24,24 @@ approving the plan before either pass writes to disk.
 3. **Diff the layouts.** Build a mapping from every current layout to a
    WWT equivalent. Use this table as your starting point:
 
-   | Current layout       | Map to          | Notes                                                         |
-   | -------------------- | --------------- | ------------------------------------------------------------- |
-   | `cover`              | `cover`         | Keep                                                          |
-   | `intro`              | `cover`         | WWT has no `intro`; `cover` is the analogue                   |
-   | `default`            | `default`       | Keep                                                          |
-   | `section`            | `section`       | Add `number` (string) if missing                              |
-   | `two-cols`           | `two-cols`      | Keep; verify `::left::` / `::right::` slots present           |
-   | `two-cols-header`    | `two-cols`      | Move header into a preceding `default` slide or into left col |
-   | `quote`              | `quote`         | Keep; add `attribution` if missing                            |
-   | `center`             | `default`       | WWT doesn't offer center-only; use `default`                  |
-   | `statement`          | `quote` (dark)  | Or `section` if the statement is a real break                 |
-   | `fact`               | `stats`         | Single big number → `stats`; qualitative punchline → `quote`  |
-   | `image-right`        | `image-feature` | Set `side: right`                                             |
-   | `image-left`         | `image-feature` | Set `side: left`                                              |
-   | `image`, `full`      | `image-full`    | Move any headline into `headline:` frontmatter                |
-   | `end`                | `end`           | Keep; `signoff:` overrides the default tagline                |
-   | `iframe`, `iframe-*` | `demo`          | Set `src:` and `iframe: true`                                 |
-   | anything else        | (ask user)      | Propose the closest WWT layout and confirm before applying    |
+   | Current layout       | Map to               | Notes                                                                                                                 |
+   | -------------------- | -------------------- | --------------------------------------------------------------------------------------------------------------------- |
+   | `cover`              | `cover`              | Keep                                                                                                                  |
+   | `intro`              | `cover` + `speaker`  | WWT has no `intro`; `cover` covers the title, `speaker` covers an about-me/bio section if the source has one          |
+   | `default`            | `default`            | Keep                                                                                                                  |
+   | `section`            | `section`            | Add `number` (string) if missing                                                                                      |
+   | `two-cols`           | `two-cols`           | Keep; verify `::left::` / `::right::` slots present                                                                   |
+   | `two-cols-header`    | `two-cols`           | Move header into a preceding `default` slide or into left col                                                         |
+   | `quote`              | `quote`              | Keep; add `attribution` if missing                                                                                    |
+   | `center`             | `default`            | WWT doesn't offer center-only; use `default`                                                                          |
+   | `statement`          | `quote` (dark)       | Or `section` if the statement is a real break                                                                         |
+   | `fact`               | `stats`              | Single big number → `stats`; qualitative punchline → `quote`                                                          |
+   | `image-right`        | `image-feature`      | Set `side: right`                                                                                                     |
+   | `image-left`         | `image-feature`      | Set `side: left`                                                                                                      |
+   | `image`, `full`      | `image-full`         | Move any headline into `headline:` frontmatter                                                                        |
+   | `end`                | `end` or `thank-you` | Keep `end` for a pure sign-off; map to `thank-you` if the source's closing slide has speaker socials or a slides link |
+   | `iframe`, `iframe-*` | `demo`               | Set `src:` and `iframe: true`                                                                                         |
+   | anything else        | (ask user)           | Propose the closest WWT layout and confirm before applying                                                            |
 
 4. **Preview the change plan.** Present to the user, in chat, before
    editing anything:

@@ -21,15 +21,16 @@ pnpm export             # PDF → slides-export.pdf
 
 ## Author a new deck
 
-1. Copy this `packages/starter/` directory anywhere outside the monorepo and
-   rename it.
+1. Copy this `starter/` directory anywhere outside this repo and rename it.
 2. In the copy's `package.json`, replace the `workspace:*` dependency on
-   `slidev-theme-wwt` with the published version (`^0.1.0` or later).
+   `slidev-theme-wwt` with `github:jerdog/slidev-wwt-template` (see the
+   root [README's Install section](../README.md#install)).
 3. Edit `slides.md` and the assets under `public/`.
 
 ## Layouts available
 
-See `packages/slidev-theme-wwt/README.md` for the full layout catalog.
+See the root [README](../README.md#layouts) for the full layout catalog,
+frontmatter reference, and custom CSS/styling hooks.
 
 ## Tone
 
