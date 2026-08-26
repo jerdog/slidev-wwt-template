@@ -95,12 +95,13 @@ speakers:
 
 Known platform keys (`bluesky`, `mastodon`, `github`, `gitlab`,
 `linkedin`, `x`/`twitter`, `youtube`, `instagram`, `facebook`, `medium`,
-`email`) resolve a bare handle straight to a profile URL and the matching
-icon. `discord` and `slack` need a full URL as the value — there's no
-fixed per-user URL pattern for either, so a bare handle for those (or any
-unrecognized key that isn't already a URL) renders as plain, non-linking
-text rather than a broken link. For a platform the registry doesn't know,
-or full control over icon/label/url, pass an object instead of a string:
+`website`, `email`) resolve a bare handle straight to a profile URL and
+the matching icon. `discord` and `slack` need a full URL as the value —
+there's no fixed per-user URL pattern for either, so a bare handle for
+those (or any unrecognized key that isn't already a URL) renders as
+plain, non-linking text rather than a broken link. For a platform the
+registry doesn't know, or full control over icon/label/url, pass an
+object instead of a string:
 `{ icon: link, label: "...", url: "..." }`. Full reference, including the
 `orgs:` shape (plain string or `{ name, logo?, url? }`), is in the theme's
 [README](../../../README.md#speaker-and-thank-you-frontmatter) — point
