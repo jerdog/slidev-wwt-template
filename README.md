@@ -33,6 +33,48 @@ directory so logos and gradients resolve at their expected paths:
 mkdir -p public && cp node_modules/slidev-theme-wwt/public/* public/
 ```
 
+## Updating
+
+### Updating the theme
+
+The theme is a `github:` git dependency, so `pnpm add` pinned it to whatever
+commit was current when you installed it. To pull the latest:
+
+```bash
+pnpm update slidev-theme-wwt
+```
+
+This re-resolves to the latest commit on the default branch and updates
+`pnpm-lock.yaml`. There's no published changelog — check the
+[commit history](https://github.com/jerdog/slidev-wwt-template/commits/main)
+for what changed since your last install.
+
+A new theme version may add or change public assets, so re-run the
+known-issue copy step too:
+
+```bash
+cp node_modules/slidev-theme-wwt/public/* public/
+```
+
+If you've edited any of those copied files yourself, diff before
+overwriting — this copies straight over them.
+
+### Updating the plugin
+
+If you installed the [Claude Code plugin](#claude-code-plugin), refresh the
+marketplace and reinstall to pick up the latest version:
+
+```
+/plugin marketplace update slidev-wwt
+/plugin install wwt-slidev@slidev-wwt
+/reload-plugins
+```
+
+Reinstalling refreshes the marketplace's listing before resolving the
+plugin, so this always gets you the latest commit. If the marketplace has
+auto-update enabled, `/plugin marketplace update slidev-wwt` alone updates
+it in the background on your next session.
+
 ## Getting started
 
 Two ways to build a deck: by hand (below), or conversationally with the

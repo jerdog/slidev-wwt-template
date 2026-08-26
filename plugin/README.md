@@ -38,11 +38,18 @@ If you've cloned the repo locally, point at the checkout instead:
 /reload-plugins
 ```
 
-Refresh after the marketplace repo updates:
+Update to the latest version after the marketplace repo has new commits —
+reinstalling refreshes the marketplace's listing before resolving the
+plugin, so this always gets you the latest:
 
 ```
 /plugin marketplace update slidev-wwt
+/plugin install wwt-slidev@slidev-wwt
+/reload-plugins
 ```
+
+If the marketplace has auto-update enabled, `/plugin marketplace update
+slidev-wwt` alone updates it in the background on your next session.
 
 ## What's included
 
