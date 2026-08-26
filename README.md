@@ -394,6 +394,18 @@ a custom slide looking like it belongs in the deck.
   layoutClass: wwt-header-center
   ---
   ```
+- **`.wwt-cols-center`** — same `layoutClass:` mechanism, for the same
+  `two-cols-header` layout, but vertically centers `::left::`/`::right::`
+  content instead of the header row. That layout only sets `align-self` on
+  its `.col-bottom` slot, so the left/right columns default to `stretch` and
+  their content top-flows; this class fixes that. Combine with
+  `wwt-header-center` as needed:
+  ```yaml
+  ---
+  layout: two-cols-header
+  layoutClass: wwt-header-center wwt-cols-center
+  ---
+  ```
 - **Global element defaults** inside every `.slidev-layout`: `h1`
   (`--wwt-text-h1`, primary color, 700 weight), `h2` (`--wwt-text-h2`, 600),
   `p`/`li` (`--wwt-text-body`), `a` (primary color, underlined via
