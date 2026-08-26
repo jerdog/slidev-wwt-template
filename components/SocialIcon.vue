@@ -31,6 +31,7 @@ defineProps<{
   <carbon-logo-discord v-else-if="platform === 'discord'" class="wwt-social-icon" />
   <carbon-logo-slack v-else-if="platform === 'slack'" class="wwt-social-icon" />
   <carbon-email v-else-if="platform === 'email'" class="wwt-social-icon" />
+  <carbon-earth v-else-if="platform === 'website'" class="wwt-social-icon" />
   <carbon-link v-else class="wwt-social-icon" />
 </template>
 

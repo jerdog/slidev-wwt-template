@@ -279,6 +279,7 @@ supply the handle:
 | `instagram`        | `jerdog`                                                     | `https://instagram.com/jerdog`        |
 | `facebook`         | `jerdog`                                                     | `https://facebook.com/jerdog`         |
 | `medium`           | `jerdog`                                                     | `https://medium.com/@jerdog`          |
+| `website`          | `jeremymeiss.com`                                            | `https://jeremymeiss.com`             |
 | `email`            | `jeremy.meiss@wwt.com`                                       | `mailto:jeremy.meiss@wwt.com`         |
 | `discord`, `slack` | a **full URL** — no fixed per-user pattern exists for either | used as-is                            |
 

@@ -37,6 +37,7 @@ export type SocialIconKey =
   | "discord"
   | "slack"
   | "email"
+  | "website"
   | "link";
 
 /** Explicit override shape — the escape hatch for platforms the registry
@@ -86,6 +87,7 @@ const KNOWN_PLATFORMS = new Set<SocialIconKey>([
   "discord",
   "slack",
   "email",
+  "website",
   "link",
 ]);
 
@@ -109,6 +111,7 @@ const PLATFORM_LABELS: Record<SocialIconKey, string> = {
   discord: "Discord",
   slack: "Slack",
   email: "Email",
+  website: "Website",
   link: "Link",
 };
 
@@ -155,6 +158,8 @@ const URL_BUILDERS: Record<SocialIconKey, (handle: string) => string> = {
   discord: asIsIfUrl,
   slack: asIsIfUrl,
   email: (h) => (h.startsWith("mailto:") ? h : `mailto:${h}`),
+  // Accepts either a bare domain ("jeremymeiss.com") or a full URL.
+  website: (h) => (isUrl(h) ? h : `https://${h}`),
   link: (h) => (isUrl(h) ? h : `https://${h}`),
 };
 

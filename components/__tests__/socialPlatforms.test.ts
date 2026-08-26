@@ -81,6 +81,20 @@ describe("resolveSocial", () => {
     expect(resolveSocial("discord", url).url).toBe(url);
   });
 
+  it("builds a website URL from a bare domain, defaulting to https://", () => {
+    expect(resolveSocial("website", "jeremymeiss.com")).toEqual({
+      platform: "website",
+      name: "Website",
+      label: "jeremymeiss.com",
+      url: "https://jeremymeiss.com",
+    });
+  });
+
+  it("passes a full website URL through untouched", () => {
+    const url = "https://jeremymeiss.com/about";
+    expect(resolveSocial("website", url).url).toBe(url);
+  });
+
   it("treats an unknown platform key with a bare (non-URL) value as non-linking text", () => {
     expect(resolveSocial("matrix", "@jerdog:matrix.org")).toEqual({
       platform: "link",
