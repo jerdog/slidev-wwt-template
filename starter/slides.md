@@ -174,6 +174,16 @@ right:
     - Pull-request-friendly
 ---
 
+Source: internal WWT authoring retro, 2026
+
+::left::
+
+_Fine for a one-off internal update._
+
+::right::
+
+_What every recurring deck should use._
+
 ---
 layout: timeline
 title: Engagement milestones

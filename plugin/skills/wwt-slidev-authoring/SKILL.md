@@ -19,27 +19,27 @@ frontmatter — any markdown/HTML you put in the slide body is **silently
 dropped** (no error, no warning). Only layouts marked **Yes** accept body
 content.
 
-| Layout           | Body slot? | Use for                                             | Key frontmatter                                                                     |
-| ---------------- | ---------- | --------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `cover`          | No         | Deck title slide (dark)                             | `title`, `subtitle?`, `presenterName?`, `presenterRole?`, `date?`                   |
-| `speaker`        | No         | Speaker bio, 1–2 speakers (light)                   | `title?`, `speakers: { name, role?, company?, photo?, socials?, orgs? }[]`          |
-| `section`        | No         | Section break with big numeral (dark)               | `number` (string, e.g. `"01"`), `title`                                             |
-| `default`        | **Yes**    | General content slide (light)                       | `title?` — the slide's H1 is the markdown `# Heading`                               |
-| `agenda`         | No         | Numbered table of contents                          | `items: string[]`                                                                   |
-| `two-cols`       | **Yes**    | Two-column content                                  | Uses Slidev `::left::` and `::right::` slots                                        |
-| `quote`          | **Yes**    | Pull quote (light by default, dark if `dark: true`) | `attribution`, `role?`, `dark?`                                                     |
-| `image-feature`  | **Yes**    | Headline beside an edge-bleed image                 | `title?`, `image`, `imageAlt?`, `side: "left" \| "right"`                           |
-| `image-full`     | No         | Full-bleed image with overlay headline              | `image`, `imageAlt?`, `headline?`                                                   |
-| `stats`          | No         | 1–4 big-number stats (auto-fits grid)               | `title?`, `stats: { value: string, label: string, caption?: string }[]`             |
-| `team`           | No         | Team grid with photos                               | `title?`, `members: { name, role, photo? }[]`                                       |
-| `comparison`     | No         | Side-by-side cards                                  | `title?`, `left: { title, points: string[] }`, `right: { title, points: string[] }` |
-| `timeline`       | No         | Horizontal milestone strip                          | `title?`, `events: { date, label, detail? }[]`                                      |
-| `process`        | No         | Numbered process steps (see capacity note below)    | `title?`, `steps: { title, detail? }[]`                                             |
-| `code-focus`     | **Yes**    | Dark code-centric slide                             | `title?` — put a fenced code block in the slide body                                |
-| `customer-quote` | No         | Photo + large pull quote                            | `quote`, `name`, `role`, `photo?`, `logo?`                                          |
-| `demo`           | No         | Framed screenshot or iframe                         | `title?`, `src`, `caption?`, `iframe?` (bool)                                       |
-| `thank-you`      | No         | Closing, 1–2 speakers + slides link (dark)          | `speakers: { name, socials? }[]`, `slidesUrl?`, `qr?`, `heading?`                   |
-| `end`            | No         | Closing slide — "Make a new world happen" (dark)    | `signoff?` (overrides default tagline)                                              |
+| Layout           | Body slot? | Use for                                                            | Key frontmatter                                                                     |
+| ---------------- | ---------- | ------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| `cover`          | No         | Deck title slide (dark)                                            | `title`, `subtitle?`, `presenterName?`, `presenterRole?`, `date?`                   |
+| `speaker`        | No         | Speaker bio, 1–2 speakers (light)                                  | `title?`, `speakers: { name, role?, company?, photo?, socials?, orgs? }[]`          |
+| `section`        | No         | Section break with big numeral (dark)                              | `number` (string, e.g. `"01"`), `title`                                             |
+| `default`        | **Yes**    | General content slide (light)                                      | `title?` — the slide's H1 is the markdown `# Heading`                               |
+| `agenda`         | No         | Numbered table of contents                                         | `items: string[]`                                                                   |
+| `two-cols`       | **Yes**    | Two-column content                                                 | Uses Slidev `::left::` and `::right::` slots                                        |
+| `quote`          | **Yes**    | Pull quote (light by default, dark if `dark: true`)                | `attribution`, `role?`, `dark?`                                                     |
+| `image-feature`  | **Yes**    | Headline beside an edge-bleed image                                | `title?`, `image`, `imageAlt?`, `side: "left" \| "right"`                           |
+| `image-full`     | No         | Full-bleed image with overlay headline                             | `image`, `imageAlt?`, `headline?`                                                   |
+| `stats`          | No         | 1–4 big-number stats (auto-fits grid)                              | `title?`, `stats: { value: string, label: string, caption?: string }[]`             |
+| `team`           | No         | Team grid with photos                                              | `title?`, `members: { name, role, photo? }[]`                                       |
+| `comparison`     | **Yes**    | Side-by-side cards, optional `::left::`/`::right::`/footer content | `title?`, `left: { title, points: string[] }`, `right: { title, points: string[] }` |
+| `timeline`       | No         | Horizontal milestone strip                                         | `title?`, `events: { date, label, detail? }[]`                                      |
+| `process`        | No         | Numbered process steps (see capacity note below)                   | `title?`, `steps: { title, detail? }[]`                                             |
+| `code-focus`     | **Yes**    | Dark code-centric slide                                            | `title?` — put a fenced code block in the slide body                                |
+| `customer-quote` | No         | Photo + large pull quote                                           | `quote`, `name`, `role`, `photo?`, `logo?`                                          |
+| `demo`           | No         | Framed screenshot or iframe                                        | `title?`, `src`, `caption?`, `iframe?` (bool)                                       |
+| `thank-you`      | No         | Closing, 1–2 speakers + slides link (dark)                         | `speakers: { name, socials? }[]`, `slidesUrl?`, `qr?`, `heading?`                   |
+| `end`            | No         | Closing slide — "Make a new world happen" (dark)                   | `signoff?` (overrides default tagline)                                              |
 
 ### Layout capacity notes
 
@@ -48,11 +48,36 @@ column` with no wrapping — the 6th and 7th steps render off the right
   edge of the slide, even with short text. For 6+ steps, use `default`
   with your own CSS grid instead. Same watch-out likely applies to
   `agenda`, `stats`, and `team` at higher counts; verify visually.
-- **No source-line field.** Layouts like `comparison`, `process`,
-  `timeline`, and `agenda` have no dedicated field for citing a source.
-  Fold citations into an existing string — usually `title` (e.g.
-  `title: "The experience gap — Sonar 2026"`) or a `caption` if the
-  layout has one. `stats` has per-item `caption?` for this.
+- **No source-line field.** Layouts like `process`, `timeline`, and
+  `agenda` have no dedicated field for citing a source. Fold citations
+  into an existing string — usually `title` (e.g. `title: "The
+  experience gap — Sonar 2026"`) or a `caption` if the layout has one.
+  `stats` has per-item `caption?` for this. `comparison` can instead
+  take a citation as small body content in its full-width slot (see
+  below).
+- **`comparison` accepts optional body content below its cards.**
+  `::left::` / `::right::` markdown sections render below their
+  respective card, outside its border; plain body content with no
+  `::name::` marker renders full-width below both cards. All three are
+  optional — a slide that supplies none of them renders exactly as
+  before.
+  **Ordering matters and fails silently:** Slidev's `::name::` slot
+  syntax is sequential, not positional — content only lands in the
+  default (full-width) slot if it appears *before* the first
+  `::name::` marker in the slide body. Put it after `::right::` and it
+  silently gets absorbed into the `right` slot instead (no error). Write
+  full-width content first, then `::left::`, then `::right::`:
+  ```markdown
+  Source: internal WWT authoring retro, 2026
+
+  ::left::
+
+  _Fine for a one-off internal update._
+
+  ::right::
+
+  _What every recurring deck should use._
+  ```
 - **`hideBadge: true` isn't layout-specific.** If the deck has a
   `CornerBadge` wired up via its own `global-top.vue` (see
   `/wwt-talk-new`'s optional corner-motif step), this flag suppresses it

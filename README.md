@@ -269,27 +269,27 @@ Iterate with `/wwt-slide-add` for one more slide at a time, run
 
 ## Layouts
 
-| Layout           | Purpose                                                    |
-| ---------------- | ---------------------------------------------------------- |
-| `cover`          | Title slide — dark gradient                                |
-| `speaker`        | Speaker bio — 1 or 2 speakers with headshot, socials       |
-| `section`        | Section break — large numeral + title                      |
-| `default`        | White content slide with monogram + gradient rule          |
-| `agenda`         | Numbered table of contents                                 |
-| `two-cols`       | Two-column content using `::left::` / `::right::`          |
-| `quote`          | Pull quote (light or `dark: true`)                         |
-| `image-feature`  | Headline beside an edge-bleed image (`side: left\|right`)  |
-| `image-full`     | Full-bleed image with overlay headline                     |
-| `stats`          | 1-4 big-number stats                                       |
-| `team`           | Team grid with photos                                      |
-| `comparison`     | Side-by-side cards                                         |
-| `timeline`       | Horizontal milestone strip                                 |
-| `process`        | Numbered process steps                                     |
-| `code-focus`     | Dark code-centric slide                                    |
-| `customer-quote` | Photo + large pull quote                                   |
-| `demo`           | Framed screenshot or iframe                                |
-| `thank-you`      | Closing — "Thank You" + 1-2 speakers, socials, slides link |
-| `end`            | Closing slide — "Make a new world happen"                  |
+| Layout           | Purpose                                                                |
+| ---------------- | ---------------------------------------------------------------------- |
+| `cover`          | Title slide — dark gradient                                            |
+| `speaker`        | Speaker bio — 1 or 2 speakers with headshot, socials                   |
+| `section`        | Section break — large numeral + title                                  |
+| `default`        | White content slide with monogram + gradient rule                      |
+| `agenda`         | Numbered table of contents                                             |
+| `two-cols`       | Two-column content using `::left::` / `::right::`                      |
+| `quote`          | Pull quote (light or `dark: true`)                                     |
+| `image-feature`  | Headline beside an edge-bleed image (`side: left\|right`)              |
+| `image-full`     | Full-bleed image with overlay headline                                 |
+| `stats`          | 1-4 big-number stats                                                   |
+| `team`           | Team grid with photos                                                  |
+| `comparison`     | Side-by-side cards, optional `::left::` / `::right::` / footer content |
+| `timeline`       | Horizontal milestone strip                                             |
+| `process`        | Numbered process steps                                                 |
+| `code-focus`     | Dark code-centric slide                                                |
+| `customer-quote` | Photo + large pull quote                                               |
+| `demo`           | Framed screenshot or iframe                                            |
+| `thank-you`      | Closing — "Thank You" + 1-2 speakers, socials, slides link             |
+| `end`            | Closing slide — "Make a new world happen"                              |
 
 ### `speaker` and `thank-you` frontmatter
 

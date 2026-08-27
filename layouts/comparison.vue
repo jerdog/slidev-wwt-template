@@ -15,26 +15,39 @@ const right = ($frontmatter?.right ?? { title: "", points: [] }) as Side;
       {{ $frontmatter.title }}
     </h1>
     <div class="wwt-comparison__grid">
-      <section class="wwt-comparison__card">
-        <header class="wwt-comparison__header">
-          {{ left.title }}
-        </header>
-        <ul>
-          <li v-for="p in left.points" :key="p">
-            {{ p }}
-          </li>
-        </ul>
-      </section>
-      <section class="wwt-comparison__card">
-        <header class="wwt-comparison__header">
-          {{ right.title }}
-        </header>
-        <ul>
-          <li v-for="p in right.points" :key="p">
-            {{ p }}
-          </li>
-        </ul>
-      </section>
+      <div class="wwt-comparison__col">
+        <section class="wwt-comparison__card">
+          <header class="wwt-comparison__header">
+            {{ left.title }}
+          </header>
+          <ul>
+            <li v-for="p in left.points" :key="p">
+              {{ p }}
+            </li>
+          </ul>
+        </section>
+        <div v-if="$slots.left" class="wwt-comparison__extra">
+          <slot name="left" />
+        </div>
+      </div>
+      <div class="wwt-comparison__col">
+        <section class="wwt-comparison__card">
+          <header class="wwt-comparison__header">
+            {{ right.title }}
+          </header>
+          <ul>
+            <li v-for="p in right.points" :key="p">
+              {{ p }}
+            </li>
+          </ul>
+        </section>
+        <div v-if="$slots.right" class="wwt-comparison__extra">
+          <slot name="right" />
+        </div>
+      </div>
+    </div>
+    <div v-if="$slots.default" class="wwt-comparison__footer">
+      <slot />
     </div>
     <Footer />
   </div>
@@ -62,6 +75,12 @@ const right = ($frontmatter?.right ?? { title: "", points: [] }) as Side;
   margin-top: var(--wwt-space-6);
 }
 
+.wwt-comparison__col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wwt-space-4);
+}
+
 .wwt-comparison__card {
   border: 1px solid var(--wwt-primary-lightest);
   border-radius: 12px;
@@ -78,5 +97,16 @@ const right = ($frontmatter?.right ?? { title: "", points: [] }) as Side;
 .wwt-comparison__card ul {
   padding: var(--wwt-space-4) var(--wwt-space-6);
   margin: 0;
+}
+
+.wwt-comparison__extra {
+  color: var(--wwt-ink-muted);
+  font-size: var(--wwt-text-caption);
+}
+
+.wwt-comparison__footer {
+  margin-top: var(--wwt-space-6);
+  color: var(--wwt-ink-muted);
+  font-size: var(--wwt-text-caption);
 }
 </style>
