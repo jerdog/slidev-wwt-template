@@ -1,5 +1,16 @@
 import { defineMermaidSetup } from "@slidev/types";
 
+// lineColor is a brand blue, not the near-black `--wwt-ink-base` value the
+// rest of this config's dark-mode-adjacent colors might suggest. This
+// config is static — mermaid renders are cached per Slidev
+// (@slidev/client/modules/mermaid.ts) and don't react to the runtime dark
+// mode toggle — so lineColor can't flip per color scheme. A near-black
+// edge color is invisible against a dark slide background: every
+// default-styled arrow in a flowchart disappears, leaving only nodes with
+// no visible connectors. An explicit per-edge `linkStyle` override still
+// wins over this, so a highlighted edge is unaffected either way. The
+// brand blue reads clearly against both light and dark backgrounds
+// without needing runtime reactivity.
 export default defineMermaidSetup(() => ({
   theme: "base",
   themeVariables: {
@@ -8,7 +19,7 @@ export default defineMermaidSetup(() => ({
     primaryBorderColor: "#1C0087",
     secondaryColor: "#1C0087",
     tertiaryColor: "#99CFF7",
-    lineColor: "#0A0B19",
+    lineColor: "#0086EA",
     fontFamily: "Inter, Roobert, Arial, system-ui, sans-serif",
   },
 }));
