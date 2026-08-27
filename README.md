@@ -480,8 +480,11 @@ a custom slide looking like it belongs in the deck.
 - **Global element defaults** inside every `.slidev-layout`: `h1`
   (`--wwt-text-h1`, primary color, 700 weight), `h2` (`--wwt-text-h2`, 600),
   `p`/`li` (`--wwt-text-body`), `a` (primary color, underlined via
-  `border-bottom`), `strong` (700), `em` (italic). All text is left-aligned
-  by default — brand convention, not an accident; the dark sign-off layouts
+  `border-bottom`), `strong` (700), `em` (italic), and a plain markdown
+  `table` — header row underlined in the primary color, hairline row
+  dividers in `--wwt-primary-lightest` (the same border color `comparison`/
+  `boxes` cards use), muted body text. All text is left-aligned by default
+  — brand convention, not an accident; the dark sign-off layouts
   (`cover`, `section`, `end`, `thank-you`) explicitly override this back to
   centered.
 
