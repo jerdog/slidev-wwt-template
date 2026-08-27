@@ -8,6 +8,32 @@ Code plugin for conversational authoring.
 > It is not an official World Wide Technology product and is not affiliated
 > with or endorsed by WWT.
 
+## Table of contents
+
+- [Install](#install)
+- [Updating](#updating)
+  - [Updating the theme](#updating-the-theme)
+  - [Updating the plugin](#updating-the-plugin)
+- [Getting started](#getting-started)
+  - [Option A — author by hand](#option-a--author-by-hand)
+  - [Option B — author with the Claude Code plugin](#option-b--author-with-the-claude-code-plugin)
+- [Layouts](#layouts)
+  - [`speaker` and `thank-you` frontmatter](#speaker-and-thank-you-frontmatter)
+- [Typography](#typography)
+- [Dark mode](#dark-mode)
+- [Animation](#animation)
+- [Custom CSS reference](#custom-css-reference)
+  - [Utility classes](#utility-classes)
+  - [Overriding a layout's internals](#overriding-a-layouts-internals)
+  - [Sizing a custom component to fill a `default` slide](#sizing-a-custom-component-to-fill-a-default-slide)
+- [Claude Code plugin](#claude-code-plugin)
+- [Known issues](#known-issues)
+  - [Theme public assets resolve to broken paths](#theme-public-assets-resolve-to-broken-paths)
+  - [`process` layout overflows past ~5 items](#process-layout-overflows-past-5-items)
+  - [`<v-clicks>`-native layouts render empty on load](#v-clicks-native-layouts-render-empty-on-load)
+- [Developing this theme](#developing-this-theme)
+- [License](#license)
+
 ## Install
 
 The theme is distributed directly from this GitHub repo (no npm publish):
@@ -572,6 +598,10 @@ Open `localhost:3030`. Edit `starter/slides.md` and watch it hot-reload.
 | `pnpm typecheck` | Type-check theme + starter       |
 | `pnpm test`      | Run theme unit tests             |
 | `pnpm format`    | Prettier-format everything       |
+
+See [AGENTS.md](./AGENTS.md) for repo conventions (styling tokens, layout
+checklist, etc.) — including the rule that any change to this README's
+headings must also update the [Table of contents](#table-of-contents) above.
 
 ## License
 

@@ -11,6 +11,17 @@ Works alongside the [`slidev-theme-wwt`](../) theme in this repo.
 > It is not an official World Wide Technology product and is not affiliated
 > with or endorsed by WWT.
 
+## Table of contents
+
+- [Install](#install)
+- [What's included](#whats-included)
+  - [Skill](#skill)
+  - [Slash commands](#slash-commands)
+- [Typical flows](#typical-flows)
+- [Integration with Slidev's MCP server](#integration-with-slidevs-mcp-server)
+- [Why a plugin instead of an MCP server?](#why-a-plugin-instead-of-an-mcp-server)
+- [License](#license)
+
 ## Install
 
 Claude Code installs plugins via marketplaces. This repo publishes a
