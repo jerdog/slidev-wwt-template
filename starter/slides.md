@@ -185,6 +185,24 @@ _Fine for a one-off internal update._
 _What every recurring deck should use._
 
 ---
+layout: boxes
+title: Everything you get
+boxes:
+  - title: Layouts
+    detail: 20 purpose-built slide types
+  - title: Dark mode
+    detail: One click, every slide
+  - title: Animation
+    detail: v-clicks and v-motion, ready to use
+  - title: Tokens
+    detail: Brand colors and spacing, not hex codes
+  - title: Claude plugin
+    detail: Conversational authoring
+  - title: MIT license
+    detail: Fork it, ship it
+---
+
+---
 layout: timeline
 title: Engagement milestones
 events:

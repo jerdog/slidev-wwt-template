@@ -283,6 +283,7 @@ Iterate with `/wwt-slide-add` for one more slide at a time, run
 | `stats`          | 1-4 big-number stats                                                   |
 | `team`           | Team grid with photos                                                  |
 | `comparison`     | Side-by-side cards, optional `::left::` / `::right::` / footer content |
+| `boxes`          | Responsive grid of labeled cards (2-6)                                 |
 | `timeline`       | Horizontal milestone strip                                             |
 | `process`        | Numbered process steps                                                 |
 | `code-focus`     | Dark code-centric slide                                                |
@@ -417,7 +418,8 @@ The theme combines three layers:
 
 Five built-in layouts use `v-auto-animate` + `<v-clicks>` already: `agenda`,
 `timeline`, `stats`, `team`, `process`. Each child appears on click with a
-smooth tween.
+smooth tween. `boxes` can opt into the same behavior with `reveal: true` in
+its frontmatter — off by default, so its cards all render immediately.
 
 ## Custom CSS reference
 
