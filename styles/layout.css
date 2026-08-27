@@ -70,6 +70,39 @@ body,
   font-style: italic;
 }
 
+/* Baseline table styling. Without this, a markdown table falls back
+   entirely to bare browser UA rendering — no borders, no header emphasis,
+   no row rhythm — so it reads as an unstructured blob rather than
+   structured data, especially next to anything with real visual weight
+   (a diagram, a card grid) on the same slide. A header underline in the
+   brand primary color plus hairline row dividers reusing the same
+   --wwt-primary-lightest border color already used for card outlines
+   elsewhere (comparison, boxes) keeps it "the same design system" rather
+   than introducing a new visual language. Both tokens already flip for
+   dark mode on their own (styles/tokens.css), so no `.dark` branch or
+   !important is needed here. */
+.slidev-layout table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--wwt-space-6);
+}
+
+.slidev-layout th {
+  font-weight: 600;
+  padding: var(--wwt-space-2) var(--wwt-space-4) var(--wwt-space-3);
+  border-bottom: 2px solid var(--wwt-primary-base);
+}
+
+.slidev-layout td {
+  padding: var(--wwt-space-2) var(--wwt-space-4);
+  border-bottom: 1px solid var(--wwt-primary-lightest);
+  color: var(--wwt-ink-muted);
+}
+
+.slidev-layout tr:last-child td {
+  border-bottom: none;
+}
+
 /* All text left-aligned per brand */
 .slidev-layout,
 .slidev-layout * {

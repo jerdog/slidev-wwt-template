@@ -61,6 +61,13 @@ green on `main`.
   README's [Layouts](./README.md#layouts) table, a case in
   `plugin/skills/wwt-slidev-authoring/SKILL.md`'s layout catalog, and a
   Vitest spec under `components/__tests__/` if it has non-trivial logic.
+- **A change doesn't have to be a new layout to need a skill update.**
+  Anything in `styles/*.css` (e.g. the global element defaults — `h1`,
+  `table`, etc.), `setup/*.ts` (mermaid, shiki), or a shared component can
+  change what an author should know or do differently. When it does,
+  update `plugin/skills/wwt-slidev-authoring/SKILL.md` too, not just this
+  repo's own README — the skill is what actually reaches an author's AI
+  agent at authoring time, so a README-only fix is invisible to it.
 - **This repo doesn't author deck content.** `starter/slides.md` is a fixed
   reference deck, not a scratchpad. WWT tone, the sign-off convention
   ("Make a new world happen"), and frontmatter contracts for talks live in
