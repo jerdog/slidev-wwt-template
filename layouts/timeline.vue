@@ -29,6 +29,9 @@ const events = ($frontmatter?.events ?? []) as Event[];
         </li>
       </v-clicks>
     </ol>
+    <div v-if="$slots.default" class="wwt-timeline__footer">
+      <slot />
+    </div>
     <Footer />
   </div>
 </template>
@@ -104,5 +107,11 @@ const events = ($frontmatter?.events ?? []) as Event[];
   font-size: var(--wwt-text-caption);
   color: var(--wwt-ink-muted);
   margin: 0;
+}
+
+.wwt-timeline__footer {
+  margin-top: var(--wwt-space-6);
+  color: var(--wwt-ink-muted);
+  font-size: var(--wwt-text-caption);
 }
 </style>

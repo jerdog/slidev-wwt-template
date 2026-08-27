@@ -34,7 +34,7 @@ content.
 | `team`           | No         | Team grid with photos                                              | `title?`, `members: { name, role, photo? }[]`                                       |
 | `comparison`     | **Yes**    | Side-by-side cards, optional `::left::`/`::right::`/footer content | `title?`, `left: { title, points: string[] }`, `right: { title, points: string[] }` |
 | `boxes`          | **Yes**    | Responsive grid of labeled cards (see capacity note below)         | `title?`, `boxes: { title, detail? }[]`, `reveal?` (bool, click-through)            |
-| `timeline`       | No         | Horizontal milestone strip                                         | `title?`, `events: { date, label, detail? }[]`                                      |
+| `timeline`       | **Yes**    | Horizontal milestone strip                                         | `title?`, `events: { date, label, detail? }[]`                                      |
 | `process`        | No         | Numbered process steps (see capacity note below)                   | `title?`, `steps: { title, detail? }[]`                                             |
 | `code-focus`     | **Yes**    | Dark code-centric slide                                            | `title?` — put a fenced code block in the slide body                                |
 | `customer-quote` | No         | Photo + large pull quote                                           | `quote`, `name`, `role`, `photo?`, `logo?`                                          |
@@ -49,13 +49,13 @@ column` with no wrapping — the 6th and 7th steps render off the right
   edge of the slide, even with short text. For 6+ steps, use `default`
   with your own CSS grid instead. Same watch-out likely applies to
   `agenda`, `stats`, and `team` at higher counts; verify visually.
-- **No source-line field.** Layouts like `process`, `timeline`, and
-  `agenda` have no dedicated field for citing a source. Fold citations
-  into an existing string — usually `title` (e.g. `title: "The
-experience gap — Sonar 2026"`) or a `caption` if the layout has one.
-  `stats` has per-item `caption?` for this. `comparison` and `boxes` can
-  instead take a citation as plain body content, rendered full-width
-  below the cards (see below).
+- **No source-line field.** Layouts like `process` and `agenda` have no
+  dedicated field for citing a source. Fold citations into an existing
+  string — usually `title` (e.g. `title: "The experience gap — Sonar
+2026"`) or a `caption` if the layout has one. `stats` has per-item
+  `caption?` for this. `comparison`, `boxes`, and `timeline` can instead
+  take a citation as plain body content, rendered full-width below the
+  cards/milestones (see below).
 - **`boxes` is tested for 2–6 items.** Its grid adapts via CSS:
   2 → 2 columns, 4 → 2×2, and 3/5/6 wrap naturally at 3 columns with no
   extra frontmatter needed. 1 renders as a single full-width card — if
@@ -95,6 +95,13 @@ experience gap — Sonar 2026"`) or a `caption` if the layout has one.
 
   _What every recurring deck should use._
   ```
+
+- **`timeline` accepts optional body content below the milestone strip.**
+  Unlike `comparison`/`boxes`, it has only a single default slot — no
+  `::name::` sub-slots. Plain markdown after the frontmatter renders
+  full-width beneath the events, styled as a muted caption line. Good for
+  a source citation or a one-line callout; omit it and the slide renders
+  exactly as before.
 
 - **`hideBadge: true` isn't layout-specific.** If the deck has a
   `CornerBadge` wired up via its own `global-top.vue` (see

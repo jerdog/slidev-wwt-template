@@ -284,7 +284,7 @@ Iterate with `/wwt-slide-add` for one more slide at a time, run
 | `team`           | Team grid with photos                                                  |
 | `comparison`     | Side-by-side cards, optional `::left::` / `::right::` / footer content |
 | `boxes`          | Responsive grid of labeled cards (2-6)                                 |
-| `timeline`       | Horizontal milestone strip                                             |
+| `timeline`       | Horizontal milestone strip, optional footer content                    |
 | `process`        | Numbered process steps                                                 |
 | `code-focus`     | Dark code-centric slide                                                |
 | `customer-quote` | Photo + large pull quote                                               |

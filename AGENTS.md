@@ -61,6 +61,14 @@ green on `main`.
   README's [Layouts](./README.md#layouts) table, a case in
   `plugin/skills/wwt-slidev-authoring/SKILL.md`'s layout catalog, and a
   Vitest spec under `components/__tests__/` if it has non-trivial logic.
+- **Adding a body slot to an existing layout** follows the same
+  checklist: update the README row and flip the **Body slot?** column
+  (plus any capacity note) in `SKILL.md`'s layout catalog. Use the
+  `boxes`/`comparison`/`timeline` pattern — a `<div v-if="$slots.default"
+class="wwt-<layout>__footer"><slot /></div>` wrapper placed before
+  `<Footer />`, styled with `margin-top: var(--wwt-space-6); color:
+var(--wwt-ink-muted); font-size: var(--wwt-text-caption);` — so an
+  unused slot renders exactly as before, with no empty wrapper in the DOM.
 - **A change doesn't have to be a new layout to need a skill update.**
   Anything in `styles/*.css` (e.g. the global element defaults — `h1`,
   `table`, etc.), `setup/*.ts` (mermaid, shiki), or a shared component can

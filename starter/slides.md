@@ -220,6 +220,8 @@ events:
     detail: Operational handoff and runbook.
 ---
 
+Dates assume a mid-sized engagement; adjust per SOW.
+
 ---
 layout: process
 title: How we deliver
