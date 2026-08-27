@@ -65,4 +65,17 @@ const stats = computed<StatItem[]>(() => ($frontmatter?.stats ?? []) as StatItem
 .wwt-stats__grid[data-count="4"] {
   grid-template-columns: repeat(4, 1fr);
 }
+
+/* 96px (set in Stat.vue) reads fine at 1-2 stats, where each column is
+   wide. At 3 or 4 across, the column is too narrow for that size to hold a
+   realistic value ("10,000+", "Dec 2025") on one line — `min-width: 0` on
+   .wwt-stat stops it overflowing the slide, but it'd still force an ugly
+   wrap. Scale the numeral down as the row gets more crowded instead. */
+.wwt-stats__grid[data-count="3"] :deep(.wwt-stat__value) {
+  font-size: 72px;
+}
+
+.wwt-stats__grid[data-count="4"] :deep(.wwt-stat__value) {
+  font-size: 46px;
+}
 </style>

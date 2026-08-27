@@ -25,6 +25,16 @@ defineProps<{
   display: flex;
   flex-direction: column;
   gap: var(--wwt-space-2);
+  /* `min-width: 0` is load-bearing, not defensive (see the same fix in
+     styles/layout.css): a 1fr grid track defaults to `minmax(auto, 1fr)`,
+     and the `auto` floor is the item's min-content width. A long numeral
+     has no natural break point, so without this its own width inflates
+     the column — and the whole grid — past the slide edge instead of
+     wrapping inside the space it was given. `overflow-wrap: anywhere`
+     covers the case where nothing forced it to wrap at all (e.g. "10,000+"
+     has no space or hyphen to break at). */
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .wwt-stat__value {
