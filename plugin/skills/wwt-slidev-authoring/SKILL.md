@@ -1,6 +1,6 @@
 ---
 name: wwt-slidev-authoring
-description: Use when authoring or editing a WWT-branded Slidev presentation — any project whose slides.md declares `theme: wwt`, or where the user asks to draft a WWT conference talk, technical presentation, or customer deck. Covers the 19 layouts, frontmatter contracts, WWT tone of voice, and the "Make a new world happen" sign-off convention.
+description: Use when authoring or editing a WWT-branded Slidev presentation — any project whose slides.md declares `theme: wwt`, or where the user asks to draft a WWT conference talk, technical presentation, or customer deck. Covers the 20 layouts, frontmatter contracts, WWT tone of voice, and the "Make a new world happen" sign-off convention.
 ---
 
 # Authoring WWT Slidev presentations
@@ -33,6 +33,7 @@ content.
 | `stats`          | No         | 1–4 big-number stats (auto-fits grid)                              | `title?`, `stats: { value: string, label: string, caption?: string }[]`             |
 | `team`           | No         | Team grid with photos                                              | `title?`, `members: { name, role, photo? }[]`                                       |
 | `comparison`     | **Yes**    | Side-by-side cards, optional `::left::`/`::right::`/footer content | `title?`, `left: { title, points: string[] }`, `right: { title, points: string[] }` |
+| `boxes`          | **Yes**    | Responsive grid of labeled cards (see capacity note below)         | `title?`, `boxes: { title, detail? }[]`, `reveal?` (bool, click-through)            |
 | `timeline`       | No         | Horizontal milestone strip                                         | `title?`, `events: { date, label, detail? }[]`                                      |
 | `process`        | No         | Numbered process steps (see capacity note below)                   | `title?`, `steps: { title, detail? }[]`                                             |
 | `code-focus`     | **Yes**    | Dark code-centric slide                                            | `title?` — put a fenced code block in the slide body                                |
@@ -51,10 +52,19 @@ column` with no wrapping — the 6th and 7th steps render off the right
 - **No source-line field.** Layouts like `process`, `timeline`, and
   `agenda` have no dedicated field for citing a source. Fold citations
   into an existing string — usually `title` (e.g. `title: "The
-  experience gap — Sonar 2026"`) or a `caption` if the layout has one.
-  `stats` has per-item `caption?` for this. `comparison` can instead
-  take a citation as small body content in its full-width slot (see
-  below).
+experience gap — Sonar 2026"`) or a `caption` if the layout has one.
+  `stats` has per-item `caption?` for this. `comparison` and `boxes` can
+  instead take a citation as plain body content, rendered full-width
+  below the cards (see below).
+- **`boxes` is tested for 2–6 items.** Its grid adapts via CSS:
+  2 → 2 columns, 4 → 2×2, and 3/5/6 wrap naturally at 3 columns with no
+  extra frontmatter needed. 1 renders as a single full-width card — if
+  you only have one box, `default` is the more natural pick. 7+ isn't
+  explicitly designed for; the 3-column track keeps wrapping, but
+  verify visually before relying on it, the same caveat as `process`/
+  `agenda`/`stats`/`team` at their own edges. Its optional `reveal: true`
+  opts into the same `<v-clicks>` click-through as those layouts — and
+  inherits the empty-on-first-load quirk documented below when you do.
 - **`comparison` accepts optional body content below its cards.**
   `::left::` / `::right::` markdown sections render below their
   respective card, outside its border; plain body content with no
@@ -63,10 +73,11 @@ column` with no wrapping — the 6th and 7th steps render off the right
   before.
   **Ordering matters and fails silently:** Slidev's `::name::` slot
   syntax is sequential, not positional — content only lands in the
-  default (full-width) slot if it appears *before* the first
+  default (full-width) slot if it appears _before_ the first
   `::name::` marker in the slide body. Put it after `::right::` and it
   silently gets absorbed into the `right` slot instead (no error). Write
   full-width content first, then `::left::`, then `::right::`:
+
   ```markdown
   Source: internal WWT authoring retro, 2026
 
@@ -78,6 +89,7 @@ column` with no wrapping — the 6th and 7th steps render off the right
 
   _What every recurring deck should use._
   ```
+
 - **`hideBadge: true` isn't layout-specific.** If the deck has a
   `CornerBadge` wired up via its own `global-top.vue` (see
   `/wwt-talk-new`'s optional corner-motif step), this flag suppresses it
@@ -163,7 +175,8 @@ point (adjust to the topic):
 4. `section` — "01 · Section title" (dark break)
 5. Content slides — `default`, `stats`, `quote`, `two-cols`
 6. `section` — "02 · Section title"
-7. Content slides — `code-focus`, `demo`, `comparison`, `timeline`, `process`
+7. Content slides — `code-focus`, `demo`, `comparison`, `boxes`, `timeline`,
+   `process`
 8. `customer-quote` or `image-feature` — anchoring narrative
 9. `default` — recap
 10. `end` or `thank-you` — closing slide. Use `thank-you` when the audience
@@ -201,7 +214,8 @@ slides swap cleanly; `cover`, `section`, `end`, `thank-you`, `code-focus`,
 Five layouts already reveal children on click via `v-auto-animate` +
 `<v-clicks>`: `agenda`, `timeline`, `stats`, `team`, `process`. No
 authoring changes needed — each list item appears with a tween as the
-presenter clicks.
+presenter clicks. `boxes` can opt into the same behavior with
+`reveal: true`; without it, all boxes render immediately.
 
 For emphasis animation on any element, use Slidev's built-in `<v-motion>`:
 
