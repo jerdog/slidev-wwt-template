@@ -65,6 +65,12 @@ experience gap — Sonar 2026"`) or a `caption` if the layout has one.
   `agenda`/`stats`/`team` at their own edges. Its optional `reveal: true`
   opts into the same `<v-clicks>` click-through as those layouts — and
   inherits the empty-on-first-load quirk documented below when you do.
+- **Plain markdown tables are styled on-brand.** A header-row underline
+  in the primary color plus hairline row dividers — no bespoke layout or
+  hand-rolled HTML/CSS grid needed for simple tabular data. Works inside
+  any body-slot layout (`default`, `two-cols`, `comparison`, `boxes`,
+  `code-focus`). Reach for a real `| ... |` table before reaching for a
+  custom `<div>` grid.
 - **`comparison` accepts optional body content below its cards.**
   `::left::` / `::right::` markdown sections render below their
   respective card, outside its border; plain body content with no
